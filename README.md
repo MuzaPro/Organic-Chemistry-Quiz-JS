@@ -2,7 +2,7 @@
 
 An interactive educational web application designed to help students learn organic chemistry reactions through drag-and-drop quizzes.
 
-![Organic Chemistry Quiz Game Screenshot](screenshot.png)
+![Organic Chemistry Quiz Game Screenshot](ScreenShot.jpg)
 
 ## Features
 
@@ -19,13 +19,13 @@ An interactive educational web application designed to help students learn organ
 
 ## Demo
 
-Try the live demo: [https://your-username.github.io/organic-chemistry-quiz/](https://your-username.github.io/organic-chemistry-quiz/)
+Try the live demo: [https://muzapro.github.io/Organic-Chemistry-Quiz-JS/](https://muzapro.github.io/Organic-Chemistry-Quiz-JS/)
 
 ## Installation
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/organic-chemistry-quiz.git
+   git clone https://github.com/your-username/Organic-Chemistry-Quiz-JS.git
    ```
 
 2. Navigate to the project directory:
