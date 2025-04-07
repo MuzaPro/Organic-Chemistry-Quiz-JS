@@ -1,0 +1,299 @@
+{
+  "questions": [
+    {
+      "id": "q1",
+      "questionText": "Drag reactants to complete the following Williamson Ether Synthesis:",
+      "product": {
+        "name": "Methyl Ethyl Ether",
+        "formula": "CH3OCH2CH3",
+        "imagePath": "assets/molecules/methyl-ethyl-ether.svg",
+        "textRepresentation": "CH3-O-CH2CH3"
+      },
+      "reagents": [
+        {
+          "id": "methanol",
+          "name": "Methanol",
+          "formula": "CH3OH",
+          "imagePath": "assets/molecules/methanol.svg",
+          "textRepresentation": "HO-CH3"
+        },
+        {
+          "id": "ethanol",
+          "name": "Ethanol",
+          "formula": "C2H5OH",
+          "imagePath": "assets/molecules/ethanol.svg",
+          "textRepresentation": "HO-CH2CH3"
+        },
+        {
+          "id": "sodium-methoxide",
+          "name": "Sodium Methoxide",
+          "formula": "CH3ONa",
+          "imagePath": "assets/molecules/sodium-methoxide.svg",
+          "textRepresentation": "CH3O-Na+"
+        },
+        {
+          "id": "bromoethane",
+          "name": "Bromoethane",
+          "formula": "C2H5Br",
+          "imagePath": "assets/molecules/bromoethane.svg",
+          "textRepresentation": "Br-CH2CH3"
+        },
+        {
+          "id": "acetone",
+          "name": "Acetone",
+          "formula": "C3H6O",
+          "imagePath": "assets/molecules/acetone.svg",
+          "textRepresentation": "CH3-CO-CH3"
+        },
+        {
+          "id": "sodium-hydroxide",
+          "name": "Sodium Hydroxide",
+          "formula": "NaOH",
+          "imagePath": "assets/molecules/sodium-hydroxide.svg",
+          "textRepresentation": "Na+-OH"
+        }
+      ],
+      "correctReagents": ["sodium-methoxide", "bromoethane"],
+      "reactionType": "SN2",
+      "correctFeedback": "Correct! You've successfully completed the Williamson Ether Synthesis. Sodium methoxide (a strong nucleophile) attacks bromoethane (an alkyl halide) in an SN2 reaction to form methyl ethyl ether.",
+      "incorrectFeedback": "Incorrect. For Williamson Ether Synthesis, you need a strong nucleophile (an alkoxide) and an alkyl halide. Try again!",
+      "chemistryNotes": "<p>The <strong>Williamson Ether Synthesis</strong> is an important method for preparing ethers:</p><ul><li>It involves an SN2 reaction between an alkoxide ion (RO<sup>-</sup>) and an alkyl halide (R'-X)</li><li>The alkoxide acts as a nucleophile and attacks the electrophilic carbon of the alkyl halide</li><li>The halide is displaced as a leaving group</li><li>The general reaction is: R-O<sup>-</sup> + R'-X → R-O-R' + X<sup>-</sup></li></ul><p>This reaction works best when the alkyl halide is primary or methyl, as these are most susceptible to SN2 reactions with minimal competing elimination.</p>"
+    },
+    {
+      "id": "q2",
+      "questionText": "Select the reagents needed for this SN1 reaction to form tert-butyl ethyl ether:",
+      "product": {
+        "name": "tert-Butyl Ethyl Ether",
+        "formula": "C6H14O",
+        "imagePath": "assets/molecules/tert-butyl-ethyl-ether.svg",
+        "textRepresentation": "(CH3)3C-O-CH2CH3"
+      },
+      "reagents": [
+        {
+          "id": "ethanol",
+          "name": "Ethanol",
+          "formula": "C2H5OH",
+          "imagePath": "assets/molecules/ethanol.svg",
+          "textRepresentation": "HO-CH2CH3"
+        },
+        {
+          "id": "tert-butyl-chloride",
+          "name": "tert-Butyl Chloride",
+          "formula": "C4H9Cl",
+          "imagePath": "assets/molecules/tert-butyl-chloride.svg",
+          "textRepresentation": "(CH3)3C-Cl"
+        },
+        {
+          "id": "sodium-ethoxide",
+          "name": "Sodium Ethoxide",
+          "formula": "C2H5ONa",
+          "imagePath": "assets/molecules/sodium-ethoxide.svg",
+          "textRepresentation": "CH3CH2O-Na+"
+        },
+        {
+          "id": "sulfuric-acid",
+          "name": "Sulfuric Acid",
+          "formula": "H2SO4",
+          "imagePath": "assets/molecules/sulfuric-acid.svg",
+          "textRepresentation": "H2SO4"
+        },
+        {
+          "id": "sodium-hydroxide",
+          "name": "Sodium Hydroxide",
+          "formula": "NaOH",
+          "imagePath": "assets/molecules/sodium-hydroxide.svg",
+          "textRepresentation": "Na+-OH"
+        },
+        {
+          "id": "tert-butanol",
+          "name": "tert-Butanol",
+          "formula": "C4H10O",
+          "imagePath": "assets/molecules/tert-butanol.svg",
+          "textRepresentation": "(CH3)3C-OH"
+        }
+      ],
+      "correctReagents": ["ethanol", "tert-butyl-chloride"],
+      "reactionType": "SN1",
+      "correctFeedback": "Correct! This SN1 reaction uses tert-butyl chloride (which forms a stable carbocation) reacting with ethanol to form tert-butyl ethyl ether.",
+      "incorrectFeedback": "Incorrect. This is an SN1 reaction. Think about which reagent would readily form a carbocation and which would act as the nucleophile.",
+      "chemistryNotes": "<p>The <strong>SN1 (Substitution Nucleophilic Unimolecular)</strong> reaction occurs in two steps:</p><ol><li>The leaving group departs, forming a carbocation intermediate</li><li>The nucleophile attacks the carbocation</li></ol><p>Key characteristics:</p><ul><li>Rate depends only on the concentration of the substrate (unimolecular)</li><li>Common with tertiary or secondary substrates that form stable carbocations</li><li>Follows first-order kinetics</li><li>Often occurs in polar protic solvents that can stabilize the carbocation</li></ul><p>In this case, tert-butyl chloride readily forms a stable tertiary carbocation, which is then attacked by ethanol acting as a nucleophile.</p>"
+    },
+    {
+      "id": "q3",
+      "questionText": "Select reagents to complete this E2 elimination reaction:",
+      "product": {
+        "name": "2-Methylprop-1-ene",
+        "formula": "C4H8",
+        "imagePath": "assets/molecules/2-methylprop-1-ene.svg",
+        "textRepresentation": "H2C=C(CH3)2"
+      },
+      "reagents": [
+        {
+          "id": "potassium-tert-butoxide",
+          "name": "Potassium tert-butoxide",
+          "formula": "C4H9OK",
+          "imagePath": "assets/molecules/potassium-tert-butoxide.svg",
+          "textRepresentation": "(CH3)3CO-K+"
+        },
+        {
+          "id": "2-bromo-2-methylpropane",
+          "name": "2-Bromo-2-methylpropane",
+          "formula": "C4H9Br",
+          "imagePath": "assets/molecules/2-bromo-2-methylpropane.svg",
+          "textRepresentation": "(CH3)3C-Br"
+        },
+        {
+          "id": "sodium-hydroxide",
+          "name": "Sodium Hydroxide",
+          "formula": "NaOH",
+          "imagePath": "assets/molecules/sodium-hydroxide.svg",
+          "textRepresentation": "Na+-OH"
+        },
+        {
+          "id": "hydrochloric-acid",
+          "name": "Hydrochloric Acid",
+          "formula": "HCl",
+          "imagePath": "assets/molecules/hydrochloric-acid.svg",
+          "textRepresentation": "HCl"
+        },
+        {
+          "id": "bromoethane",
+          "name": "Bromoethane",
+          "formula": "C2H5Br",
+          "imagePath": "assets/molecules/bromoethane.svg",
+          "textRepresentation": "Br-CH2CH3"
+        },
+        {
+          "id": "water",
+          "name": "Water",
+          "formula": "H2O",
+          "imagePath": "assets/molecules/water.svg",
+          "textRepresentation": "H2O"
+        }
+      ],
+      "correctReagents": ["potassium-tert-butoxide", "2-bromo-2-methylpropane"],
+      "reactionType": "E2",
+      "correctFeedback": "Correct! The strong base potassium tert-butoxide abstracts a hydrogen (deprotonation) from 2-bromo-2-methylpropane, causing elimination of HBr and forming the alkene 2-methylprop-1-ene.",
+      "incorrectFeedback": "Incorrect. For an E2 elimination reaction, you need a strong base and an alkyl halide. The base abstracts a hydrogen while the halide leaves simultaneously.",
+      "chemistryNotes": "<p><strong>E2 (Elimination Bimolecular)</strong> reactions occur in a single step:</p><ul><li>A strong base abstracts a proton while the leaving group departs simultaneously</li><li>This creates a new π bond (C=C)</li><li>Rate depends on both substrate and base concentration (bimolecular)</li><li>Often favored with bulky bases like tert-butoxide</li><li>Follows anti-periplanar geometry (H and leaving group must be anti to each other)</li></ul><p>The reaction is concerted, meaning bond breaking and bond formation happen simultaneously. E2 reactions generally require:</p><ol><li>A suitable leaving group (like a halide)</li><li>A strong base</li><li>A β-hydrogen that can be abstracted</li></ol>"
+    },
+    {
+      "id": "q4",
+      "questionText": "Complete this esterification reaction by selecting the correct reagents:",
+      "product": {
+        "name": "Ethyl Acetate",
+        "formula": "C4H8O2",
+        "imagePath": "assets/molecules/ethyl-acetate.svg",
+        "textRepresentation": "CH3-COO-CH2CH3"
+      },
+      "reagents": [
+        {
+          "id": "acetic-acid",
+          "name": "Acetic Acid",
+          "formula": "CH3COOH",
+          "imagePath": "assets/molecules/acetic-acid.svg",
+          "textRepresentation": "CH3-COOH"
+        },
+        {
+          "id": "ethanol",
+          "name": "Ethanol",
+          "formula": "C2H5OH",
+          "imagePath": "assets/molecules/ethanol.svg",
+          "textRepresentation": "HO-CH2CH3"
+        },
+        {
+          "id": "sulfuric-acid",
+          "name": "Sulfuric Acid",
+          "formula": "H2SO4",
+          "imagePath": "assets/molecules/sulfuric-acid.svg",
+          "textRepresentation": "H2SO4 (catalyst)"
+        },
+        {
+          "id": "sodium-acetate",
+          "name": "Sodium Acetate",
+          "formula": "CH3COONa",
+          "imagePath": "assets/molecules/sodium-acetate.svg",
+          "textRepresentation": "CH3-COO-Na+"
+        },
+        {
+          "id": "methanol",
+          "name": "Methanol",
+          "formula": "CH3OH",
+          "imagePath": "assets/molecules/methanol.svg",
+          "textRepresentation": "HO-CH3"
+        },
+        {
+          "id": "water",
+          "name": "Water",
+          "formula": "H2O",
+          "imagePath": "assets/molecules/water.svg",
+          "textRepresentation": "H2O"
+        }
+      ],
+      "correctReagents": ["acetic-acid", "ethanol"],
+      "reactionType": "Esterification",
+      "correctFeedback": "Correct! This is a Fischer esterification reaction where acetic acid reacts with ethanol to form ethyl acetate (an ester) and water. The reaction is typically catalyzed by an acid like H2SO4.",
+      "incorrectFeedback": "Incorrect. Esterification requires a carboxylic acid and an alcohol. Try again with the correct combination.",
+      "chemistryNotes": "<p><strong>Fischer Esterification</strong> is the acid-catalyzed reaction of a carboxylic acid with an alcohol to form an ester:</p><ul><li>General reaction: RCOOH + R'OH ⇌ RCOOR' + H2O</li><li>The reaction is reversible and reaches equilibrium</li><li>Typically catalyzed by a strong acid (H2SO4, HCl, p-toluenesulfonic acid)</li><li>Can be driven forward by:</li><ul><li>Using excess of one reagent</li><li>Removing water as it forms</li></ul></ul><p>Mechanism steps:</p><ol><li>Protonation of the carboxylic acid carbonyl</li><li>Nucleophilic attack by the alcohol</li><li>Proton transfer</li><li>Loss of water to form the ester</li><li>Deprotonation to form the final product</li></ol>"
+    },
+    {
+      "id": "q5",
+      "questionText": "Select reagents for this Grignard reaction to form 2-phenylethanol:",
+      "product": {
+        "name": "2-Phenylethanol",
+        "formula": "C8H10O",
+        "imagePath": "assets/molecules/2-phenylethanol.svg",
+        "textRepresentation": "C6H5-CH2-CH2-OH"
+      },
+      "reagents": [
+        {
+          "id": "phenylmagnesium-bromide",
+          "name": "Phenylmagnesium Bromide",
+          "formula": "C6H5MgBr",
+          "imagePath": "assets/molecules/phenylmagnesium-bromide.svg",
+          "textRepresentation": "C6H5-MgBr"
+        },
+        {
+          "id": "ethylene-oxide",
+          "name": "Ethylene Oxide",
+          "formula": "C2H4O",
+          "imagePath": "assets/molecules/ethylene-oxide.svg",
+          "textRepresentation": "CH2-CH2-O"
+        },
+        {
+          "id": "benzaldehyde",
+          "name": "Benzaldehyde",
+          "formula": "C7H6O",
+          "imagePath": "assets/molecules/benzaldehyde.svg",
+          "textRepresentation": "C6H5-CHO"
+        },
+        {
+          "id": "ethanol",
+          "name": "Ethanol",
+          "formula": "C2H5OH",
+          "imagePath": "assets/molecules/ethanol.svg",
+          "textRepresentation": "HO-CH2CH3"
+        },
+        {
+          "id": "sodium-borohydride",
+          "name": "Sodium Borohydride",
+          "formula": "NaBH4",
+          "imagePath": "assets/molecules/sodium-borohydride.svg",
+          "textRepresentation": "NaBH4"
+        },
+        {
+          "id": "hydrochloric-acid",
+          "name": "Hydrochloric Acid",
+          "formula": "HCl",
+          "imagePath": "assets/molecules/hydrochloric-acid.svg",
+          "textRepresentation": "HCl"
+        }
+      ],
+      "correctReagents": ["phenylmagnesium-bromide", "ethylene-oxide"],
+      "reactionType": "Grignard",
+      "correctFeedback": "Correct! The Grignard reagent (phenylmagnesium bromide) acts as a nucleophile and attacks ethylene oxide. After acidic workup, this forms 2-phenylethanol.",
+      "incorrectFeedback": "Incorrect. Grignard reactions involve a Grignard reagent (R-MgX) acting as a nucleophile. Consider which reagent would serve this role.",
+      "chemistryNotes": "<p><strong>Grignard Reactions</strong> use organomagnesium compounds (Grignard reagents) as strong nucleophiles:</p><ul><li>Grignard reagents have the formula R-MgX (where X is a halide, typically Br or Cl)</li><li>They behave as sources of nucleophilic R- groups (carbanions)</li><li>They react with various electrophiles including:</li><ul><li>Aldehydes and ketones to form alcohols</li><li>Epoxides to form alcohols with chain extension</li><li>CO2 to form carboxylic acids</li></ul><li>Must be performed under anhydrous conditions (Grignard reagents are destroyed by water)</li><li>Typically carried out in ether solvents like diethyl ether or THF</li></ul><p>In this case, the phenylmagnesium bromide opens the ethylene oxide ring, creating a new C-C bond and forming 2-phenylethanol after workup.</p>"
+    }
+  ]
+}

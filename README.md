@@ -1,2 +1,151 @@
-# Organic-Chemistry-Quiz-JS
-and organic chemistry practice app with questions, hints and detailed explanations.
+# Organic Chemistry Quiz Game
+
+An interactive educational web application designed to help students learn organic chemistry reactions through drag-and-drop quizzes.
+
+![Organic Chemistry Quiz Game Screenshot](screenshot.png)
+
+## Features
+
+- **Interactive Drag-and-Drop Interface**: Easily move reagents to complete reaction mechanisms
+- **Multiple Reaction Types**: Practice various organic chemistry reactions including:
+  - SN1/SN2 Substitution Reactions
+  - E1/E2 Elimination Reactions
+  - Williamson Ether Synthesis
+  - Esterification
+  - Grignard Reactions
+- **Chemistry Notes**: Access detailed explanations for each reaction type
+- **Progress Tracking**: Monitor your learning with scoring and progress indicators
+- **Mobile-Friendly Design**: Learn on any device
+
+## Demo
+
+Try the live demo: [https://your-username.github.io/organic-chemistry-quiz/](https://your-username.github.io/organic-chemistry-quiz/)
+
+## Installation
+
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-username/organic-chemistry-quiz.git
+   ```
+
+2. Navigate to the project directory:
+   ```
+   cd organic-chemistry-quiz
+   ```
+
+3. Open the project in VS Code or your preferred editor
+
+4. Launch with a local server:
+   - Using VS Code Live Server extension
+   - Or with Python: `python -m http.server`
+   - Or with Node.js: `npx serve`
+
+## Project Structure
+
+```
+organic-chemistry-quiz/
+│
+├── index.html              # Main HTML file
+├── css/
+│   └── styles.css          # Main stylesheet
+│
+├── js/
+│   ├── app.js              # Main application logic
+│   ├── quiz-engine.js      # Quiz functionality
+│   └── drag-drop.js        # Drag and drop functionality
+│
+├── data/
+│   └── questions.json      # Question database
+│
+├── assets/
+│   ├── images/             # Icons, backgrounds, etc
+│   └── molecules/          # SVG files for molecule structures
+│
+└── README.md               # Project documentation
+```
+
+## Adding New Questions
+
+To add new questions to the quiz, edit the `data/questions.json` file:
+
+1. Each question requires:
+   - Unique `id`
+   - Question text
+   - Product information (what is being synthesized)
+   - List of available reagents
+   - Correct reagent combination
+   - Reaction type
+   - Feedback messages
+   - Chemistry notes
+
+2. Example question format:
+   ```json
+   {
+     "id": "q6",
+     "questionText": "Complete this reaction to form...",
+     "product": {
+       "name": "Product Name",
+       "formula": "Chemical Formula",
+       "imagePath": "assets/molecules/product-name.svg",
+       "textRepresentation": "Text Representation"
+     },
+     "reagents": [
+       // List of reagent objects
+     ],
+     "correctReagents": ["reagent-id-1", "reagent-id-2"],
+     "reactionType": "Reaction Type",
+     "correctFeedback": "Correct answer feedback",
+     "incorrectFeedback": "Incorrect answer feedback",
+     "chemistryNotes": "Detailed notes about the reaction"
+   }
+   ```
+
+## Adding New Molecule SVGs
+
+1. Create SVG files for new molecules
+2. Place them in the `assets/molecules/` directory
+3. Reference them in the `questions.json` file
+
+## Customization
+
+- **Styling**: Edit `css/styles.css` to customize colors, fonts, and layout
+- **Behavior**: Modify the JavaScript files to change quiz functionality
+- **Questions**: Update `data/questions.json` to add or modify questions
+
+## Technologies Used
+
+- HTML5
+- CSS3 
+- JavaScript (ES6+)
+- Drag and Drop API
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Inspired by the organic chemistry course curriculum
+- Molecule representations based on IUPAC conventions
+- Special thanks to all educators who provided feedback during development
+
+---
+
+Developed with ❤️ for chemistry students

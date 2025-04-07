@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organic Chemistry Quiz Game</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Add a modern CSS reset -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
+    <!-- Add a font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Organic Chemistry Quiz</h1>
+            <div class="progress-container">
+                <div class="progress-text">Question <span id="current-question">1</span> of <span id="total-questions">10</span></div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 10%;"></div>
+                </div>
+            </div>
+        </header>
+
+        <main class="quiz-container">
+            <div class="question-container">
+                <h2 id="question-text">Drag reactants to complete the following synthesis:</h2>
+                
+                <div class="reaction-area">
+                    <!-- Drop Zone 1 -->
+                    <div class="drop-zone" id="drop-zone-1" data-zone="1">
+                        <div class="drop-zone-placeholder">?</div>
+                    </div>
+                    
+                    <!-- Plus sign -->
+                    <div class="operator">+</div>
+                    
+                    <!-- Drop Zone 2 -->
+                    <div class="drop-zone" id="drop-zone-2" data-zone="2">
+                        <div class="drop-zone-placeholder">?</div>
+                    </div>
+                    
+                    <!-- Arrow -->
+                    <div class="reaction-arrow">→</div>
+                    
+                    <!-- Product -->
+                    <div class="product-container" id="product-display">
+                        <!-- Product will be loaded from questions.json -->
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="submit-container">
+                        <button id="submit-btn" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+                
+                <div id="feedback-container" class="feedback hidden">
+                    <!-- Feedback will be displayed here -->
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="chem-notes-btn" class="btn btn-secondary">Read the Chem-notes</button>
+                    <button id="next-btn" class="btn btn-secondary hidden">Next Question</button>
+                </div>
+            </div>
+
+            <!-- Reagent Bank -->
+            <div class="reagent-bank" id="reagent-bank">
+                <!-- Reagent cards will be loaded dynamically -->
+            </div>
+        </main>
+
+        <footer>
+            <div class="score-container">
+                Score: <span id="score">0</span>
+            </div>
+            <div class="credits">
+                <p>© 2025 | Organic Chemistry Quiz Game</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Chemistry Notes Modal -->
+    <div id="notes-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Chemistry Notes</h3>
+            <div id="notes-content">
+                <!-- Notes content will be loaded from questions.json -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/drag-drop.js"></script>
+    <script src="js/quiz-engine.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
