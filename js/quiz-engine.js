@@ -65,11 +65,20 @@ const QuizEngine = (() => {
         const productDisplay = document.getElementById('product-display');
         productDisplay.innerHTML = ''; // Clear previous content
         
-        const productImage = document.createElement('img');
-        productImage.src = question.product.imagePath;
-        productImage.alt = question.product.name;
-        productImage.className = 'molecule-image';
-        productDisplay.appendChild(productImage);
+        // Check if we have an image path or text representation
+        if (question.product.imagePath) {
+            const productImage = document.createElement('img');
+            productImage.src = question.product.imagePath;
+            productImage.alt = question.product.name;
+            productImage.className = 'molecule-image';
+            productDisplay.appendChild(productImage);
+        } else {
+            // Use text representation
+            const productText = document.createElement('div');
+            productText.textContent = question.product.textRepresentation;
+            productText.className = 'molecule-text';
+            productDisplay.appendChild(productText);
+        }
         
         // Load reagents into the reagent bank
         const reagentBank = document.getElementById('reagent-bank');
@@ -91,7 +100,10 @@ const QuizEngine = (() => {
                 reagentCard.appendChild(img);
             } else {
                 // Text representation
-                reagentCard.textContent = reagent.textRepresentation;
+                const text = document.createElement('div');
+                text.textContent = reagent.textRepresentation;
+                text.className = 'molecule-text';
+                reagentCard.appendChild(text);
             }
             
             reagentBank.appendChild(reagentCard);

@@ -1,0 +1,2 @@
+The 'old-versions' contains a json version that will be usable once SVG assets are added for all molecules.
+In the meanwhile the current json is marking the image path as 'null' and contains a text representation instead.

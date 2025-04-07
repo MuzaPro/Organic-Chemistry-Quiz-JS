@@ -388,3 +388,34 @@ footer {
         width: 100%;
     }
 }
+
+/* Molecule Text Representation */
+.molecule-text {
+    font-family: monospace;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    word-break: break-word;
+  }
+  
+  .reagent-card .molecule-text {
+    font-weight: 500;
+  }
+  
+  .product-container .molecule-text {
+    font-weight: 600;
+  }
+  
+  /* Additional styles to ensure text is visible */
+  .drop-zone.filled {
+    background-color: white !important;
+  }
+  
+  .reagent-in-dropzone .molecule-text {
+    font-size: 12px;
+  }
