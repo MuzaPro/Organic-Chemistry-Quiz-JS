@@ -117,6 +117,9 @@ function handleNextQuestion() {
         
         // Re-enable dragging for the new question
         DragDrop.setDraggingEnabled(true);
+
+        // Re-initialize drag and drop for the new question
+        DragDrop.initialize();
     } else {
         // Quiz is complete
         showQuizComplete();
