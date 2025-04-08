@@ -6,7 +6,7 @@
       "product": {
         "name": "Methyl Ethyl Ether",
         "formula": "CH3OCH2CH3",
-        "imagePath": "assets/molecules/methyl-ethyl-ether.svg",
+        "imagePath": null,
         "textRepresentation": "CH3-O-CH2CH3"
       },
       "reagents": [
@@ -14,42 +14,42 @@
           "id": "methanol",
           "name": "Methanol",
           "formula": "CH3OH",
-          "imagePath": "assets/molecules/methanol.svg",
+          "imagePath": null,
           "textRepresentation": "HO-CH3"
         },
         {
           "id": "ethanol",
           "name": "Ethanol",
           "formula": "C2H5OH",
-          "imagePath": "assets/molecules/ethanol.svg",
+          "imagePath": null,
           "textRepresentation": "HO-CH2CH3"
         },
         {
           "id": "sodium-methoxide",
           "name": "Sodium Methoxide",
           "formula": "CH3ONa",
-          "imagePath": "assets/molecules/sodium-methoxide.svg",
+          "imagePath": null,
           "textRepresentation": "CH3O-Na+"
         },
         {
           "id": "bromoethane",
           "name": "Bromoethane",
           "formula": "C2H5Br",
-          "imagePath": "assets/molecules/bromoethane.svg",
+          "imagePath": null,
           "textRepresentation": "Br-CH2CH3"
         },
         {
           "id": "acetone",
           "name": "Acetone",
           "formula": "C3H6O",
-          "imagePath": "assets/molecules/acetone.svg",
+          "imagePath": null,
           "textRepresentation": "CH3-CO-CH3"
         },
         {
           "id": "sodium-hydroxide",
           "name": "Sodium Hydroxide",
           "formula": "NaOH",
-          "imagePath": "assets/molecules/sodium-hydroxide.svg",
+          "imagePath": null,
           "textRepresentation": "Na+-OH"
         }
       ],
@@ -65,7 +65,7 @@
       "product": {
         "name": "tert-Butyl Ethyl Ether",
         "formula": "C6H14O",
-        "imagePath": "assets/molecules/tert-butyl-ethyl-ether.svg",
+        "imagePath": null,
         "textRepresentation": "(CH3)3C-O-CH2CH3"
       },
       "reagents": [
@@ -73,42 +73,42 @@
           "id": "ethanol",
           "name": "Ethanol",
           "formula": "C2H5OH",
-          "imagePath": "assets/molecules/ethanol.svg",
+          "imagePath": null,
           "textRepresentation": "HO-CH2CH3"
         },
         {
           "id": "tert-butyl-chloride",
           "name": "tert-Butyl Chloride",
           "formula": "C4H9Cl",
-          "imagePath": "assets/molecules/tert-butyl-chloride.svg",
+          "imagePath": null,
           "textRepresentation": "(CH3)3C-Cl"
         },
         {
           "id": "sodium-ethoxide",
           "name": "Sodium Ethoxide",
           "formula": "C2H5ONa",
-          "imagePath": "assets/molecules/sodium-ethoxide.svg",
+          "imagePath": null,
           "textRepresentation": "CH3CH2O-Na+"
         },
         {
           "id": "sulfuric-acid",
           "name": "Sulfuric Acid",
           "formula": "H2SO4",
-          "imagePath": "assets/molecules/sulfuric-acid.svg",
+          "imagePath": null,
           "textRepresentation": "H2SO4"
         },
         {
           "id": "sodium-hydroxide",
           "name": "Sodium Hydroxide",
           "formula": "NaOH",
-          "imagePath": "assets/molecules/sodium-hydroxide.svg",
+          "imagePath": null,
           "textRepresentation": "Na+-OH"
         },
         {
           "id": "tert-butanol",
           "name": "tert-Butanol",
           "formula": "C4H10O",
-          "imagePath": "assets/molecules/tert-butanol.svg",
+          "imagePath": null,
           "textRepresentation": "(CH3)3C-OH"
         }
       ],
@@ -124,7 +124,7 @@
       "product": {
         "name": "2-Methylprop-1-ene",
         "formula": "C4H8",
-        "imagePath": "assets/molecules/2-methylprop-1-ene.svg",
+        "imagePath": null,
         "textRepresentation": "H2C=C(CH3)2"
       },
       "reagents": [
@@ -132,42 +132,42 @@
           "id": "potassium-tert-butoxide",
           "name": "Potassium tert-butoxide",
           "formula": "C4H9OK",
-          "imagePath": "assets/molecules/potassium-tert-butoxide.svg",
+          "imagePath": null,
           "textRepresentation": "(CH3)3CO-K+"
         },
         {
           "id": "2-bromo-2-methylpropane",
           "name": "2-Bromo-2-methylpropane",
           "formula": "C4H9Br",
-          "imagePath": "assets/molecules/2-bromo-2-methylpropane.svg",
+          "imagePath": null,
           "textRepresentation": "(CH3)3C-Br"
         },
         {
           "id": "sodium-hydroxide",
           "name": "Sodium Hydroxide",
           "formula": "NaOH",
-          "imagePath": "assets/molecules/sodium-hydroxide.svg",
+          "imagePath": null,
           "textRepresentation": "Na+-OH"
         },
         {
           "id": "hydrochloric-acid",
           "name": "Hydrochloric Acid",
           "formula": "HCl",
-          "imagePath": "assets/molecules/hydrochloric-acid.svg",
+          "imagePath": null,
           "textRepresentation": "HCl"
         },
         {
           "id": "bromoethane",
           "name": "Bromoethane",
           "formula": "C2H5Br",
-          "imagePath": "assets/molecules/bromoethane.svg",
+          "imagePath": null,
           "textRepresentation": "Br-CH2CH3"
         },
         {
           "id": "water",
           "name": "Water",
           "formula": "H2O",
-          "imagePath": "assets/molecules/water.svg",
+          "imagePath": null,
           "textRepresentation": "H2O"
         }
       ],
@@ -183,7 +183,7 @@
       "product": {
         "name": "Ethyl Acetate",
         "formula": "C4H8O2",
-        "imagePath": "assets/molecules/ethyl-acetate.svg",
+        "imagePath": null,
         "textRepresentation": "CH3-COO-CH2CH3"
       },
       "reagents": [
@@ -191,42 +191,42 @@
           "id": "acetic-acid",
           "name": "Acetic Acid",
           "formula": "CH3COOH",
-          "imagePath": "assets/molecules/acetic-acid.svg",
+          "imagePath": null,
           "textRepresentation": "CH3-COOH"
         },
         {
           "id": "ethanol",
           "name": "Ethanol",
           "formula": "C2H5OH",
-          "imagePath": "assets/molecules/ethanol.svg",
+          "imagePath": null,
           "textRepresentation": "HO-CH2CH3"
         },
         {
           "id": "sulfuric-acid",
           "name": "Sulfuric Acid",
           "formula": "H2SO4",
-          "imagePath": "assets/molecules/sulfuric-acid.svg",
+          "imagePath": null,
           "textRepresentation": "H2SO4 (catalyst)"
         },
         {
           "id": "sodium-acetate",
           "name": "Sodium Acetate",
           "formula": "CH3COONa",
-          "imagePath": "assets/molecules/sodium-acetate.svg",
+          "imagePath": null,
           "textRepresentation": "CH3-COO-Na+"
         },
         {
           "id": "methanol",
           "name": "Methanol",
           "formula": "CH3OH",
-          "imagePath": "assets/molecules/methanol.svg",
+          "imagePath": null,
           "textRepresentation": "HO-CH3"
         },
         {
           "id": "water",
           "name": "Water",
           "formula": "H2O",
-          "imagePath": "assets/molecules/water.svg",
+          "imagePath": null,
           "textRepresentation": "H2O"
         }
       ],
@@ -242,7 +242,7 @@
       "product": {
         "name": "2-Phenylethanol",
         "formula": "C8H10O",
-        "imagePath": "assets/molecules/2-phenylethanol.svg",
+        "imagePath": null,
         "textRepresentation": "C6H5-CH2-CH2-OH"
       },
       "reagents": [
@@ -250,42 +250,42 @@
           "id": "phenylmagnesium-bromide",
           "name": "Phenylmagnesium Bromide",
           "formula": "C6H5MgBr",
-          "imagePath": "assets/molecules/phenylmagnesium-bromide.svg",
+          "imagePath": null,
           "textRepresentation": "C6H5-MgBr"
         },
         {
           "id": "ethylene-oxide",
           "name": "Ethylene Oxide",
           "formula": "C2H4O",
-          "imagePath": "assets/molecules/ethylene-oxide.svg",
+          "imagePath": null,
           "textRepresentation": "CH2-CH2-O"
         },
         {
           "id": "benzaldehyde",
           "name": "Benzaldehyde",
           "formula": "C7H6O",
-          "imagePath": "assets/molecules/benzaldehyde.svg",
+          "imagePath": null,
           "textRepresentation": "C6H5-CHO"
         },
         {
           "id": "ethanol",
           "name": "Ethanol",
           "formula": "C2H5OH",
-          "imagePath": "assets/molecules/ethanol.svg",
+          "imagePath": null,
           "textRepresentation": "HO-CH2CH3"
         },
         {
           "id": "sodium-borohydride",
           "name": "Sodium Borohydride",
           "formula": "NaBH4",
-          "imagePath": "assets/molecules/sodium-borohydride.svg",
+          "imagePath": null,
           "textRepresentation": "NaBH4"
         },
         {
           "id": "hydrochloric-acid",
           "name": "Hydrochloric Acid",
           "formula": "HCl",
-          "imagePath": "assets/molecules/hydrochloric-acid.svg",
+          "imagePath": null,
           "textRepresentation": "HCl"
         }
       ],
