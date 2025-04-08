@@ -2,7 +2,7 @@
 
 An interactive educational web application designed to help students learn organic chemistry reactions through drag-and-drop quizzes.
 
-![Organic Chemistry Quiz Game Screenshot](ScreenShot.jpg)
+![Organic Chemistry Quiz Game Screenshot](assets/images/ScreenShot.jpg)
 
 ## Features
 
