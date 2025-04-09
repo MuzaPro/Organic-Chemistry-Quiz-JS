@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 async function initializeQuiz() {
     try {
+        // Check if modules are available
+        if (typeof DragDrop === 'undefined' || typeof QuizEngine === 'undefined') {throw new Error('Required modules are not loaded');}
         // Load questions from JSON file
         await QuizEngine.loadQuestions();
         
@@ -46,6 +48,10 @@ function setupEventListeners() {
     // Next question button
     const nextButton = document.getElementById('next-btn');
     nextButton.addEventListener('click', handleNextQuestion);
+    
+    // Reset button
+    const resetButton = document.getElementById('reset-btn');
+    resetButton.addEventListener('click', resetQuestion);
     
     // Chemistry notes button
     const chemNotesButton = document.getElementById('chem-notes-btn');
@@ -93,12 +99,13 @@ function handleSubmit() {
         showFeedback(QuizEngine.getCurrentQuestion().correctFeedback, 'success');
         document.getElementById('score').textContent = QuizEngine.getScore();
         document.getElementById('next-btn').classList.remove('hidden');
+        
+        // Disable dragging after correct submission
+        DragDrop.setDraggingEnabled(false);
     } else {
         showFeedback(QuizEngine.getCurrentQuestion().incorrectFeedback, 'error');
+        // Keep dragging enabled for incorrect answers so user can try again
     }
-    
-    // Disable dragging after submission
-    DragDrop.setDraggingEnabled(false);
 }
 
 /**
@@ -192,6 +199,27 @@ function handleChemNotesClick() {
     // Show the modal
     document.getElementById('notes-modal').classList.add('show');
 }
+
+/**
+ * Reset the current question
+ */
+function resetQuestion() {
+    // Clear drop zones
+    DragDrop.clearDropZones();
+    
+    // Hide feedback and next button
+    document.getElementById('feedback-container').classList.add('hidden');
+    document.getElementById('next-btn').classList.add('hidden');
+    
+    // Re-enable dragging
+    DragDrop.setDraggingEnabled(true);
+    
+    // Make sure all reagent cards are visible
+    document.querySelectorAll('.reagent-card').forEach(card => {
+        card.style.visibility = 'visible';
+    });
+}
+
 
 /**
  * Close the modal

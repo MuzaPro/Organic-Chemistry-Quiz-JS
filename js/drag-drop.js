@@ -112,17 +112,6 @@ const DragDrop = (() => {
                 // Put the new reagent in the drop zone
                 addToDropZone(zone, reagentCard);
             });
-            
-            // Click to clear
-            element.addEventListener('click', () => {
-                if (!draggingEnabled) return;
-                
-                if (zone.content) {
-                    const reagentCard = zone.content.element;
-                    removeFromDropZone(zone);
-                    returnToBank(reagentCard);
-                }
-            });
         });
     };
     
@@ -135,7 +124,13 @@ const DragDrop = (() => {
         // Create a clone to place in the drop zone
         const cardClone = reagentCard.cloneNode(true);
         cardClone.classList.add('reagent-in-dropzone');
-        cardClone.setAttribute('draggable', 'false');
+        
+        // Make the clone draggable
+        cardClone.setAttribute('draggable', 'true');
+        cardClone.setAttribute('data-original-id', reagentCard.getAttribute('data-id'));
+        
+        // Add drag events to the clone
+        setupCloneDragEvents(cardClone, zone, reagentCard);
         
         // Clear the drop zone
         while (zone.element.firstChild) {
@@ -152,11 +147,12 @@ const DragDrop = (() => {
         // Update drop zone content
         zone.content = {
             element: reagentCard,
+            clone: cardClone,
             id: reagentCard.getAttribute('data-id'),
             name: reagentCard.getAttribute('data-name')
         };
     };
-    
+     
     /**
      * Remove a reagent from a drop zone
      * @param {Object} zone - The drop zone object
@@ -184,25 +180,28 @@ const DragDrop = (() => {
      * @param {Element} reagentCard - The reagent card element
      */
     const returnToBank = (reagentCard) => {
-        reagentCard.style.visibility = 'visible';
-    };
-    
-    /**
-     * Enable or disable dragging functionality
-     * @param {boolean} enabled - Whether dragging should be enabled
-     */
-    const setDraggingEnabled = (enabled) => {
-        draggingEnabled = enabled;
-        
-        reagentCards.forEach(card => {
-            if (enabled) {
-                card.setAttribute('draggable', 'true');
-                card.classList.remove('disabled');
-            } else {
-                card.setAttribute('draggable', 'false');
-                card.classList.add('disabled');
+        // Check if the reagent card still exists in the DOM
+        if (!reagentCard || !document.body.contains(reagentCard)) {
+            // The original card is no longer in the DOM (likely from a previous question)
+            // Try to find a card with the same ID in the current question
+            const dataId = reagentCard ? reagentCard.getAttribute('data-id') : null;
+            if (dataId) {
+                const newCard = document.querySelector(`.reagent-card[data-id="${dataId}"]`);
+                if (newCard) {
+                    newCard.style.visibility = 'visible';
+                    return;
+                }
             }
-        });
+            
+            // If we couldn't find a matching card, refresh all cards to be safe
+            document.querySelectorAll('.reagent-card').forEach(card => {
+                card.style.visibility = 'visible';
+            });
+            return;
+        }
+        
+        // Make the original card visible again
+        reagentCard.style.visibility = 'visible';
     };
     
     /**
@@ -227,12 +226,79 @@ const DragDrop = (() => {
             }
         });
     };
-    
+    /**
+     * Set up drag events for the clone in a drop zone
+     * @param {Element} clone - The clone element in the drop zone
+     * @param {Object} zone - The drop zone object
+     * @param {Element} original - The original reagent card
+     */
+    const setupCloneDragEvents = (clone, zone, original) => {
+        // Drag start
+        clone.addEventListener('dragstart', (e) => {
+            if (!draggingEnabled) return;
+            
+            currentDragElement = original;
+            clone.classList.add('dragging');
+            
+            // Store reagent data in the drag event
+            e.dataTransfer.setData('text/plain', original.getAttribute('data-id'));
+            e.dataTransfer.effectAllowed = 'move';
+            
+            // Clear the drop zone immediately
+            setTimeout(() => {
+                removeFromDropZone(zone);
+                returnToBank(original);
+            }, 10);
+        });
+        
+        // Drag end
+        clone.addEventListener('dragend', () => {
+            clone.classList.remove('dragging');
+            currentDragElement = null;
+        });
+        
+        // Click to clear
+        clone.addEventListener('click', () => {
+            if (!draggingEnabled) return;
+            
+            removeFromDropZone(zone);
+            returnToBank(original);
+            
+            // Hide the next button if it's visible
+            const nextBtn = document.getElementById('next-btn');
+            if (nextBtn && !nextBtn.classList.contains('hidden')) {
+                nextBtn.classList.add('hidden');
+            }
+        });
+    };
+
+
+    /**
+     * Enable or disable dragging functionality
+     * @param {boolean} enabled - Whether dragging should be enabled
+     */
+    const setDraggingEnabled = (enabled) => {
+        draggingEnabled = enabled;
+        
+        reagentCards.forEach(card => {
+            if (enabled) {
+                card.setAttribute('draggable', 'true');
+                card.classList.remove('disabled');
+            } else {
+                card.setAttribute('draggable', 'false');
+                card.classList.add('disabled');
+            }
+        });
+    };
     // Public API
     return {
         initialize,
         setDraggingEnabled,
         getDropZoneContent,
-        clearDropZones
+        clearDropZones,
+        removeFromDropZone,
+        returnToBank
     };
+
+    
 })();
