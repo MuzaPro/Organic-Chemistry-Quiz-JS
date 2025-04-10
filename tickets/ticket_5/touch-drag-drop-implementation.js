@@ -1,6 +1,6 @@
 /**
- * Drag and Drop Handler
- * Manages the drag and drop functionality for the quiz
+ * Enhanced Drag and Drop Handler
+ * Handles both mouse and touch interactions for drag-and-drop functionality
  */
 
 const DragDrop = (() => {
@@ -9,11 +9,24 @@ const DragDrop = (() => {
     let currentDragElement = null;
     let dropZones = [];
     let reagentCards = [];
+    let isMobileDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
     
     /**
-     * Initialize drag and drop functionality
+     * Initialize drag and drop functionality with mobile support
      */
     const initialize = () => {
+        // Initialize mobile drag-and-drop polyfill if we're on a mobile device
+        if (isMobileDevice && typeof MobileDragDrop !== 'undefined') {
+            MobileDragDrop.polyfill({
+                // Configuration for scrolling behavior
+                dragImageTranslateOverride: MobileDragDrop.scrollBehaviourDragImageTranslateOverride,
+                // Shorter hold time for better usability
+                holdToDrag: 200
+            });
+            
+            console.log('Mobile drag-and-drop polyfill initialized');
+        }
+        
         // Store references to drop zones
         dropZones = [
             { element: document.getElementById('drop-zone-1'), zone: 1, content: null },
@@ -29,12 +42,31 @@ const DragDrop = (() => {
     
     /**
      * Set up event listeners for reagent cards
+     * Enhanced with mobile touch handling
      */
     const setupReagentCards = () => {
         // Get all reagent cards
         reagentCards = document.querySelectorAll('.reagent-card');
         
         reagentCards.forEach(card => {
+            // Enhance SVG elements for better touch handling
+            const svgElements = card.querySelectorAll('img');
+            svgElements.forEach(svg => {
+                // Prevent default touch behavior for SVGs
+                svg.addEventListener('touchstart', (e) => {
+                    if (!draggingEnabled) return;
+                    e.preventDefault();
+                }, { passive: false });
+                
+                // Ensure SVGs are not selectable
+                svg.style.webkitUserSelect = 'none';
+                svg.style.userSelect = 'none';
+                svg.style.webkitTouchCallout = 'none';
+            });
+            
+            // Add touch-action CSS to prevent browser handling of touches
+            card.style.touchAction = 'none';
+            
             // Drag start
             card.addEventListener('dragstart', (e) => {
                 if (!draggingEnabled) return;
@@ -45,6 +77,21 @@ const DragDrop = (() => {
                 // Store reagent data in the drag event
                 e.dataTransfer.setData('text/plain', card.getAttribute('data-id'));
                 e.dataTransfer.effectAllowed = 'move';
+                
+                // Create a drag image that's more visible on mobile
+                if (isMobileDevice) {
+                    const dragImage = card.cloneNode(true);
+                    dragImage.style.opacity = '0.8';
+                    dragImage.style.position = 'absolute';
+                    dragImage.style.top = '-1000px';
+                    document.body.appendChild(dragImage);
+                    e.dataTransfer.setDragImage(dragImage, 50, 50);
+                    
+                    // Remove the temporary drag image after a short delay
+                    setTimeout(() => {
+                        document.body.removeChild(dragImage);
+                    }, 0);
+                }
                 
                 // If this card was already in a drop zone, clear that drop zone
                 dropZones.forEach(zone => {
@@ -59,15 +106,36 @@ const DragDrop = (() => {
                 card.classList.remove('dragging');
                 currentDragElement = null;
             });
+            
+            // Touch feedback (optional - gives better tactile feedback)
+            if (isMobileDevice) {
+                card.addEventListener('touchstart', () => {
+                    card.classList.add('touch-active');
+                }, { passive: true });
+                
+                card.addEventListener('touchend', () => {
+                    card.classList.remove('touch-active');
+                });
+                
+                card.addEventListener('touchcancel', () => {
+                    card.classList.remove('touch-active');
+                });
+            }
         });
     };
     
     /**
      * Set up event listeners for drop zones
+     * Enhanced with mobile touch handling
      */
     const setupDropZones = () => {
         dropZones.forEach(zone => {
             const element = zone.element;
+            
+            // Enhance for touch devices
+            if (isMobileDevice) {
+                element.style.touchAction = 'none';
+            }
             
             // Drag over
             element.addEventListener('dragover', (e) => {
@@ -111,6 +179,11 @@ const DragDrop = (() => {
                 
                 // Put the new reagent in the drop zone
                 addToDropZone(zone, reagentCard);
+                
+                // Provide haptic feedback on supported devices
+                if (isMobileDevice && window.navigator.vibrate) {
+                    window.navigator.vibrate(50); // Short vibration for feedback
+                }
             });
         });
     };
@@ -151,6 +224,10 @@ const DragDrop = (() => {
             id: reagentCard.getAttribute('data-id'),
             name: reagentCard.getAttribute('data-name')
         };
+        
+        // Add ARIA attributes for accessibility
+        zone.element.setAttribute('aria-dropeffect', 'move');
+        cardClone.setAttribute('aria-grabbed', 'true');
     };
      
     /**
@@ -172,6 +249,10 @@ const DragDrop = (() => {
         zone.element.appendChild(placeholder);
         
         zone.element.classList.remove('filled');
+        
+        // Reset ARIA attributes
+        zone.element.removeAttribute('aria-dropeffect');
+        
         zone.content = null;
     };
     
@@ -202,30 +283,11 @@ const DragDrop = (() => {
         
         // Make the original card visible again
         reagentCard.style.visibility = 'visible';
+        
+        // Reset ARIA attributes
+        reagentCard.setAttribute('aria-grabbed', 'false');
     };
     
-    /**
-     * Get the content of a specific drop zone
-     * @param {number} zoneNumber - The zone number (1 or 2)
-     * @returns {Object|null} The drop zone content or null if empty
-     */
-    const getDropZoneContent = (zoneNumber) => {
-        const zone = dropZones.find(z => z.zone === zoneNumber);
-        return zone ? zone.content : null;
-    };
-    
-    /**
-     * Clear all drop zones
-     */
-    const clearDropZones = () => {
-        dropZones.forEach(zone => {
-            if (zone.content) {
-                const reagentCard = zone.content.element;
-                removeFromDropZone(zone);
-                returnToBank(reagentCard);
-            }
-        });
-    };
     /**
      * Set up drag events for the clone in a drop zone
      * @param {Element} clone - The clone element in the drop zone
@@ -233,6 +295,24 @@ const DragDrop = (() => {
      * @param {Element} original - The original reagent card
      */
     const setupCloneDragEvents = (clone, zone, original) => {
+        // Enhanced for touch devices
+        if (isMobileDevice) {
+            clone.style.touchAction = 'none';
+            
+            // Prevent default behavior on SVGs within clones
+            const svgElements = clone.querySelectorAll('img');
+            svgElements.forEach(svg => {
+                svg.addEventListener('touchstart', (e) => {
+                    if (!draggingEnabled) return;
+                    e.preventDefault();
+                }, { passive: false });
+                
+                svg.style.userSelect = 'none';
+                svg.style.webkitUserSelect = 'none';
+                svg.style.webkitTouchCallout = 'none';
+            });
+        }
+        
         // Drag start
         clone.addEventListener('dragstart', (e) => {
             if (!draggingEnabled) return;
@@ -272,7 +352,6 @@ const DragDrop = (() => {
         });
     };
 
-
     /**
      * Enable or disable dragging functionality
      * @param {boolean} enabled - Whether dragging should be enabled
@@ -284,12 +363,38 @@ const DragDrop = (() => {
             if (enabled) {
                 card.setAttribute('draggable', 'true');
                 card.classList.remove('disabled');
+                card.setAttribute('aria-grabbed', 'false');
             } else {
                 card.setAttribute('draggable', 'false');
                 card.classList.add('disabled');
+                card.removeAttribute('aria-grabbed');
             }
         });
     };
+    
+    /**
+     * Get the content of a specific drop zone
+     * @param {number} zoneNumber - The zone number (1 or 2)
+     * @returns {Object|null} The drop zone content or null if empty
+     */
+    const getDropZoneContent = (zoneNumber) => {
+        const zone = dropZones.find(z => z.zone === zoneNumber);
+        return zone ? zone.content : null;
+    };
+    
+    /**
+     * Clear all drop zones
+     */
+    const clearDropZones = () => {
+        dropZones.forEach(zone => {
+            if (zone.content) {
+                const reagentCard = zone.content.element;
+                removeFromDropZone(zone);
+                returnToBank(reagentCard);
+            }
+        });
+    };
+    
     // Public API
     return {
         initialize,
@@ -299,41 +404,4 @@ const DragDrop = (() => {
         removeFromDropZone,
         returnToBank
     };
-
-    
 })();
-
-// Add touch event handling to the drag-drop.js file
-const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-if (isTouchDevice) {
-    document.addEventListener('touchstart', (e) => {
-        if (e.target.classList.contains('reagent-card')) {
-            e.preventDefault();
-            const touch = e.touches[0];
-            const card = e.target;
-            card.classList.add('dragging');
-            card.style.position = 'absolute';
-            card.style.left = `${touch.pageX}px`;
-            card.style.top = `${touch.pageY}px`;
-
-            const moveHandler = (moveEvent) => {
-                const moveTouch = moveEvent.touches[0];
-                card.style.left = `${moveTouch.pageX}px`;
-                card.style.top = `${moveTouch.pageY}px`;
-            };
-
-            const endHandler = () => {
-                card.classList.remove('dragging');
-                card.style.position = '';
-                card.style.left = '';
-                card.style.top = '';
-                document.removeEventListener('touchmove', moveHandler);
-                document.removeEventListener('touchend', endHandler);
-            };
-
-            document.addEventListener('touchmove', moveHandler);
-            document.addEventListener('touchend', endHandler);
-        }
-    });
-}

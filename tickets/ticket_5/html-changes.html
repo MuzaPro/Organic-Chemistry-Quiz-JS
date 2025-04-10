@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organic Chemistry Quiz Game</title>
+    <!-- Add mobile-drag-drop polyfill -->
+    <script src="https://cdn.jsdelivr.net/npm/mobile-drag-drop@2.3.0/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mobile-drag-drop@2.3.0/scroll-behaviour.min.js"></script>
+    <!-- Existing CSS -->
     <link rel="stylesheet" href="css/styles.css">
     <!-- Add a modern CSS reset -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
@@ -29,24 +33,26 @@
                 <h2 id="question-text">Drag reactants to complete the following synthesis:</h2>
                 
                 <div class="reaction-area">
-                    <!-- Drop Zone 1 -->
-                    <div class="drop-zone" id="drop-zone-1" data-zone="1">
+                    <!-- Drop Zone 1 - Enhanced with ARIA attributes -->
+                    <div class="drop-zone" id="drop-zone-1" data-zone="1" 
+                         aria-label="First reactant drop zone" role="button" tabindex="0">
                         <div class="drop-zone-placeholder">?</div>
                     </div>
                     
                     <!-- Plus sign -->
-                    <div class="operator">+</div>
+                    <div class="operator" aria-hidden="true">+</div>
                     
-                    <!-- Drop Zone 2 -->
-                    <div class="drop-zone" id="drop-zone-2" data-zone="2">
+                    <!-- Drop Zone 2 - Enhanced with ARIA attributes -->
+                    <div class="drop-zone" id="drop-zone-2" data-zone="2"
+                         aria-label="Second reactant drop zone" role="button" tabindex="0">
                         <div class="drop-zone-placeholder">?</div>
                     </div>
                     
                     <!-- Arrow -->
-                    <div class="reaction-arrow">→</div>
+                    <div class="reaction-arrow" aria-hidden="true">→</div>
                     
                     <!-- Product -->
-                    <div class="product-container" id="product-display">
+                    <div class="product-container" id="product-display" aria-label="Product molecule">
                         <!-- Product will be loaded from questions.json -->
                     </div>
                     
@@ -56,7 +62,7 @@
                     </div>
                 </div>
                 
-                <div id="feedback-container" class="feedback hidden">
+                <div id="feedback-container" class="feedback hidden" role="alert" aria-live="polite">
                     <!-- Feedback will be displayed here -->
                 </div>
                 
@@ -67,8 +73,8 @@
                 </div>
             </div>
 
-            <!-- Reagent Bank -->
-            <div class="reagent-bank" id="reagent-bank">
+            <!-- Reagent Bank - Enhanced with ARIA attributes -->
+            <div class="reagent-bank" id="reagent-bank" role="region" aria-label="Available reagents">
                 <!-- Reagent cards will be loaded dynamically -->
             </div>
         </main>
@@ -84,19 +90,15 @@
     </div>
 
     <!-- Chemistry Notes Modal -->
-    <div id="notes-modal" class="modal">
+    <div id="notes-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3>Chemistry Notes</h3>
-            <div id="notes-content">
+            <span class="close-modal" aria-label="Close modal">&times;</span>
+            <h3 id="modal-title">Chemistry Notes</h3>
+            <div id="notes-content" class="chemistry-notes">
                 <!-- Notes content will be loaded from questions.json -->
             </div>
         </div>
     </div>
-
-    <!-- Add mobile-drag-drop polyfill for touch support -->
-    <script src="https://cdn.jsdelivr.net/npm/mobile-drag-drop@2.3.0/index.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mobile-drag-drop@2.3.0/scroll-behaviour.min.js"></script>
 
     <!-- Scripts -->
     <script src="js/drag-drop.js"></script>

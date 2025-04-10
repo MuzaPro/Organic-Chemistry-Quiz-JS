@@ -333,7 +333,9 @@ footer {
 
 /* Drag and Drop Visual Feedback */
 .reagent-card.dragging {
-    opacity: 0.5;
+    opacity: 0.8;
+    transform: scale(1.1);
+    z-index: 1000;
 }
 
 .reagent-in-dropzone {
@@ -363,6 +365,19 @@ footer {
     .reagent-card, .drop-zone, .product-container {
         width: 80px;
         height: 80px;
+    }
+
+    .reagent-card {
+        touch-action: none;
+    }
+
+    .drop-zone {
+        border-width: 3px;
+    }
+
+    .drop-zone.highlight {
+        background-color: rgba(67, 97, 238, 0.3);
+        border-color: var(--primary-color);
     }
 }
 

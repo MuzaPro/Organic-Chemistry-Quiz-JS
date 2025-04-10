@@ -1,0 +1,112 @@
+/* Mobile Touch Enhancements */
+
+/* Prevent text selection during drag operations */
+.reagent-card, 
+.reagent-card * {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+/* Disable browser handling of all touch events on draggable elements */
+.reagent-card {
+    touch-action: none;
+}
+
+/* Increases touch target sizes on mobile */
+@media (max-width: 768px) {
+    .reagent-card, 
+    .drop-zone, 
+    .product-container {
+        width: 110px; /* Slightly larger for better touch targets */
+        height: 110px;
+    }
+    
+    .btn {
+        padding: 12px 24px; /* Larger touch target for buttons */
+        min-height: 44px; /* Minimum recommended touch target height */
+    }
+    
+    /* More spacing between drag items */
+    .reagent-bank {
+        gap: 18px;
+    }
+}
+
+/* Visual feedback for touch interactions */
+.reagent-card.touch-active {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+}
+
+/* Improve focus visibility for keyboard navigation */
+.reagent-card:focus,
+.drop-zone:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Enhanced visual feedback during dragging */
+.dragging {
+    opacity: 0.8 !important;
+    transform: scale(1.05) !important;
+    z-index: 1000;
+}
+
+/* Make drop zones more visually distinct when active on mobile */
+@media (max-width: 768px) {
+    .drop-zone.highlight {
+        background-color: rgba(67, 97, 238, 0.3);
+        border-color: var(--primary-color);
+        border-width: 3px;
+        box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.2);
+    }
+}
+
+/* Prevent long-press text selection on the entire app */
+.app-container {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Allow text selection in specific areas where needed */
+.chemistry-notes,
+.modal-content {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+/* Fade-in animation for dropped elements */
+.reagent-in-dropzone {
+    animation: fade-in 0.2s ease-out;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0.5;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Styling for molecules in drop zones to make them more visible */
+.reagent-in-dropzone .molecule-image,
+.reagent-in-dropzone .molecule-text {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+/* Fallback notification style for devices where drag-drop might not work */
+.notice {
+    background-color: var(--info-color);
+    color: white;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    text-align: center;
+}
