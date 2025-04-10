@@ -1,5 +1,5 @@
 /**
- * Drag and Drop Handler
+ * Drag and Drop Handler with Hammer.js support
  * Manages the drag and drop functionality for the quiz
  */
 
@@ -9,6 +9,16 @@ const DragDrop = (() => {
     let currentDragElement = null;
     let dropZones = [];
     let reagentCards = [];
+    
+    // Detect if we're on a touch device
+    const isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+    
+    // Track touch dragging state
+    let isDragging = false;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let elementStartX = 0;
+    let elementStartY = 0;
     
     /**
      * Initialize drag and drop functionality
@@ -35,33 +45,189 @@ const DragDrop = (() => {
         reagentCards = document.querySelectorAll('.reagent-card');
         
         reagentCards.forEach(card => {
-            // Drag start
-            card.addEventListener('dragstart', (e) => {
-                if (!draggingEnabled) return;
-                
-                currentDragElement = card;
-                card.classList.add('dragging');
-                
-                // Store reagent data in the drag event
-                e.dataTransfer.setData('text/plain', card.getAttribute('data-id'));
-                e.dataTransfer.effectAllowed = 'move';
-                
-                // If this card was already in a drop zone, clear that drop zone
-                dropZones.forEach(zone => {
-                    if (zone.content && zone.content.element === card) {
-                        removeFromDropZone(zone);
-                    }
-                });
-            });
+            // Store original position for later use with Hammer.js
+            const rect = card.getBoundingClientRect();
+            card.setAttribute('data-original-x', rect.left);
+            card.setAttribute('data-original-y', rect.top);
             
-            // Drag end
-            card.addEventListener('dragend', () => {
-                card.classList.remove('dragging');
-                currentDragElement = null;
-            });
+            if (isTouchDevice) {
+                setupTouchEvents(card);
+            } else {
+                setupMouseEvents(card);
+            }
         });
     };
     
+    /**
+     * Set up standard mouse drag events
+     */
+    const setupMouseEvents = (card) => {
+        // Drag start
+        card.addEventListener('dragstart', (e) => {
+            if (!draggingEnabled) return;
+            
+            currentDragElement = card;
+            card.classList.add('dragging');
+            
+            // Store reagent data in the drag event
+            e.dataTransfer.setData('text/plain', card.getAttribute('data-id'));
+            e.dataTransfer.effectAllowed = 'move';
+            
+            // If this card was already in a drop zone, clear that drop zone
+            dropZones.forEach(zone => {
+                if (zone.content && zone.content.element === card) {
+                    removeFromDropZone(zone);
+                }
+            });
+        });
+        
+        // Drag end
+        card.addEventListener('dragend', () => {
+            card.classList.remove('dragging');
+            currentDragElement = null;
+        });
+    };
+
+    /**
+     * Set up Hammer.js touch events
+     */
+    const setupTouchEvents = (card) => {
+        const hammer = new Hammer(card);
+        hammer.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+        
+        hammer.on('panstart', (e) => {
+            if (!draggingEnabled) return;
+            
+            isDragging = true;
+            currentDragElement = card;
+            
+            // Save start positions
+            const rect = card.getBoundingClientRect();
+            elementStartX = rect.left;
+            elementStartY = rect.top;
+            touchStartX = e.center.x;
+            touchStartY = e.center.y;
+            
+            // Add visual feedback
+            card.classList.add('touch-dragging');
+            
+            // If this card was already in a drop zone, clear that drop zone
+            dropZones.forEach(zone => {
+                if (zone.content && zone.content.element === card) {
+                    removeFromDropZone(zone);
+                }
+            });
+            
+            // Prevent default behavior
+            e.srcEvent.preventDefault();
+        });
+        
+        hammer.on('pan', (e) => {
+            if (!draggingEnabled || !isDragging) return;
+            
+            // Calculate new position
+            const deltaX = e.center.x - touchStartX;
+            const deltaY = e.center.y - touchStartY;
+            
+            // Move the element
+            card.style.position = 'fixed';
+            card.style.zIndex = '1000';
+            card.style.left = `${elementStartX + deltaX}px`;
+            card.style.top = `${elementStartY + deltaY}px`;
+            
+            // Check for drop zones under the touch point
+            const elementsAtPoint = document.elementsFromPoint(e.center.x, e.center.y);
+            dropZones.forEach(zone => {
+                if (elementsAtPoint.includes(zone.element)) {
+                    zone.element.classList.add('touch-highlight');
+                } else {
+                    zone.element.classList.remove('touch-highlight');
+                }
+            });
+            
+            // Prevent scrolling while dragging
+            e.srcEvent.preventDefault();
+        });
+        
+        hammer.on('panend', (e) => {
+            if (!draggingEnabled || !isDragging) return;
+            
+            isDragging = false;
+            
+            // Find drop zone at release point
+            const elementsAtPoint = document.elementsFromPoint(e.center.x, e.center.y);
+            let foundDropZone = null;
+            
+            // Check if we're over a drop zone
+            for (const el of elementsAtPoint) {
+                if (el.classList.contains('drop-zone')) {
+                    const zoneNumber = parseInt(el.getAttribute('data-zone'), 10);
+                    foundDropZone = dropZones.find(z => z.zone === zoneNumber);
+                    break;
+                }
+            }
+            
+            // Remove highlighting from all drop zones
+            dropZones.forEach(zone => {
+                zone.element.classList.remove('touch-highlight');
+            });
+            
+            // Reset card styles
+            card.classList.remove('touch-dragging');
+            card.style.position = '';
+            card.style.zIndex = '';
+            
+            if (foundDropZone) {
+                // Add to drop zone
+                addToDropZone(foundDropZone, card);
+            } else {
+                // Return to original position with smooth transition
+                card.style.transition = 'all 0.3s ease';
+                card.style.left = '';
+                card.style.top = '';
+                
+                // Remove transition after animation
+                setTimeout(() => {
+                    card.style.transition = '';
+                }, 300);
+            }
+            
+            currentDragElement = null;
+        });
+        
+        // Store Hammer instance for cleanup
+        card.hammerInstance = hammer;
+    };
+
+    /**
+     * Set up touch events for the clone in a drop zone
+     */
+    const setupCloneTouchEvents = (clone, zone, original) => {
+        if (isTouchDevice) {
+            const hammer = new Hammer(clone);
+            hammer.get('tap').set({ enable: true });
+            
+            // Tap to remove
+            hammer.on('tap', () => {
+                if (!draggingEnabled) return;
+                
+                removeFromDropZone(zone);
+                returnToBank(original);
+                
+                // Hide the next button if it's visible
+                const nextBtn = document.getElementById('next-btn');
+                if (nextBtn && !nextBtn.classList.contains('hidden')) {
+                    nextBtn.classList.add('hidden');
+                }
+            });
+            
+            // Store instance for cleanup
+            clone.hammerInstance = hammer;
+        } else {
+            setupCloneDragEvents(clone, zone, original);
+        }
+    };
+
     /**
      * Set up event listeners for drop zones
      */
@@ -125,12 +291,12 @@ const DragDrop = (() => {
         const cardClone = reagentCard.cloneNode(true);
         cardClone.classList.add('reagent-in-dropzone');
         
-        // Make the clone draggable
-        cardClone.setAttribute('draggable', 'true');
+        // Make the clone draggable for desktop
+        cardClone.setAttribute('draggable', !isTouchDevice);
         cardClone.setAttribute('data-original-id', reagentCard.getAttribute('data-id'));
         
-        // Add drag events to the clone
-        setupCloneDragEvents(cardClone, zone, reagentCard);
+        // Add appropriate events to the clone
+        setupCloneTouchEvents(cardClone, zone, reagentCard);
         
         // Clear the drop zone
         while (zone.element.firstChild) {
@@ -141,7 +307,7 @@ const DragDrop = (() => {
         zone.element.appendChild(cardClone);
         zone.element.classList.add('filled');
         
-        // Hide the original card (it's now in the drop zone)
+        // Hide the original card
         reagentCard.style.visibility = 'hidden';
         
         // Update drop zone content
@@ -282,14 +448,25 @@ const DragDrop = (() => {
         
         reagentCards.forEach(card => {
             if (enabled) {
-                card.setAttribute('draggable', 'true');
+                if (!isTouchDevice) {
+                    card.setAttribute('draggable', 'true');
+                }
                 card.classList.remove('disabled');
+                if (card.hammerInstance) {
+                    card.hammerInstance.set({ enable: true });
+                }
             } else {
-                card.setAttribute('draggable', 'false');
+                if (!isTouchDevice) {
+                    card.setAttribute('draggable', 'false');
+                }
                 card.classList.add('disabled');
+                if (card.hammerInstance) {
+                    card.hammerInstance.set({ enable: false });
+                }
             }
         });
     };
+
     // Public API
     return {
         initialize,
@@ -299,6 +476,4 @@ const DragDrop = (() => {
         removeFromDropZone,
         returnToBank
     };
-
-    
 })();

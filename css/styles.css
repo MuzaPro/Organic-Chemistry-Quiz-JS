@@ -419,3 +419,34 @@ footer {
   .reagent-in-dropzone .molecule-text {
     font-size: 12px;
   }
+
+/* Touch dragging styles */
+.touch-dragging {
+    opacity: 0.8;
+    transform: scale(1.05) !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2) !important;
+    z-index: 1000;
+    touch-action: none;
+    position: fixed !important;
+    pointer-events: none;
+}
+
+/* Touch-specific styles */
+.reagent-card, .reagent-in-dropzone {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: none;
+}
+
+/* Ensure drop zones are easy to target on touch */
+.drop-zone {
+    min-height: 100px;
+    min-width: 100px;
+}
+
+/* Add touch highlight effect */
+.drop-zone.touch-highlight {
+    background-color: rgba(0, 255, 0, 0.1);
+    border: 2px dashed #4CAF50;
+}
