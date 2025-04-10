@@ -197,6 +197,10 @@ h2 {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     padding: 5px;
     user-select: none;
+    touch-action: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .reagent-card:hover {
@@ -334,6 +338,7 @@ footer {
 /* Drag and Drop Visual Feedback */
 .reagent-card.dragging {
     opacity: 0.5;
+    visibility: hidden !important;
 }
 
 .reagent-in-dropzone {
@@ -363,6 +368,18 @@ footer {
     .reagent-card, .drop-zone, .product-container {
         width: 80px;
         height: 80px;
+    }
+
+    .drop-zone {
+        min-width: 100px;
+        min-height: 100px;
+        margin: 5px;
+    }
+    
+    .reagent-card {
+        min-width: 90px;
+        min-height: 90px;
+        margin: 5px;
     }
 }
 
@@ -419,3 +436,23 @@ footer {
   .reagent-in-dropzone .molecule-text {
     font-size: 12px;
   }
+
+/* SVG Touch Interaction */
+.svg-drag-clone {
+    position: absolute;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.8;
+    transform-origin: center;
+    transition: transform 0.05s linear;
+}
+
+/* Ensure SVGs handle pointer events correctly */
+.reagent-card svg {
+    pointer-events: auto;
+    touch-action: none;
+}
+
+.reagent-card svg * {
+    pointer-events: none;
+}

@@ -31,6 +31,11 @@ async function initializeQuiz() {
         // Initialize drag and drop functionality
         DragDrop.initialize();
         
+        // Initialize SVG touch handling if available
+        if (typeof SVGTouchHandler !== 'undefined') {
+            SVGTouchHandler.initialize();
+        }
+        
     } catch (error) {
         console.error('Failed to initialize quiz:', error);
         showErrorMessage('Failed to load quiz data. Please refresh the page or try again later.');
@@ -102,6 +107,9 @@ function handleSubmit() {
         
         // Disable dragging after correct submission
         DragDrop.setDraggingEnabled(false);
+        if (typeof SVGTouchHandler !== 'undefined') {
+            SVGTouchHandler.setDraggingEnabled(false);
+        }
     } else {
         showFeedback(QuizEngine.getCurrentQuestion().incorrectFeedback, 'error');
         // Keep dragging enabled for incorrect answers so user can try again
@@ -124,6 +132,9 @@ function handleNextQuestion() {
         
         // Re-enable dragging for the new question
         DragDrop.setDraggingEnabled(true);
+        if (typeof SVGTouchHandler !== 'undefined') {
+            SVGTouchHandler.setDraggingEnabled(true);
+        }
 
         // Re-initialize drag and drop for the new question
         DragDrop.initialize();
@@ -213,6 +224,9 @@ function resetQuestion() {
     
     // Re-enable dragging
     DragDrop.setDraggingEnabled(true);
+    if (typeof SVGTouchHandler !== 'undefined') {
+        SVGTouchHandler.setDraggingEnabled(true);
+    }
     
     // Make sure all reagent cards are visible
     document.querySelectorAll('.reagent-card').forEach(card => {

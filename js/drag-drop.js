@@ -297,8 +297,9 @@ const DragDrop = (() => {
         getDropZoneContent,
         clearDropZones,
         removeFromDropZone,
-        returnToBank
+        returnToBank,
+        addToDropZone,
+        get dropZones() { return dropZones; }
     };
-
     
 })();
