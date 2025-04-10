@@ -419,3 +419,99 @@ footer {
   .reagent-in-dropzone .molecule-text {
     font-size: 12px;
   }
+
+/* Custom Touch Drag-and-Drop Styling */
+.reagent-card, 
+.reagent-card * {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+/* Disable all default touch actions on draggable elements */
+.reagent-card, 
+.reagent-card img {
+    touch-action: none;
+    -webkit-touch-callout: none;
+}
+
+/* Style for the ghost element during touch drag */
+.touch-ghost {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+    transition: transform 0.1s ease;
+    border: 2px solid var(--primary-color);
+}
+
+/* Visual feedback for active touch */
+.touch-active {
+    transform: scale(1.05);
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation for elements when they're dropped into a drop zone */
+.reagent-in-dropzone {
+    animation: drop-in 0.2s ease-out;
+}
+
+@keyframes drop-in {
+    from {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Prevent scrolling during touch drag operations */
+body.touch-dragging {
+    overflow: hidden;
+    touch-action: none;
+}
+
+/* Enhance touch targets for mobile */
+@media (max-width: 768px) {
+    .reagent-card, 
+    .drop-zone, 
+    .product-container {
+        width: 110px;
+        height: 110px;
+    }
+    
+    .btn {
+        padding: 12px 24px;
+        min-height: 44px;
+    }
+    
+    .reagent-bank {
+        gap: 18px;
+    }
+    
+    .drop-zone.highlight {
+        background-color: rgba(67, 97, 238, 0.3);
+        border-color: var(--primary-color);
+        border-width: 3px;
+        box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.2);
+    }
+}
+
+/* Loading indicator for devices where touch might be slow */
+.loading-indicator {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    z-index: 2000;
+}
+
+.loading-indicator.show {
+    display: block;
+}

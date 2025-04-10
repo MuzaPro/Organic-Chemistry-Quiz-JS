@@ -1,6 +1,33 @@
+# Revised Implementation Plan: Custom Touch Event Handling for SVG Drag-and-Drop
+
+## Background
+- **Research Ticket**: #4 - Research Touch Event Handling for Drag-and-Drop SVGs
+- **Implementation Ticket**: #5 - Implement Touch Support for Drag-and-Drop
+- **Completed By**: Claude (AI Assistant)
+- **Date**: April 10, 2025
+
+## Problem Statement
+Users on mobile devices are currently unable to drag and drop SVG molecule elements in the Organic Chemistry Quiz Game. When users attempt a long press on SVG elements, mobile browsers trigger their default context menu (offering options like "Download image") instead of initiating the drag-and-drop interaction. The previously recommended polyfill approach did not prevent this context menu from appearing, making it necessary to implement a more direct approach to touch handling.
+
+## Revised Approach: Custom Touch Event Implementation
+
+After discovering that the polyfill approach did not resolve the SVG context menu issue, we're switching to a custom touch event implementation that gives us complete control over the touch behavior. This approach completely bypasses the HTML5 drag and drop API for touch devices, while keeping it intact for desktop users.
+
+**Rationale for revised approach:**
+1. **Direct control**: Complete control over touch event handling without browser interference
+2. **Prevention of browser defaults**: Can specifically prevent SVG context menus from appearing
+3. **Custom visual feedback**: Can implement smoother visual feedback optimized for touch
+4. **Device detection**: Can provide different experiences for mouse vs. touch devices
+5. **No external dependencies**: Implementation without reliance on third-party libraries
+
+## Implementation Steps
+
+### 1. Update file: `js/drag-drop.js`
+Create a custom touch event implementation alongside the existing drag-and-drop system.
+
+```javascript
 /**
- * Drag and Drop Handler
- * Manages the drag and drop functionality for the quiz
+ * Enhanced Drag and Drop Handler with custom touch implementation
  */
 
 const DragDrop = (() => {
@@ -36,15 +63,18 @@ const DragDrop = (() => {
     
     /**
      * Set up event listeners for reagent cards
+     * Enhanced with custom touch handling
      */
     const setupReagentCards = () => {
         // Get all reagent cards
         reagentCards = document.querySelectorAll('.reagent-card');
         
         reagentCards.forEach(card => {
+            // Standard drag-and-drop for desktop
             if (!isMobileDevice) {
                 setupDragEvents(card);
             } else {
+                // Custom touch handling for mobile
                 setupTouchEvents(card);
                 
                 // Disable standard draggable for mobile to prevent conflicts
@@ -76,6 +106,7 @@ const DragDrop = (() => {
     
     /**
      * Set up standard drag events for desktop
+     * @param {Element} card - The reagent card element
      */
     const setupDragEvents = (card) => {
         // Original drag event implementation
@@ -109,6 +140,7 @@ const DragDrop = (() => {
     
     /**
      * Set up custom touch events for mobile
+     * @param {Element} card - The reagent card element
      */
     const setupTouchEvents = (card) => {
         // Touch start - begin potential drag operation
@@ -149,7 +181,7 @@ const DragDrop = (() => {
                 if (touchElement === card) {
                     startTouchDrag(card, cardInDropZone, cardDropZone);
                 }
-            }, 150);
+            }, 150); // Shorter delay than typical long press for better user experience
             
             // Visual feedback
             card.classList.add('touch-active');
@@ -208,6 +240,7 @@ const DragDrop = (() => {
             card.classList.remove('touch-active');
             
             if (touchDragging && ghostElement) {
+                // Return to original position or reagent bank
                 finishTouchDrag(null);
             }
             
@@ -218,10 +251,12 @@ const DragDrop = (() => {
     
     /**
      * Start a touch drag operation
+     * @param {Element} card - The card element being dragged
+     * @param {boolean} cardInDropZone - Whether the card is already in a drop zone
+     * @param {Object} cardDropZone - The drop zone the card is in (if any)
      */
     const startTouchDrag = (card, cardInDropZone, cardDropZone) => {
         touchDragging = true;
-        document.body.classList.add('touch-dragging');
         
         // Create a ghost element for dragging
         ghostElement = card.cloneNode(true);
@@ -229,7 +264,7 @@ const DragDrop = (() => {
         ghostElement.style.position = 'fixed';
         ghostElement.style.zIndex = '1000';
         ghostElement.style.opacity = '0.8';
-        ghostElement.style.pointerEvents = 'none';
+        ghostElement.style.pointerEvents = 'none'; // Don't interfere with touch events
         ghostElement.style.width = card.offsetWidth + 'px';
         ghostElement.style.height = card.offsetHeight + 'px';
         document.body.appendChild(ghostElement);
@@ -250,12 +285,14 @@ const DragDrop = (() => {
         
         // Provide haptic feedback if available
         if (window.navigator.vibrate) {
-            window.navigator.vibrate(50);
+            window.navigator.vibrate(50); // Short vibration for feedback
         }
     };
     
     /**
      * Move the ghost element during touch drag
+     * @param {number} clientX - The X coordinate
+     * @param {number} clientY - The Y coordinate
      */
     const moveGhostElement = (clientX, clientY) => {
         if (!ghostElement) return;
@@ -266,13 +303,19 @@ const DragDrop = (() => {
     
     /**
      * Check for a potential drop target during touch drag
+     * @param {number} clientX - The X coordinate
+     * @param {number} clientY - The Y coordinate
      */
     const checkTouchDropTarget = (clientX, clientY) => {
+        // Remove highlighting from all drop zones
         dropZones.forEach(zone => {
             zone.element.classList.remove('highlight');
         });
         
+        // Find drop target under the current position
         const target = findTouchDropTarget(clientX, clientY);
+        
+        // Highlight valid drop target
         if (target) {
             target.element.classList.add('highlight');
         }
@@ -280,6 +323,9 @@ const DragDrop = (() => {
     
     /**
      * Find a drop target at the specified coordinates
+     * @param {number} clientX - The X coordinate
+     * @param {number} clientY - The Y coordinate
+     * @returns {Object|null} The drop zone object or null
      */
     const findTouchDropTarget = (clientX, clientY) => {
         for (const zone of dropZones) {
@@ -298,11 +344,10 @@ const DragDrop = (() => {
     
     /**
      * Finish a touch drag operation
+     * @param {Object|null} dropTarget - The drop zone object or null
      */
     const finishTouchDrag = (dropTarget) => {
         if (!touchElement || !ghostElement) return;
-        
-        document.body.classList.remove('touch-dragging');
         
         // Remove ghost element
         document.body.removeChild(ghostElement);
@@ -323,7 +368,7 @@ const DragDrop = (() => {
             
             // Provide haptic feedback if available
             if (window.navigator.vibrate) {
-                window.navigator.vibrate([50, 50, 50]);
+                window.navigator.vibrate([50, 50, 50]); // Success pattern
             }
         } else {
             // No valid drop target, return to bank
@@ -348,17 +393,23 @@ const DragDrop = (() => {
             const element = zone.element;
             
             if (!isMobileDevice) {
+                // Standard desktop drag-and-drop events
                 setupDropZoneDesktopEvents(zone);
             }
+            
+            // We don't need specific touch events for drop zones
+            // They're handled in the touch drag implementation
         });
     };
     
     /**
      * Set up desktop drag-and-drop events for drop zones
+     * @param {Object} zone - The drop zone object
      */
     const setupDropZoneDesktopEvents = (zone) => {
         const element = zone.element;
         
+        // Drag over
         element.addEventListener('dragover', (e) => {
             if (!draggingEnabled) return;
             
@@ -367,6 +418,7 @@ const DragDrop = (() => {
             element.classList.add('highlight');
         });
         
+        // Drag enter
         element.addEventListener('dragenter', (e) => {
             if (!draggingEnabled) return;
             
@@ -374,10 +426,12 @@ const DragDrop = (() => {
             element.classList.add('highlight');
         });
         
+        // Drag leave
         element.addEventListener('dragleave', () => {
             element.classList.remove('highlight');
         });
         
+        // Drop
         element.addEventListener('drop', (e) => {
             e.preventDefault();
             element.classList.remove('highlight');
@@ -389,39 +443,54 @@ const DragDrop = (() => {
             
             if (!reagentCard) return;
             
+            // Check if another reagent is already in this drop zone
             if (zone.content) {
+                // Return the current reagent to the bank
                 returnToBank(zone.content.element);
             }
             
+            // Put the new reagent in the drop zone
             addToDropZone(zone, reagentCard);
         });
     };
     
     /**
      * Add a reagent card to a drop zone
+     * @param {Object} zone - The drop zone object
+     * @param {Element} reagentCard - The reagent card element
      */
     const addToDropZone = (zone, reagentCard) => {
+        // Create a clone to place in the drop zone
         const cardClone = reagentCard.cloneNode(true);
         cardClone.classList.add('reagent-in-dropzone');
         
+        // Set up the clone differently based on device type
         if (!isMobileDevice) {
+            // Desktop: make the clone draggable
             cardClone.setAttribute('draggable', 'true');
+            
+            // Add drag events to the clone
             setupCloneDragEvents(cardClone, zone, reagentCard);
         } else {
+            // Mobile: add touch events to the clone
             setupCloneTouchEvents(cardClone, zone, reagentCard);
         }
         
         cardClone.setAttribute('data-original-id', reagentCard.getAttribute('data-id'));
         
+        // Clear the drop zone
         while (zone.element.firstChild) {
             zone.element.removeChild(zone.element.firstChild);
         }
         
+        // Add the clone to the drop zone
         zone.element.appendChild(cardClone);
         zone.element.classList.add('filled');
         
+        // Hide the original card (it's now in the drop zone)
         reagentCard.style.visibility = 'hidden';
         
+        // Update drop zone content
         zone.content = {
             element: reagentCard,
             clone: cardClone,
@@ -429,21 +498,28 @@ const DragDrop = (() => {
             name: reagentCard.getAttribute('data-name')
         };
         
+        // Add ARIA attributes for accessibility
         zone.element.setAttribute('aria-dropeffect', 'move');
         cardClone.setAttribute('aria-grabbed', 'true');
     };
     
     /**
      * Set up touch events for a clone in a drop zone
+     * @param {Element} clone - The clone element
+     * @param {Object} zone - The drop zone object
+     * @param {Element} original - The original reagent card
      */
     const setupCloneTouchEvents = (clone, zone, original) => {
+        // Prevent default touch behavior
         clone.style.touchAction = 'none';
         
+        // Prevent context menu on all elements
         clone.addEventListener('contextmenu', (e) => {
             e.preventDefault();
             return false;
         });
         
+        // Prevent selection on all child elements
         const allElements = clone.querySelectorAll('*');
         allElements.forEach(el => {
             el.style.webkitUserSelect = 'none';
@@ -455,40 +531,102 @@ const DragDrop = (() => {
             });
         });
         
+        // Touch start - simple tap to remove
         clone.addEventListener('touchstart', (e) => {
             if (!draggingEnabled) return;
+            
+            // Prevent default to avoid context menu
             e.preventDefault();
+            
+            // Add active class for visual feedback
             clone.classList.add('touch-active');
         }, { passive: false });
         
+        // Touch end - remove on tap
         clone.addEventListener('touchend', (e) => {
             if (!draggingEnabled) return;
             
             e.preventDefault();
             clone.classList.remove('touch-active');
             
+            // Get touch end position
             const touch = e.changedTouches[0];
             const rect = clone.getBoundingClientRect();
             
+            // Check if touch ended within the element (tap, not drag)
             if (
                 touch.clientX >= rect.left && 
                 touch.clientX <= rect.right && 
                 touch.clientY >= rect.top && 
                 touch.clientY <= rect.bottom
             ) {
+                // Remove from drop zone
                 removeFromDropZone(zone);
                 returnToBank(original);
                 
+                // Hide the next button if it's visible
                 const nextBtn = document.getElementById('next-btn');
                 if (nextBtn && !nextBtn.classList.contains('hidden')) {
                     nextBtn.classList.add('hidden');
                 }
                 
+                // Provide haptic feedback if available
                 if (window.navigator.vibrate) {
                     window.navigator.vibrate(50);
                 }
             }
         }, { passive: false });
+        
+        // Touch cancel
+        clone.addEventListener('touchcancel', () => {
+            clone.classList.remove('touch-active');
+        });
+    };
+     
+    /**
+     * Set up drag events for a clone in a drop zone (desktop)
+     * @param {Element} clone - The clone element in the drop zone
+     * @param {Object} zone - The drop zone object
+     * @param {Element} original - The original reagent card
+     */
+    const setupCloneDragEvents = (clone, zone, original) => {
+        // Drag start
+        clone.addEventListener('dragstart', (e) => {
+            if (!draggingEnabled) return;
+            
+            currentDragElement = original;
+            clone.classList.add('dragging');
+            
+            // Store reagent data in the drag event
+            e.dataTransfer.setData('text/plain', original.getAttribute('data-id'));
+            e.dataTransfer.effectAllowed = 'move';
+            
+            // Clear the drop zone immediately
+            setTimeout(() => {
+                removeFromDropZone(zone);
+                returnToBank(original);
+            }, 10);
+        });
+        
+        // Drag end
+        clone.addEventListener('dragend', () => {
+            clone.classList.remove('dragging');
+            currentDragElement = null;
+        });
+        
+        // Click to clear (for desktop)
+        clone.addEventListener('click', () => {
+            if (!draggingEnabled) return;
+            
+            removeFromDropZone(zone);
+            returnToBank(original);
+            
+            // Hide the next button if it's visible
+            const nextBtn = document.getElementById('next-btn');
+            if (nextBtn && !nextBtn.classList.contains('hidden')) {
+                nextBtn.classList.add('hidden');
+            }
+        });
     };
     
     /**
@@ -510,6 +648,10 @@ const DragDrop = (() => {
         zone.element.appendChild(placeholder);
         
         zone.element.classList.remove('filled');
+        
+        // Reset ARIA attributes
+        zone.element.removeAttribute('aria-dropeffect');
+        
         zone.content = null;
     };
     
@@ -540,8 +682,11 @@ const DragDrop = (() => {
         
         // Make the original card visible again
         reagentCard.style.visibility = 'visible';
+        
+        // Reset ARIA attributes
+        reagentCard.setAttribute('aria-grabbed', 'false');
     };
-    
+
     /**
      * Get the content of a specific drop zone
      * @param {number} zoneNumber - The zone number (1 or 2)
@@ -564,52 +709,6 @@ const DragDrop = (() => {
             }
         });
     };
-    /**
-     * Set up drag events for the clone in a drop zone
-     * @param {Element} clone - The clone element in the drop zone
-     * @param {Object} zone - The drop zone object
-     * @param {Element} original - The original reagent card
-     */
-    const setupCloneDragEvents = (clone, zone, original) => {
-        // Drag start
-        clone.addEventListener('dragstart', (e) => {
-            if (!draggingEnabled) return;
-            
-            currentDragElement = original;
-            clone.classList.add('dragging');
-            
-            // Store reagent data in the drag event
-            e.dataTransfer.setData('text/plain', original.getAttribute('data-id'));
-            e.dataTransfer.effectAllowed = 'move';
-            
-            // Clear the drop zone immediately
-            setTimeout(() => {
-                removeFromDropZone(zone);
-                returnToBank(original);
-            }, 10);
-        });
-        
-        // Drag end
-        clone.addEventListener('dragend', () => {
-            clone.classList.remove('dragging');
-            currentDragElement = null;
-        });
-        
-        // Click to clear
-        clone.addEventListener('click', () => {
-            if (!draggingEnabled) return;
-            
-            removeFromDropZone(zone);
-            returnToBank(original);
-            
-            // Hide the next button if it's visible
-            const nextBtn = document.getElementById('next-btn');
-            if (nextBtn && !nextBtn.classList.contains('hidden')) {
-                nextBtn.classList.add('hidden');
-            }
-        });
-    };
-
 
     /**
      * Enable or disable dragging functionality
@@ -634,6 +733,7 @@ const DragDrop = (() => {
             }
         });
     };
+    
     // Public API
     return {
         initialize,
@@ -643,6 +743,300 @@ const DragDrop = (() => {
         removeFromDropZone,
         returnToBank
     };
-
-    
 })();
+```
+
+### 2. Update file: `css/styles.css`
+Add custom styles for touch drag-and-drop handling and the ghost element.
+
+```css
+/* Custom Touch Drag-and-Drop Styling */
+
+/* Prevent text selection and context menus on draggable elements */
+.reagent-card, 
+.reagent-card * {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+}
+
+/* Disable all default touch actions on draggable elements */
+.reagent-card, 
+.reagent-card img {
+    touch-action: none;
+    -webkit-touch-callout: none;
+}
+
+/* Style for the ghost element during touch drag */
+.touch-ghost {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+    transition: transform 0.1s ease;
+    border: 2px solid var(--primary-color);
+}
+
+/* Visual feedback for active touch */
+.touch-active {
+    transform: scale(1.05);
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhance touch targets for mobile */
+@media (max-width: 768px) {
+    .reagent-card, 
+    .drop-zone, 
+    .product-container {
+        width: 110px; /* Larger for better touch target */
+        height: 110px;
+    }
+    
+    .btn {
+        padding: 12px 24px; /* Larger touch target for buttons */
+        min-height: 44px; /* Minimum recommended touch target height */
+    }
+    
+    /* More spacing between reagent cards */
+    .reagent-bank {
+        gap: 18px;
+    }
+    
+    /* Enhance drop zone visual feedback */
+    .drop-zone.highlight {
+        background-color: rgba(67, 97, 238, 0.3);
+        border-color: var(--primary-color);
+        border-width: 3px;
+        box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.2);
+    }
+}
+
+/* Animation for elements when they're dropped into a drop zone */
+.reagent-in-dropzone {
+    animation: drop-in 0.2s ease-out;
+}
+
+@keyframes drop-in {
+    from {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Prevent scrolling during touch drag operations */
+body.touch-dragging {
+    overflow: hidden;
+    touch-action: none;
+}
+
+/* Additional visual enhancements for dragging feedback */
+.dragging {
+    opacity: 0.8;
+}
+
+/* Loading indicator for devices where touch might be slow */
+.loading-indicator {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    z-index: 2000;
+}
+
+.loading-indicator.show {
+    display: block;
+}
+```
+
+### 3. Update file: `js/app.js`
+Add a few enhancements to the main application to support the custom touch implementation.
+
+```javascript
+/**
+ * Add to the DOMContentLoaded event handler
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    // Prevent page scrolling during touch drag operations
+    document.addEventListener('touchmove', function(e) {
+        const body = document.body;
+        if (body.classList.contains('touch-dragging')) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+    
+    // Prevent zoom/scaling during interaction with the quiz
+    const quizContainer = document.querySelector('.quiz-container');
+    quizContainer.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) {
+            e.preventDefault(); // Prevent pinch zoom
+        }
+    }, { passive: false });
+    
+    // Test for touch capability
+    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    
+    // Add appropriate classes to body for CSS targeting
+    if (isTouchDevice) {
+        document.body.classList.add('touch-device');
+    }
+    
+    // Initialize the quiz
+    initializeQuiz();
+    
+    // Set up event listeners
+    setupEventListeners();
+});
+
+/**
+ * Modify the handleSubmit function to disable touch events when answer is correct
+ */
+function handleSubmit() {
+    // Original code...
+    
+    if (isCorrect) {
+        showFeedback(QuizEngine.getCurrentQuestion().correctFeedback, 'success');
+        document.getElementById('score').textContent = QuizEngine.getScore();
+        document.getElementById('next-btn').classList.remove('hidden');
+        
+        // Disable dragging after correct submission
+        DragDrop.setDraggingEnabled(false);
+        
+        // Also disable the reset button after correct answer
+        const resetButton = document.getElementById('reset-btn');
+        resetButton.disabled = true;
+        resetButton.classList.add('disabled');
+        
+        // Provide haptic feedback on supported devices
+        if (window.navigator.vibrate) {
+            window.navigator.vibrate([100, 50, 100]); // Success pattern
+        }
+    } else {
+        // Original code...
+    }
+}
+
+/**
+ * In the resetQuestionUI function, make sure to enable reset button again
+ */
+function resetQuestionUI() {
+    // Clear drop zones
+    DragDrop.clearDropZones();
+    
+    // Hide feedback and next button
+    document.getElementById('feedback-container').classList.add('hidden');
+    document.getElementById('next-btn').classList.add('hidden');
+    
+    // Re-enable reset button
+    const resetButton = document.getElementById('reset-btn');
+    resetButton.disabled = false;
+    resetButton.classList.remove('disabled');
+}
+```
+
+### 4. Update file: `index.html`
+Make minor adjustments to support the custom touch implementation.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Organic Chemistry Quiz Game</title>
+    
+    <!-- Existing CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Add a modern CSS reset -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
+    <!-- Add a font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Add a loading indicator for slower devices -->
+    <div class="loading-indicator" id="loading-indicator">Loading...</div>
+
+    <!-- Existing HTML content -->
+    
+    <!-- Scripts -->
+    <script src="js/drag-drop.js"></script>
+    <script src="js/quiz-engine.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
+```
+
+## Testing Criteria
+
+### Devices to Test
+- **iOS**: iPhone (latest models), iPad (latest models)
+- **iOS Browsers**: Safari, Chrome, Firefox
+- **Android**: Current flagship phones, mid-range devices, Samsung devices
+- **Android Browsers**: Chrome, Firefox, Samsung Internet
+- **Screen Sizes**: Both phone and tablet form factors
+- **Orientations**: Portrait and landscape
+
+### Test Scenarios
+1. **Basic Touch Operations**:
+   - Long press on molecule to start drag
+   - Drag molecule from reagent bank to drop zone
+   - Tap molecule in drop zone to remove it
+   - Test rapid taps and drags
+
+2. **SVG-Specific Testing**:
+   - Verify no context menu appears on long press of SVG images
+   - Test with different molecule SVGs of varying complexity
+   - Verify that the molecule images move with the touch point correctly
+
+3. **Edge Cases**:
+   - Test with slow network conditions or CPU throttling
+   - Test with rapid question cycling
+   - Test after device orientation changes
+   - Test with multi-touch gestures (should be prevented)
+
+4. **Accessibility Testing**:
+   - Test with VoiceOver (iOS)
+   - Test with TalkBack (Android)
+   - Test keyboard navigation on desktop
+
+5. **Cross-Device Testing**:
+   - Verify the experience is consistent between desktop and mobile
+   - Check that mouse events still work properly on desktop
+   - Verify that both drag and tap interactions work correctly
+
+## Dependencies
+None (this implementation removes external dependencies)
+
+## Performance Considerations
+1. **Animation Performance**: Monitor performance of ghost element animations, especially on lower-end devices.
+2. **Touch Event Handling**: Be aware that certain devices may have varying touch event latencies.
+3. **Memory Usage**: Clear ghost elements properly to avoid memory leaks.
+4. **Render Performance**: Use CSS transitions instead of JavaScript animations when possible for better performance.
+5. **Event Delegation**: Consider implementing event delegation for large numbers of draggable elements.
+
+## Additional Notes
+1. **Context Menu Prevention**: The key focus of this implementation is to ensure context menus do not appear on SVG elements during long press, which was the primary issue with the previous approach.
+
+2. **Browser Quirks**: Some browsers may still exhibit quirky behavior with touch events. The implementation is designed to handle the most common cases, but edge cases may require adjustments.
+
+3. **Custom Cursors**: Consider adding custom cursors for desktop drag-and-drop to match the mobile experience.
+
+4. **Progressive Enhancement**: This approach follows a progressive enhancement strategy, providing the best experience available to each user based on their device capabilities.
+
+5. **Testing Importance**: Thorough testing on actual devices is crucial, as browser emulation may not accurately represent all touch behaviors.
+
+## Resources
+- [MDN Touch Events Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events)
+- [W3C Touch Events Specification](https://w3c.github.io/touch-events/)
+- [Google Web Fundamentals: Touch Input](https://developers.google.com/web/fundamentals/design-and-ux/input/touch)
+- [CSS-Tricks Guide to Touch Events](https://css-tricks.com/snippets/javascript/bind-different-events-for-touch-and-mouse/)
+- [WebKit Touch Events Handling](https://webkit.org/blog/5610/more-responsive-tapping-on-ios/)

@@ -10,7 +10,33 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Set up event listeners
     setupEventListeners();
+    
+    // Prevent page scrolling during touch drag operations
+    document.addEventListener('touchmove', function(e) {
+        const body = document.body;
+        if (body.classList.contains('touch-dragging')) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+    
+    // Prevent zoom/scaling during interaction with the quiz
+    const quizContainer = document.querySelector('.quiz-container');
+    quizContainer.addEventListener('touchstart', function(e) {
+        if (e.touches.length > 1) {
+            e.preventDefault(); // Prevent pinch zoom
+        }
+    }, { passive: false });
 });
+
+// Loading indicator management
+const LoadingIndicator = {
+    show: () => {
+        document.getElementById('loading-indicator').classList.add('show');
+    },
+    hide: () => {
+        document.getElementById('loading-indicator').classList.remove('show');
+    }
+};
 
 /**
  * Initialize the quiz by loading questions and setting up the first question
@@ -76,6 +102,33 @@ function setupEventListeners() {
             closeModal();
         }
     });
+    
+    // Add touch event handlers for better mobile experience
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+        // Prevent default touch actions on buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                button.classList.add('touch-active');
+            }, { passive: false });
+            
+            button.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                button.classList.remove('touch-active');
+            }, { passive: false });
+        });
+        
+        // Double-tap prevention
+        let lastTap = 0;
+        document.addEventListener('touchend', (e) => {
+            const currentTime = new Date().getTime();
+            const tapLength = currentTime - lastTap;
+            if (tapLength < 500 && tapLength > 0) {
+                e.preventDefault();
+            }
+            lastTap = currentTime;
+        });
+    }
 }
 
 /**
@@ -92,8 +145,14 @@ function handleSubmit() {
         return;
     }
     
+    // Show loading indicator while checking answer
+    LoadingIndicator.show();
+    
     // Check the answer
     const isCorrect = QuizEngine.checkAnswer([dropZone1Content.id, dropZone2Content.id]);
+    
+    // Hide loading indicator
+    LoadingIndicator.hide();
     
     if (isCorrect) {
         showFeedback(QuizEngine.getCurrentQuestion().correctFeedback, 'success');
@@ -102,9 +161,19 @@ function handleSubmit() {
         
         // Disable dragging after correct submission
         DragDrop.setDraggingEnabled(false);
+        
+        // Provide haptic feedback on supported devices
+        if (window.navigator.vibrate) {
+            window.navigator.vibrate([100, 50, 100]); // Success pattern
+        }
     } else {
         showFeedback(QuizEngine.getCurrentQuestion().incorrectFeedback, 'error');
         // Keep dragging enabled for incorrect answers so user can try again
+        
+        // Provide haptic feedback for incorrect answer
+        if (window.navigator.vibrate) {
+            window.navigator.vibrate(50); // Short buzz
+        }
     }
 }
 
@@ -112,6 +181,9 @@ function handleSubmit() {
  * Handle moving to the next question
  */
 function handleNextQuestion() {
+    // Show loading indicator
+    LoadingIndicator.show();
+    
     // Move to the next question
     const nextQuestionLoaded = QuizEngine.nextQuestion();
     
@@ -124,13 +196,21 @@ function handleNextQuestion() {
         
         // Re-enable dragging for the new question
         DragDrop.setDraggingEnabled(true);
-
+        
         // Re-initialize drag and drop for the new question
         DragDrop.initialize();
+        
+        // Provide haptic feedback for new question
+        if (window.navigator.vibrate) {
+            window.navigator.vibrate(30);
+        }
     } else {
         // Quiz is complete
         showQuizComplete();
     }
+    
+    // Hide loading indicator
+    LoadingIndicator.hide();
 }
 
 /**
@@ -204,6 +284,9 @@ function handleChemNotesClick() {
  * Reset the current question
  */
 function resetQuestion() {
+    // Show loading indicator
+    LoadingIndicator.show();
+    
     // Clear drop zones
     DragDrop.clearDropZones();
     
@@ -218,8 +301,15 @@ function resetQuestion() {
     document.querySelectorAll('.reagent-card').forEach(card => {
         card.style.visibility = 'visible';
     });
+    
+    // Hide loading indicator
+    LoadingIndicator.hide();
+    
+    // Provide haptic feedback
+    if (window.navigator.vibrate) {
+        window.navigator.vibrate(30);
+    }
 }
-
 
 /**
  * Close the modal
