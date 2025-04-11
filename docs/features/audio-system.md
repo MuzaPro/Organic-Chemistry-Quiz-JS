@@ -1,7 +1,7 @@
 # Feature: Audio System
 
 **Last Updated:** April 11, 2025
-**Related Tickets:** #15
+**Related Tickets:** #15, #15.1.1, #15.1.2
 
 ## Overview
 The Audio System provides sound effects feedback for key interactions in the Organic Chemistry Quiz application. It enhances the user experience through audio cues while maintaining performance and accessibility.
@@ -23,17 +23,26 @@ const sounds = {
 
 #### 2. Public API
 - `AudioManager.initialize()`: Set up sound system and mute button
-- `AudioManager.play(soundName)`: Play a specific sound effect
+- `AudioManager.play(soundName)`: Play a specific sound effect with error handling
 - `AudioManager.toggleMute()`: Toggle mute state
+
+### Error Handling
+The system includes robust error handling for sound playback:
+- Checks for AudioManager existence before attempting playback
+- Handles mobile autoplay restrictions gracefully
+- Provides fallback behavior when sound playback fails
+- Prevents errors from disrupting touch interactions
 
 ### Integration Points
 - Drag-and-drop interactions (`drag-drop.js`)
+  - Mouse events: dragstart, drop
+  - Touch events: panstart, panend, tap
 - Answer submission feedback (`app.js`)
 - Global mute toggle (Footer UI)
 
 ## User Experience
-The audio system provides feedback for:
-1. Picking up a molecule card
+The audio system provides consistent feedback across all devices for:
+1. Picking up a molecule card (mouse drag or touch pan)
 2. Dropping a molecule in a drop zone
 3. Submitting correct answers
 4. Submitting incorrect answers
@@ -50,31 +59,13 @@ Users can control the audio experience through a mute button in the footer, and 
    - iOS requires user interaction before playing audio
    - Some mobile browsers restrict autoplay
    - Legacy browsers may not support the Audio API
+   - Mobile sound limitations are handled gracefully with error catching
 
 2. **Performance Considerations**
    - Sound files should be kept small (< 100KB)
    - Multiple simultaneous sounds may not play well on mobile devices
-
-## Future Enhancements
-Potential improvements include:
-- Volume control slider
-- Different sound themes
-- Haptic feedback for mobile devices
-- Web Audio API integration for advanced effects
-- Sound sprites for better performance
-- Preloader for sound assets
-
-## Usage Example
-```javascript
-// Initialize the audio system
-AudioManager.initialize();
-
-// Play a sound effect
-AudioManager.play('correct');
-
-// Toggle mute state
-AudioManager.toggleMute();
-```
+   - Sound playback is asynchronous to prevent UI blocking
+   - Error handling ensures smooth operation even when sound fails
 
 ## Best Practices
 1. **Sound Design**
@@ -83,11 +74,35 @@ AudioManager.toggleMute();
    - Ensure sounds are non-intrusive
 
 2. **Implementation**
-   - Always check for AudioManager existence before calling
+   - Always use playSoundSafely wrapper for sound playback
    - Handle playback errors gracefully
-   - Provide visual feedback alongside sounds
+   - Check for AudioManager existence before calls
+   - Initialize audio system before touch events
 
 3. **Performance**
    - Preload sounds on initialization
    - Reuse Audio instances
    - Stop any playing sounds before starting new ones
+   - Handle mobile autoplay restrictions appropriately
+
+## Mobile Integration
+1. **Touch Event Handling**
+   - Sound effects mirror mouse event equivalents
+   - Error handling prevents touch disruption
+   - Proper initialization order with Hammer.js
+   - Consistent feedback across devices
+
+2. **Mobile-Specific Considerations**
+   - Autoplay restriction handling
+   - Touch event synchronization
+   - Performance optimization
+   - Fallback behavior when sound fails
+
+## Future Enhancements
+- Volume control slider
+- Different sound themes
+- Haptic feedback for mobile devices
+- Web Audio API integration for advanced effects
+- Sound sprites for better performance
+- Preloader for sound assets
+- Sound playback status monitoring

@@ -4,11 +4,20 @@
  */
 
 // Wait for DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize the quiz
-    initializeQuiz();
-    AudioManager.initialize();
-    setupEventListeners();
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // Initialize audio first
+        AudioManager.initialize();
+        
+        // Then initialize the quiz
+        await initializeQuiz();
+        
+        // Finally set up event listeners
+        setupEventListeners();
+    } catch (error) {
+        console.error('Failed to initialize application:', error);
+        showErrorMessage('Failed to initialize application. Please refresh the page or try again later.');
+    }
 });
 
 /**
@@ -91,8 +100,8 @@ function handleSubmit() {
         return;
     }
     
-    // Check the answer
-    const isCorrect = QuizEngine.checkAnswer([dropZone1Content.id, dropZone2Content.id]);
+    // Check the answer using the correct reagentId property
+    const isCorrect = QuizEngine.checkAnswer([dropZone1Content.reagentId, dropZone2Content.reagentId]);
     
     if (isCorrect) {
         showFeedback(QuizEngine.getCurrentQuestion().correctFeedback, 'success');

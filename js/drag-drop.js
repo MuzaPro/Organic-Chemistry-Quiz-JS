@@ -19,7 +19,18 @@ const DragDrop = (() => {
     let touchStartY = 0;
     let elementStartX = 0;
     let elementStartY = 0;
-    
+
+    // Safely play a sound with error handling
+    const playSoundSafely = (soundName) => {
+        if (typeof AudioManager !== 'undefined' && typeof AudioManager.play === 'function') {
+            try {
+                AudioManager.play(soundName);
+            } catch (err) {
+                console.warn(`Error playing sound ${soundName}:`, err);
+            }
+        }
+    };
+
     /**
      * Initialize drag and drop functionality
      */
@@ -70,9 +81,7 @@ const DragDrop = (() => {
             card.classList.add('dragging');
             
             // Play pickup sound
-            if (typeof AudioManager !== 'undefined') {
-                AudioManager.play('pickup');
-            }
+            playSoundSafely('pickup');
             
             // Store reagent data in the drag event
             e.dataTransfer.setData('text/plain', card.getAttribute('data-id'));
@@ -115,6 +124,9 @@ const DragDrop = (() => {
             
             // Add visual feedback
             card.classList.add('touch-dragging');
+            
+            // Play pickup sound
+            playSoundSafely('pickup');
             
             // If this card was already in a drop zone, clear that drop zone
             dropZones.forEach(zone => {
@@ -183,7 +195,7 @@ const DragDrop = (() => {
             card.style.zIndex = '';
             
             if (foundDropZone) {
-                // Add to drop zone
+                // Add to drop zone (sound will be played by addToDropZone)
                 addToDropZone(foundDropZone, card);
             } else {
                 // Return to original position with smooth transition
@@ -215,6 +227,9 @@ const DragDrop = (() => {
             // Tap to remove
             hammer.on('tap', () => {
                 if (!draggingEnabled) return;
+                
+                // Play pickup sound
+                playSoundSafely('pickup');
                 
                 removeFromDropZone(zone);
                 returnToBank(original);
@@ -309,24 +324,21 @@ const DragDrop = (() => {
         }
         
         // Play drop sound
-        if (typeof AudioManager !== 'undefined') {
-            AudioManager.play('drop');
-        }
+        playSoundSafely('drop');
         
         // Add the clone to the drop zone
         zone.element.appendChild(cardClone);
         zone.element.classList.add('filled');
         
+        // Update drop zone content tracking
+        zone.content = {
+            element: cardClone,
+            originalElement: reagentCard,
+            reagentId: reagentCard.getAttribute('data-id')
+        };
+        
         // Hide the original card
         reagentCard.style.visibility = 'hidden';
-        
-        // Update drop zone content
-        zone.content = {
-            element: reagentCard,
-            clone: cardClone,
-            id: reagentCard.getAttribute('data-id'),
-            name: reagentCard.getAttribute('data-name')
-        };
     };
      
     /**

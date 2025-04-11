@@ -30,10 +30,21 @@ const AudioManager = (() => {
         sounds[soundName].pause();
         sounds[soundName].currentTime = 0;
         
-        // Play the sound
-        sounds[soundName].play().catch(error => {
-            console.warn(`Error playing sound ${soundName}:`, error);
-        });
+        // Play the sound with proper error handling
+        const playPromise = sounds[soundName].play();
+        
+        // Handle play promise (required for mobile browsers)
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                // Auto-play might be prevented (especially on mobile)
+                console.warn(`Sound playback was prevented: ${error}`);
+                
+                // Don't show autoplay errors to users
+                if (error.name !== 'NotAllowedError') {
+                    console.error(`Error playing sound ${soundName}:`, error);
+                }
+            });
+        }
     };
     
     // Toggle mute state
