@@ -98,7 +98,6 @@ function handleSubmit() {
     if (isCorrect) {
         showFeedback(QuizEngine.getCurrentQuestion().correctFeedback, 'success');
         document.getElementById('score').textContent = QuizEngine.getScore();
-        document.getElementById('next-btn').classList.remove('hidden');
         
         // Disable dragging and reset button after correct submission
         DragDrop.setDraggingEnabled(false);
@@ -107,8 +106,13 @@ function handleSubmit() {
         resetButton.classList.add('disabled');
     } else {
         showFeedback(QuizEngine.getCurrentQuestion().incorrectFeedback, 'error');
-        // Keep dragging enabled for incorrect answers so user can try again
+        // Add skip message
+        document.getElementById('feedback-container').innerHTML += 
+            '<p class="skip-text">You can try again or move to the next question.</p>';
     }
+    
+    // Show next button in both correct and incorrect cases
+    document.getElementById('next-btn').classList.remove('hidden');
 }
 
 /**

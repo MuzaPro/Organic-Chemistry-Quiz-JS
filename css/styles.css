@@ -479,3 +479,10 @@ footer {
     background-color: rgba(0, 255, 0, 0.1);
     border: 2px dashed #4CAF50;
 }
+
+.skip-text {
+    font-size: 0.9rem;
+    margin-top: 10px;
+    color: var(--dark-gray);
+    font-style: italic;
+}
