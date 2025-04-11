@@ -275,6 +275,23 @@ h2 {
     color: var(--text-color);
 }
 
+/* Button Icon Styles */
+.btn-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+  position: relative;
+  top: -1px;
+}
+
+.btn-secondary .btn-icon {
+  stroke: var(--dark-gray);
+}
+
+.btn-secondary:hover .btn-icon {
+  stroke: var(--text-color);
+}
+
 /* Footer */
 footer {
     display: flex;

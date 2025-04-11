@@ -89,7 +89,7 @@ Features deferred to future development cycles:
 | #9 | Resolve Mobile Drop Zone Bug | Must Have | Medium (1-2 days) |
 | #10 | Add Next Question Option After Incorrect Answers | Must Have | Small (0.5 day) |
 | #11 | Add Favicon to Quiz Application | Should Have | XS (1-2 hours) |
-| #12 | Add Notebook Icon to Chemistry Notes Button | Should Have | XS (1-2 hours) |
+| #12 | Add Notebook Icon to Chemistry Notes Button | Complete | XS (1-2 hours) |
 | #13 | Optimize Layout for Mobile Screens | Should Have | Medium (1 day) |
 
 ### Sprint 2: Experience Enhancements
