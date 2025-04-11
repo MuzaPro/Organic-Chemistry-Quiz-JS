@@ -100,8 +100,11 @@ function handleSubmit() {
         document.getElementById('score').textContent = QuizEngine.getScore();
         document.getElementById('next-btn').classList.remove('hidden');
         
-        // Disable dragging after correct submission
+        // Disable dragging and reset button after correct submission
         DragDrop.setDraggingEnabled(false);
+        const resetButton = document.getElementById('reset-btn');
+        resetButton.disabled = true;
+        resetButton.classList.add('disabled');
     } else {
         showFeedback(QuizEngine.getCurrentQuestion().incorrectFeedback, 'error');
         // Keep dragging enabled for incorrect answers so user can try again
@@ -122,8 +125,11 @@ function handleNextQuestion() {
         // Update progress
         updateProgress();
         
-        // Re-enable dragging for the new question
+        // Re-enable dragging and reset button for the new question
         DragDrop.setDraggingEnabled(true);
+        const resetButton = document.getElementById('reset-btn');
+        resetButton.disabled = false;
+        resetButton.classList.remove('disabled');
 
         // Re-initialize drag and drop for the new question
         DragDrop.initialize();

@@ -275,6 +275,18 @@ h2 {
     color: var(--text-color);
 }
 
+.btn:disabled,
+.btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.btn-secondary:disabled .btn-icon,
+.btn-secondary.disabled .btn-icon {
+    opacity: 0.5;
+}
+
 /* Button Icon Styles */
 .btn-icon {
   display: inline-block;
