@@ -267,8 +267,18 @@ function showQuizComplete() {
     
     let message;
     let className;
+    let certificateHTML = '';
     
-    if (percentage >= 80) {
+    if (percentage === 100) {
+        message = 'Perfect! You have mastered organic chemistry reactions!';
+        className = 'success perfect-score';
+        certificateHTML = `
+            <div class="certificate-container">
+                <img src="assets/images/rosette-discount-check.svg" alt="Achievement certificate" class="certificate-svg">
+                <p class="certificate-text">Achievement Unlocked: Chemistry Master!</p>
+            </div>
+        `;
+    } else if (percentage >= 80) {
         message = 'Excellent! You have a strong understanding of organic chemistry reactions.';
         className = 'success';
     } else if (percentage >= 60) {
@@ -282,6 +292,7 @@ function showQuizComplete() {
     container.innerHTML = `
         <div class="quiz-complete ${className}">
             <h2>Quiz Complete!</h2>
+            ${certificateHTML}
             <p>Your score: ${score}/${totalQuestions} (${percentage}%)</p>
             <p>${message}</p>
             <div class="action-buttons">
