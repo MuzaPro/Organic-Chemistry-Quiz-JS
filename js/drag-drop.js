@@ -69,6 +69,11 @@ const DragDrop = (() => {
             currentDragElement = card;
             card.classList.add('dragging');
             
+            // Play pickup sound
+            if (typeof AudioManager !== 'undefined') {
+                AudioManager.play('pickup');
+            }
+            
             // Store reagent data in the drag event
             e.dataTransfer.setData('text/plain', card.getAttribute('data-id'));
             e.dataTransfer.effectAllowed = 'move';
@@ -301,6 +306,11 @@ const DragDrop = (() => {
         // Clear the drop zone
         while (zone.element.firstChild) {
             zone.element.removeChild(zone.element.firstChild);
+        }
+        
+        // Play drop sound
+        if (typeof AudioManager !== 'undefined') {
+            AudioManager.play('drop');
         }
         
         // Add the clone to the drop zone

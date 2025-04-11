@@ -486,3 +486,22 @@ footer {
     color: var(--dark-gray);
     font-style: italic;
 }
+
+.btn-icon-only {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark-gray);
+    border-radius: 4px;
+    margin-left: 10px;
+    transition: all 0.2s ease;
+}
+
+.btn-icon-only:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--text-color);
+}

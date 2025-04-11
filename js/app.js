@@ -7,8 +7,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize the quiz
     initializeQuiz();
-    
-    // Set up event listeners
+    AudioManager.initialize();
     setupEventListeners();
 });
 
@@ -99,6 +98,11 @@ function handleSubmit() {
         showFeedback(QuizEngine.getCurrentQuestion().correctFeedback, 'success');
         document.getElementById('score').textContent = QuizEngine.getScore();
         
+        // Play correct sound
+        if (typeof AudioManager !== 'undefined') {
+            AudioManager.play('correct');
+        }
+        
         // Disable dragging and reset button after correct submission
         DragDrop.setDraggingEnabled(false);
         const resetButton = document.getElementById('reset-btn');
@@ -106,6 +110,11 @@ function handleSubmit() {
         resetButton.classList.add('disabled');
     } else {
         showFeedback(QuizEngine.getCurrentQuestion().incorrectFeedback, 'error');
+        
+        // Play wrong sound
+        if (typeof AudioManager !== 'undefined') {
+            AudioManager.play('wrong');
+        }
         // Add skip message
         document.getElementById('feedback-container').innerHTML += 
             '<p class="skip-text">You can try again or move to the next question.</p>';
