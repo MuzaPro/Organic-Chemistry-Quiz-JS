@@ -61,7 +61,7 @@
     },
     {
       "id": "q2",
-      "questionText": "Select the reagents needed for this SN1 reaction to form tert-butyl ethyl ether:",
+      "questionText": "Select the reagents needed for this SN1 reaction to form tert-butyl ethyl ether under acidic conditions:",
       "product": {
         "name": "tert-Butyl Ethyl Ether",
         "formula": "C6H14O",
@@ -179,7 +179,7 @@
     },
     {
       "id": "q4",
-      "questionText": "Complete this esterification reaction by selecting the correct reagents:",
+      "questionText": "Complete this acid-catalyzed esterification reaction by selecting the correct reagents:",
       "product": {
         "name": "Ethyl Acetate",
         "formula": "C4H8O2",
