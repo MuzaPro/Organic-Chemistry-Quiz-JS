@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Failed to initialize application:', error);
         showErrorMessage('Failed to initialize application. Please refresh the page or try again later.');
     }
+    createDynamicBackground();
 });
 
 /**
@@ -310,4 +311,47 @@ function showQuizComplete() {
             </div>
         </div>
     `;
+}
+
+/**
+ * Create dynamic background with chemistry-themed elements
+ */
+function createDynamicBackground() {
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+    
+    const container = document.querySelector('body');
+    const background = document.createElement('div');
+    background.className = 'dynamic-background';
+    
+    // Create background elements (increased from 15 to 25)
+    for (let i = 0; i < 25; i++) {
+        const element = document.createElement('div');
+        element.className = 'bg-element';
+        
+        // Random size between 30px and 100px (adjusted range)
+        const size = Math.random() * 70 + 30;
+        element.style.width = `${size}px`;
+        element.style.height = `${size}px`;
+        
+        // Random position
+        element.style.left = `${Math.random() * 100}%`;
+        element.style.top = `${Math.random() * 100}%`;
+        
+        // Random animation delay and duration
+        element.style.animationDelay = `${Math.random() * 20}s`;
+        element.style.animationDuration = `${Math.random() * 10 + 15}s`;
+        
+        // Add random shape class
+        const shapeType = Math.floor(Math.random() * 3);
+        element.classList.add(
+            shapeType === 0 ? 'bg-hexagon' :
+            shapeType === 1 ? 'bg-benzene' : 'bg-molecule'
+        );
+        
+        background.appendChild(element);
+    }
+    
+    container.insertBefore(background, container.firstChild);
 }
