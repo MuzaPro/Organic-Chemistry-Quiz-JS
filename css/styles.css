@@ -379,6 +379,32 @@ h2 {
     transition: background-color 0.2s ease;
 }
 
+/* Next button styling */
+#next-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.next-icon {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    transition: transform 0.2s ease;
+}
+
+#next-btn:hover .next-icon {
+    transform: translateX(3px);
+}
+
+/* For mobile layout */
+@media (max-width: 768px) {
+    #next-btn {
+        width: 100%;
+    }
+}
+
 .btn-primary {
     background-color: var(--primary-color);
     color: white;

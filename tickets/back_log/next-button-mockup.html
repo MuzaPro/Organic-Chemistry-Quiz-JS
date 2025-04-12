@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Next Question Button Mockup</title>
+  <style>
+    :root {
+      --primary-color: #4361ee;
+      --primary-hover: #3a56d4;
+      --secondary-color: #f8f9fa;
+      --text-color: #212529;
+      --border-color: #dee2e6;
+      --light-gray: #e9ecef;
+      --medium-gray: #adb5bd;
+      --dark-gray: #6c757d;
+      --success-color: #28a745;
+      --error-color: #dc3545;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      color: var(--text-color);
+      line-height: 1.5;
+      background-color: #f8f9fa;
+      padding: 2rem;
+    }
+    
+    .mockup-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 2rem;
+    }
+    
+    h1 {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .button-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .button-label {
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    
+    .btn {
+      cursor: pointer;
+      padding: 10px 16px;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      font-size: 1rem;
+    }
+    
+    /* Current Style */
+    .btn-secondary {
+      background-color: var(--secondary-color);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+    }
+    
+    .btn-secondary:hover {
+      background-color: var(--light-gray);
+    }
+    
+    /* New Style */
+    .btn-primary {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+    }
+    
+    /* Next Button Styling */
+    #next-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .next-icon {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      transition: transform 0.2s ease;
+    }
+    
+    #next-btn:hover .next-icon {
+      transform: translateX(3px);
+    }
+    
+    /* Responsive */
+    .mobile-view {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+    }
+    
+    .mobile-container {
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+    
+    .mobile-container .btn {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+    
+    .code-example {
+      background: #f8f9fa;
+      border-radius: 4px;
+      padding: 1rem;
+      margin: 1rem 0;
+      font-family: monospace;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="mockup-container">
+    <h1>Next Question Button Enhancement</h1>
+    
+    <div class="button-group">
+      <div>
+        <div class="button-label">Current Button Style</div>
+        <div class="button-row">
+          <button class="btn btn-secondary">Next Question</button>
+        </div>
+      </div>
+      
+      <div>
+        <div class="button-label">New Button Style (Matching Submit Button)</div>
+        <div class="button-row">
+          <button class="btn btn-primary" id="next-btn">
+            <span>Next Question</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2" class="next-icon">
+              <path d="M5 12l14 0"></path>
+              <path d="M13 18l6 -6"></path>
+              <path d="M13 6l6 6"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <div>
+        <div class="button-label">Button Comparison</div>
+        <div class="button-row">
+          <button class="btn btn-primary">Submit Answer</button>
+          <button class="btn btn-primary" id="next-btn" style="margin-left: 20px;">
+            <span>Next Question</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2" class="next-icon">
+              <path d="M5 12l14 0"></path>
+              <path d="M13 18l6 -6"></path>
+              <path d="M13 6l6 6"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mobile-view">
+      <div class="button-label">Mobile View</div>
+      <div class="mobile-container">
+        <button class="btn btn-primary" id="next-btn">
+          <span>Next Question</span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2" class="next-icon">
+            <path d="M5 12l14 0"></path>
+            <path d="M13 18l6 -6"></path>
+            <path d="M13 6l6 6"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <div style="margin-top: 2rem;">
+      <div class="button-label">Implementation</div>
+      <div class="code-example">
+// HTML
+&lt;button id="next-btn" class="btn btn-primary hidden"&gt;
+  &lt;span&gt;Next Question&lt;/span&gt;
+  &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2" class="next-icon"&gt;
+    &lt;path d="M5 12l14 0"&gt;&lt;/path&gt;
+    &lt;path d="M13 18l6 -6"&gt;&lt;/path&gt;
+    &lt;path d="M13 6l6 6"&gt;&lt;/path&gt;
+  &lt;/svg&gt;
+&lt;/button&gt;
+
+// CSS
+#next-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.next-icon {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  transition: transform 0.2s ease;
+}
+
+#next-btn:hover .next-icon {
+  transform: translateX(3px);
+}
+      </div>
+    </div>
+  </div>
+</body>
+</html>

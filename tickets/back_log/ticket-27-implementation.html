@@ -1,0 +1,100 @@
+// HTML Changes in index.html
+// Replace the existing next button:
+// <button id="next-btn" class="btn btn-secondary hidden">Next Question</button>
+// With this enhanced version:
+
+<button id="next-btn" class="btn btn-primary hidden">
+  <span>Next Question</span>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" stroke-width="2" class="next-icon">
+    <path d="M5 12l14 0"></path>
+    <path d="M13 18l6 -6"></path>
+    <path d="M13 6l6 6"></path>
+  </svg>
+</button>
+
+// CSS Changes in styles.css
+// Add these new styles:
+
+/* Next Question Button Styling */
+#next-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.next-icon {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  transition: transform 0.2s ease;
+}
+
+#next-btn:hover .next-icon {
+  transform: translateX(3px);
+}
+
+/* Ensure consistent button size for all primary buttons */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-primary:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.btn-primary:disabled {
+  background-color: var(--medium-gray);
+  cursor: not-allowed;
+}
+
+/* For mobile layout */
+@media (max-width: 768px) {
+  #next-btn {
+    width: 100%;
+  }
+}
+
+// JavaScript Changes
+// Check if the Next Question button is manipulated in app.js, specifically:
+// - When showing the button after answering a question
+// - When hiding the button for a new question
+// - If changing classes dynamically, ensure btn-primary is preserved
+
+// In handleSubmit function (or similar where button is shown):
+function handleSubmit() {
+  // After checking answer and showing feedback...
+  
+  // Show next button with correct styling
+  const nextBtn = document.getElementById('next-btn');
+  if (nextBtn) {
+    nextBtn.classList.remove('hidden');
+    // Ensure it has the primary style (if not already in HTML)
+    if (!nextBtn.classList.contains('btn-primary')) {
+      nextBtn.classList.add('btn-primary');
+    }
+  }
+}
+
+// When resetting or moving to a new question:
+function handleNextQuestion() {
+  // Hide the next button
+  const nextBtn = document.getElementById('next-btn');
+  if (nextBtn) {
+    nextBtn.classList.add('hidden');
+    // No need to remove btn-primary class - keep it consistent
+  }
+  
+  // Rest of the function...
+}

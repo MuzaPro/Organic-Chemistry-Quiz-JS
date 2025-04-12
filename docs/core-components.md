@@ -746,21 +746,37 @@ Displays feedback messages for correct and incorrect answers.
 ```
 
 ### Action Buttons
-Provides interaction buttons for reset, chemistry notes, and next question.
+Provides interaction buttons for reset, chemistry notes, and navigation.
 
 ```html
 <div class="action-buttons">
     <button id="reset-btn" class="btn btn-secondary">
-        <svg><!-- Icon SVG --></svg>
+        <svg><!-- Reset Icon SVG --></svg>
         Reset Question
     </button>
     <button id="chem-notes-btn" class="btn btn-secondary">
-        <svg><!-- Icon SVG --></svg>
+        <svg><!-- Notes Icon SVG --></svg>
         Read the Chem-notes
     </button>
-    <button id="next-btn" class="btn btn-secondary hidden">Next Question</button>
+    <button id="next-btn" class="btn btn-primary hidden">
+        <span>Next Question</span>
+        <svg class="next-icon"><!-- Arrow Icon SVG --></svg>
+    </button>
 </div>
 ```
+
+#### Next Question Button
+The Next Question button appears after answering a question and provides visual feedback through:
+- Primary button styling matching the submit button
+- Animated right arrow icon indicating forward progression
+- Responsive design that adapts to mobile viewports
+- GPU-accelerated hover animation for smooth performance
+
+Key features:
+- Appears automatically after question submission
+- Maintains consistent styling with other primary actions
+- Uses inline SVG for optimal performance
+- Provides clear visual affordance for navigation
 
 ## Component Integration
 
