@@ -222,26 +222,131 @@ const DragDrop = (() => {
     const setupCloneTouchEvents = (clone, zone, original) => {
         if (isTouchDevice) {
             const hammer = new Hammer(clone);
+            hammer.get('pan').set({ direction: Hammer.DIRECTION_ALL });
             hammer.get('tap').set({ enable: true });
             
-            // Tap to remove
+            // Tap to remove (keep existing functionality)
             hammer.on('tap', () => {
                 if (!draggingEnabled) return;
                 
-                // Play pickup sound
                 playSoundSafely('pickup');
-                
                 removeFromDropZone(zone);
                 returnToBank(original);
                 
-                // Hide the next button if it's visible
                 const nextBtn = document.getElementById('next-btn');
                 if (nextBtn && !nextBtn.classList.contains('hidden')) {
                     nextBtn.classList.add('hidden');
                 }
             });
             
-            // Store instance for cleanup
+            // NEW: Add pan handlers to enable dragging out of drop zones
+            hammer.on('panstart', (e) => {
+                if (!draggingEnabled) return;
+                
+                isDragging = true;
+                currentDragElement = original;
+                
+                // Save start positions
+                const rect = clone.getBoundingClientRect();
+                elementStartX = rect.left;
+                elementStartY = rect.top;
+                touchStartX = e.center.x;
+                touchStartY = e.center.y;
+                
+                // Add visual feedback
+                clone.classList.add('touch-dragging');
+                
+                // Play pickup sound
+                playSoundSafely('pickup');
+                
+                // Clear the drop zone immediately
+                removeFromDropZone(zone);
+                
+                // Make original visible and positioned correctly for dragging
+                original.style.visibility = 'visible';
+                original.style.position = 'fixed';
+                original.style.zIndex = '1000';
+                original.style.left = `${elementStartX}px`;
+                original.style.top = `${elementStartY}px`;
+                original.classList.add('touch-dragging');
+                
+                // Prevent default behavior
+                e.srcEvent.preventDefault();
+            });
+
+            hammer.on('pan', (e) => {
+                if (!draggingEnabled || !isDragging) return;
+                
+                // Calculate new position
+                const deltaX = e.center.x - touchStartX;
+                const deltaY = e.center.y - touchStartY;
+                
+                // Move the original element
+                original.style.left = `${elementStartX + deltaX}px`;
+                original.style.top = `${elementStartY + deltaY}px`;
+                
+                // Check for drop zones under the touch point
+                const elementsAtPoint = document.elementsFromPoint(e.center.x, e.center.y);
+                dropZones.forEach(zone => {
+                    if (elementsAtPoint.includes(zone.element)) {
+                        zone.element.classList.add('touch-highlight');
+                    } else {
+                        zone.element.classList.remove('touch-highlight');
+                    }
+                });
+                
+                // Prevent scrolling while dragging
+                e.srcEvent.preventDefault();
+            });
+
+            hammer.on('panend', (e) => {
+                if (!draggingEnabled || !isDragging) return;
+                
+                isDragging = false;
+                
+                // Find drop zone at release point
+                const elementsAtPoint = document.elementsFromPoint(e.center.x, e.center.y);
+                let foundDropZone = null;
+                
+                // Check if we're over a drop zone
+                for (const el of elementsAtPoint) {
+                    if (el.classList.contains('drop-zone')) {
+                        const zoneNumber = parseInt(el.getAttribute('data-zone'), 10);
+                        foundDropZone = dropZones.find(z => z.zone === zoneNumber);
+                        break;
+                    }
+                }
+                
+                // Remove highlighting from all drop zones
+                dropZones.forEach(zone => {
+                    zone.element.classList.remove('touch-highlight');
+                });
+                
+                // Reset original element styles
+                original.classList.remove('touch-dragging');
+                
+                if (foundDropZone) {
+                    // Add to drop zone (sound will be played by addToDropZone)
+                    addToDropZone(foundDropZone, original);
+                } else {
+                    // Return to bank with smooth transition
+                    original.style.transition = 'all 0.3s ease';
+                    original.style.position = '';
+                    original.style.zIndex = '';
+                    original.style.left = '';
+                    original.style.top = '';
+                    original.style.visibility = 'visible';
+                    
+                    // Remove transition after animation
+                    setTimeout(() => {
+                        original.style.transition = '';
+                    }, 300);
+                }
+                
+                currentDragElement = null;
+            });
+            
+            // Store hammer instance for cleanup
             clone.hammerInstance = hammer;
         } else {
             setupCloneDragEvents(clone, zone, original);
@@ -313,10 +418,20 @@ const DragDrop = (() => {
         
         // Make the clone draggable for desktop
         cardClone.setAttribute('draggable', !isTouchDevice);
-        cardClone.setAttribute('data-original-id', reagentCard.getAttribute('data-id'));
+        
+        // Enhanced element tracking
+        const reagentId = reagentCard.getAttribute('data-id');
+        cardClone.setAttribute('data-original-id', reagentId);
+        cardClone.setAttribute('data-is-clone', 'true');
         
         // Add appropriate events to the clone
         setupCloneTouchEvents(cardClone, zone, reagentCard);
+        
+        // Check if another reagent is already in this drop zone
+        if (zone.content) {
+            // Return the current reagent to the bank
+            returnToBank(zone.content.originalElement);
+        }
         
         // Clear the drop zone
         while (zone.element.firstChild) {
@@ -330,11 +445,12 @@ const DragDrop = (() => {
         zone.element.appendChild(cardClone);
         zone.element.classList.add('filled');
         
-        // Update drop zone content tracking
+        // Enhanced content tracking
         zone.content = {
             element: cardClone,
             originalElement: reagentCard,
-            reagentId: reagentCard.getAttribute('data-id')
+            reagentId: reagentId,
+            originalId: reagentId // Ensure this is consistent
         };
         
         // Hide the original card
@@ -368,28 +484,46 @@ const DragDrop = (() => {
      * @param {Element} reagentCard - The reagent card element
      */
     const returnToBank = (reagentCard) => {
-        // Check if the reagent card still exists in the DOM
-        if (!reagentCard || !document.body.contains(reagentCard)) {
-            // The original card is no longer in the DOM (likely from a previous question)
-            // Try to find a card with the same ID in the current question
-            const dataId = reagentCard ? reagentCard.getAttribute('data-id') : null;
-            if (dataId) {
-                const newCard = document.querySelector(`.reagent-card[data-id="${dataId}"]`);
-                if (newCard) {
-                    newCard.style.visibility = 'visible';
-                    return;
-                }
-            }
-            
-            // If we couldn't find a matching card, refresh all cards to be safe
-            document.querySelectorAll('.reagent-card').forEach(card => {
-                card.style.visibility = 'visible';
-            });
+        // Handle the case where reagentCard is null or undefined
+        if (!reagentCard) {
+            console.warn('Attempted to return null reagent card to bank');
             return;
         }
         
-        // Make the original card visible again
-        reagentCard.style.visibility = 'visible';
+        // Get the reagent ID to find the original card
+        const dataId = reagentCard.getAttribute('data-id') || 
+                      reagentCard.getAttribute('data-original-id');
+        
+        if (!dataId) {
+            console.warn('Could not find data-id or data-original-id for reagent card');
+            return;
+        }
+        
+        // Find the original card in the reagent bank
+        const originalCard = document.querySelector(`.reagent-card[data-id="${dataId}"]:not([data-is-clone])`);
+        
+        if (originalCard) {
+            // Reset any transformations or positioning
+            originalCard.style.transition = '';
+            originalCard.style.position = '';
+            originalCard.style.zIndex = '';
+            originalCard.style.left = '';
+            originalCard.style.top = '';
+            originalCard.style.transform = '';
+            
+            // Make the original card visible
+            originalCard.style.visibility = 'visible';
+            
+            // Ensure no dragging classes remain
+            originalCard.classList.remove('touch-dragging', 'dragging');
+        } else {
+            console.warn(`Could not find original card with data-id="${dataId}"`);
+            
+            // Fallback: Make all reagent cards visible
+            document.querySelectorAll('.reagent-card:not([data-is-clone])').forEach(card => {
+                card.style.visibility = 'visible';
+            });
+        }
     };
     
     /**
