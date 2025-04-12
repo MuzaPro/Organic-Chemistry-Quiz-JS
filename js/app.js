@@ -9,10 +9,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Initialize audio first
         AudioManager.initialize();
         
-        // Then initialize the quiz
-        await initializeQuiz();
+        // Set up intro screen event listener
+        const startButton = document.getElementById('start-quiz-btn');
+        startButton.addEventListener('click', startQuiz);
         
-        // Finally set up event listeners
+        // Set up other event listeners
         setupEventListeners();
     } catch (error) {
         console.error('Failed to initialize application:', error);
@@ -20,6 +21,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     createDynamicBackground();
 });
+
+/**
+ * Start the quiz when the start button is clicked
+ */
+async function startQuiz() {
+    // Hide intro screen with fade
+    const introScreen = document.getElementById('intro-screen');
+    introScreen.style.opacity = '0';
+    
+    // Show app container
+    const appContainer = document.querySelector('.app-container');
+    appContainer.classList.add('show');
+    
+    // Initialize quiz after transition
+    setTimeout(async () => {
+        introScreen.style.display = 'none';
+        await initializeQuiz();
+    }, 500);
+}
 
 /**
  * Initialize the quiz by loading questions and setting up the first question
