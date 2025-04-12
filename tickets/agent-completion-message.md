@@ -12,6 +12,7 @@ Now please create proper documentation and follow the ticket closure protocol as
 3. Moving the ticket to the closed directory
 4. Updating any relevant feature documentation
 
+No need to move the ticket file itself to the 'closed' directory.
 Once you've completed the documentation process, let me know and we can move on to the next ticket.
 ```
 
@@ -29,6 +30,7 @@ Please create documentation and follow the ticket closure protocol as specified 
 - How you tested to ensure the fix is complete
 
 This documentation will help us avoid similar issues in the future.
+No need to move the ticket file itself to the 'closed' directory.
 ```
 
 ### For Feature Implementations
@@ -43,6 +45,7 @@ Please create comprehensive documentation and follow the ticket closure protocol
 - Browser/device compatibility notes
 
 Your documentation will be valuable for anyone working on related features in the future.
+No need to move the ticket file itself to the 'closed' directory.
 ```
 
 ### For Research Tasks

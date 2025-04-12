@@ -155,8 +155,10 @@ function handleSubmit() {
             '<p class="skip-text">You can try again or move to the next question.</p>';
     }
     
-    // Show next button in both correct and incorrect cases
-    document.getElementById('next-btn').classList.remove('hidden');
+    // Change Next button to primary style after submission
+    const nextBtn = document.getElementById('next-btn');
+    nextBtn.classList.remove('btn-secondary');
+    nextBtn.classList.add('btn-primary');
 }
 
 /**
@@ -179,10 +181,15 @@ function handleNextQuestion() {
         resetButton.disabled = false;
         resetButton.classList.remove('disabled');
 
-        // Re-enable submit button for the new question
+        // Re-enable and show submit button for the new question
         const submitButton = document.getElementById('submit-btn');
         submitButton.disabled = false;
         submitButton.classList.remove('disabled');
+
+        // Reset Next button to secondary style
+        const nextBtn = document.getElementById('next-btn');
+        nextBtn.classList.remove('btn-primary');
+        nextBtn.classList.add('btn-secondary');
 
         // Re-initialize drag and drop for the new question
         DragDrop.initialize();
@@ -341,37 +348,44 @@ function createDynamicBackground() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
     
-    const container = document.querySelector('body');
-    const background = document.createElement('div');
-    background.className = 'dynamic-background';
+    // Create background for both intro screen and main app
+    const introScreen = document.getElementById('intro-screen');
+    const appContainer = document.querySelector('.app-container');
     
-    // Create background elements (increased from 15 to 25)
-    for (let i = 0; i < 25; i++) {
-        const element = document.createElement('div');
-        element.className = 'bg-element';
+    [introScreen, appContainer].forEach(container => {
+        if (!container) return;
         
-        // Random size between 30px and 100px (adjusted range)
-        const size = Math.random() * 70 + 30;
-        element.style.width = `${size}px`;
-        element.style.height = `${size}px`;
+        const background = document.createElement('div');
+        background.className = 'dynamic-background';
         
-        // Random position
-        element.style.left = `${Math.random() * 100}%`;
-        element.style.top = `${Math.random() * 100}%`;
+        // Create background elements
+        for (let i = 0; i < 15; i++) {
+            const element = document.createElement('div');
+            element.className = 'bg-element';
+            
+            // Random size between 30px and 100px
+            const size = Math.random() * 70 + 30;
+            element.style.width = `${size}px`;
+            element.style.height = `${size}px`;
+            
+            // Random position
+            element.style.left = `${Math.random() * 100}%`;
+            element.style.top = `${Math.random() * 100}%`;
+            
+            // Random animation delay and duration
+            element.style.animationDelay = `${Math.random() * 20}s`;
+            element.style.animationDuration = `${Math.random() * 10 + 15}s`;
+            
+            // Add random shape class
+            const shapeType = Math.floor(Math.random() * 3);
+            element.classList.add(
+                shapeType === 0 ? 'bg-hexagon' :
+                shapeType === 1 ? 'bg-benzene' : 'bg-molecule'
+            );
+            
+            background.appendChild(element);
+        }
         
-        // Random animation delay and duration
-        element.style.animationDelay = `${Math.random() * 20}s`;
-        element.style.animationDuration = `${Math.random() * 10 + 15}s`;
-        
-        // Add random shape class
-        const shapeType = Math.floor(Math.random() * 3);
-        element.classList.add(
-            shapeType === 0 ? 'bg-hexagon' :
-            shapeType === 1 ? 'bg-benzene' : 'bg-molecule'
-        );
-        
-        background.appendChild(element);
-    }
-    
-    container.insertBefore(background, container.firstChild);
+        container.insertBefore(background, container.firstChild);
+    });
 }
