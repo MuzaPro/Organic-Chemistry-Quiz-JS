@@ -318,6 +318,12 @@ footer {
     font-weight: 600;
 }
 
+.footer-logo {
+    height: 18px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
 /* Modal */
 .modal {
     display: none;

@@ -117,6 +117,11 @@ function handleSubmit() {
         const resetButton = document.getElementById('reset-btn');
         resetButton.disabled = true;
         resetButton.classList.add('disabled');
+        
+        // Disable submit button after correct answer
+        const submitButton = document.getElementById('submit-btn');
+        submitButton.disabled = true;
+        submitButton.classList.add('disabled');
     } else {
         showFeedback(QuizEngine.getCurrentQuestion().incorrectFeedback, 'error');
         
@@ -152,6 +157,11 @@ function handleNextQuestion() {
         const resetButton = document.getElementById('reset-btn');
         resetButton.disabled = false;
         resetButton.classList.remove('disabled');
+
+        // Re-enable submit button for the new question
+        const submitButton = document.getElementById('submit-btn');
+        submitButton.disabled = false;
+        submitButton.classList.remove('disabled');
 
         // Re-initialize drag and drop for the new question
         DragDrop.initialize();
