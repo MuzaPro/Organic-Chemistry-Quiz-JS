@@ -1,5 +1,10 @@
 # Organic Chemistry Quiz Game
 
+<div align="center">
+  <img src="assets/images/favicon.png" alt="Organic Chemistry Quiz Logo" width="120px" height="120px"/>
+  <h3>Interactive Learning for Chemistry Students</h3>
+</div>
+
 An interactive educational web application designed to help students learn organic chemistry reactions through drag-and-drop quizzes.
 
 ![Organic Chemistry Quiz Game Screenshot](assets/images/ScreenShot.jpg)
@@ -15,7 +20,8 @@ An interactive educational web application designed to help students learn organ
   - Grignard Reactions
 - **Chemistry Notes**: Access detailed explanations for each reaction type
 - **Progress Tracking**: Monitor your learning with scoring and progress indicators
-- **Mobile-Friendly Design**: Learn on any device
+- **Mobile-Friendly Design**: Learn on any device with touch support
+- **Audio Feedback**: Sound effects enhance the learning experience
 
 ## Demo
 
@@ -30,7 +36,7 @@ Try the live demo: [https://muzapro.github.io/Organic-Chemistry-Quiz-JS/](https:
 
 2. Navigate to the project directory:
    ```
-   cd organic-chemistry-quiz
+   cd Organic-Chemistry-Quiz-JS
    ```
 
 3. Open the project in VS Code or your preferred editor
@@ -52,14 +58,16 @@ organic-chemistry-quiz/
 ├── js/
 │   ├── app.js              # Main application logic
 │   ├── quiz-engine.js      # Quiz functionality
-│   └── drag-drop.js        # Drag and drop functionality
+│   ├── drag-drop.js        # Drag and drop functionality
+│   └── audio.js            # Audio system for sound effects
 │
 ├── data/
 │   └── questions.json      # Question database
 │
 ├── assets/
 │   ├── images/             # Icons, backgrounds, etc
-│   └── molecules/          # SVG files for molecule structures
+│   ├── molecules/          # SVG files for molecule structures
+│   └── sound/              # Sound effects
 │
 └── README.md               # Project documentation
 ```
@@ -106,11 +114,20 @@ To add new questions to the quiz, edit the `data/questions.json` file:
 2. Place them in the `assets/molecules/` directory
 3. Reference them in the `questions.json` file
 
+## Mobile Support
+
+The application supports touch interactions on mobile devices:
+- Drag molecules with touch gestures
+- Tap to place or remove molecules
+- Responsive design adapts to different screen sizes
+- Optimized for both portrait and landscape orientations
+
 ## Customization
 
 - **Styling**: Edit `css/styles.css` to customize colors, fonts, and layout
 - **Behavior**: Modify the JavaScript files to change quiz functionality
 - **Questions**: Update `data/questions.json` to add or modify questions
+- **Sounds**: Replace audio files in `assets/sound/` directory
 
 ## Technologies Used
 
@@ -118,6 +135,8 @@ To add new questions to the quiz, edit the `data/questions.json` file:
 - CSS3 
 - JavaScript (ES6+)
 - Drag and Drop API
+- Hammer.js for touch events
+- Web Audio API
 
 ## Browser Support
 
@@ -125,6 +144,7 @@ To add new questions to the quiz, edit the `data/questions.json` file:
 - Firefox (latest)
 - Safari (latest)
 - Edge (latest)
+- Mobile browsers (iOS Safari, Android Chrome)
 
 ## Contributing
 
