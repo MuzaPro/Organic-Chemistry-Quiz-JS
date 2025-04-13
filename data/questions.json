@@ -143,11 +143,11 @@
           "textRepresentation": "(CH3)3C-Br"
         },
         {
-          "id": "sodium-hydroxide",
-          "name": "Sodium Hydroxide",
-          "formula": "NaOH",
-          "imagePath": "assets/molecules/sodium-hydroxide.svg",
-          "textRepresentation": "Na+-OH"
+          "id": "methanol",
+          "name": "Methanol",
+          "formula": "CH3OH",
+          "imagePath": "assets/molecules/methanol.svg",
+          "textRepresentation": "HO-CH3"
         },
         {
           "id": "hydrochloric-acid",
