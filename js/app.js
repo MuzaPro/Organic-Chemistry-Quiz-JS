@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Initialize audio first
         AudioManager.initialize();
         
+        // Initialize theme manager
+        ThemeManager.initialize();
+        
         // Set up intro screen event listener
         const startButton = document.getElementById('start-quiz-btn');
         startButton.addEventListener('click', startQuiz);

@@ -1,0 +1,4 @@
+Ticket 32
+after pressing the 'start quiz button' the quiz shows instructions to drag molecules, and then loads the question in a gradual and animated manner. The problem is that it all currently happens faster than a human can see, so it looks like a split second blur.(it all takes place over 7 frames of screen recording at 25 fps). we need to tune it down to be much slower.
+
+

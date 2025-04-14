@@ -1,8 +1,10 @@
 /* Base Styles */
 :root {
+    /* Light Theme (Default) */
     --primary-color: #4361ee;
     --primary-hover: #3a56d4;
-    --secondary-color: #f8f9fa;
+    --background-primary: #ffffff;
+    --background-secondary: #f8f9fa;
     --text-color: #212529;
     --border-color: #dee2e6;
     --light-gray: #e9ecef;
@@ -12,10 +14,38 @@
     --error-color: #dc3545;
     --info-color: #17a2b8;
     --warning-color: #ffc107;
-    --drop-zone-bg: #6c757d;
-    --drop-zone-active-bg: #4361ee20;
-    --reagent-bank-bg: #adb5bd;
+    --drop-zone-bg: rgba(108, 117, 125, 0.1);
+    --drop-zone-active-bg: rgba(67, 97, 238, 0.1);
+    --reagent-bank-bg: rgba(173, 181, 189, 0.1);
+    --card-background: #ffffff;
+    --modal-background: #ffffff;
+    --modal-overlay: rgba(0, 0, 0, 0.5);
+    --shadow-color: rgba(0, 0, 0, 0.1);
     --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --primary-color: #5c9eed;
+    --primary-hover: #4a90e2;
+    --background-primary: #1a1a1a;
+    --background-secondary: #2d2d2d;
+    --text-color: #f0f0f0;
+    --border-color: #444444;
+    --light-gray: #3d3d3d;
+    --medium-gray: #5c5c5c;
+    --dark-gray: #888888;
+    --success-color: #2db84d;
+    --error-color: #e64c5c;
+    --info-color: #3dbfd9;
+    --warning-color: #ffd426;
+    --drop-zone-bg: rgba(255, 255, 255, 0.05);
+    --drop-zone-active-bg: rgba(92, 158, 237, 0.1);
+    --reagent-bank-bg: rgba(255, 255, 255, 0.05);
+    --card-background: #2d2d2d;
+    --modal-background: #2d2d2d;
+    --modal-overlay: rgba(0, 0, 0, 0.7);
+    --shadow-color: rgba(0, 0, 0, 0.3);
 }
 
 /* Intro Screen */
@@ -107,7 +137,7 @@ body {
     font-family: var(--font-family);
     line-height: 1.6;
     color: var(--text-color);
-    background-color: var(--secondary-color);
+    background-color: var(--background-secondary);
     position: relative;
     overflow-x: hidden;
 }
@@ -201,9 +231,9 @@ h1 {
 
 /* Quiz Container */
 .quiz-container {
-    background-color: white;
+    background-color: var(--card-background);
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px var(--shadow-color);
     overflow: hidden;
     margin: 0 auto 30px;
     max-width: 800px;
@@ -251,7 +281,7 @@ h2 {
 }
 
 .drop-zone.filled {
-    background-color: white;
+    background-color: var(--card-background);
     border: 2px solid var(--border-color);
 }
 
@@ -277,7 +307,7 @@ h2 {
 .product-container {
     width: 100px;
     height: 100px;
-    background-color: white;
+    background-color: var(--card-background);
     border-radius: 8px;
     border: 2px solid var(--border-color);
     display: flex;
@@ -311,7 +341,7 @@ h2 {
 .reagent-card {
     width: 100px;
     height: 100px;
-    background-color: white;
+    background-color: var(--card-background);
     border-radius: 8px;
     border: 2px solid var(--border-color);
     display: flex;
@@ -325,7 +355,7 @@ h2 {
 
 .reagent-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 .reagent-card:active {
@@ -500,7 +530,7 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--modal-overlay);
     z-index: 1000;
     align-items: center;
     justify-content: center;
@@ -511,7 +541,7 @@ footer {
 }
 
 .modal-content {
-    background-color: white;
+    background-color: var(--modal-background);
     padding: 30px;
     border-radius: 12px;
     max-width: 600px;
