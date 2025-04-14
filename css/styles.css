@@ -768,3 +768,87 @@ footer {
         font-size: 0.9rem;
     }
 }
+
+/* Instruction Screen */
+.instruction-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1900;
+    background-color: var(--background-secondary);
+}
+
+.instruction-content {
+    background-color: var(--background-primary);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 40px;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+}
+
+.instruction-content h2 {
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.instruction-step {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: var(--background-secondary);
+    border-radius: 8px;
+    text-align: left;
+}
+
+.instruction-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+    color: var(--primary-color);
+}
+
+.instruction-step p {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* Accessibility - reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .intro-screen,
+    .instruction-screen,
+    #question-text,
+    .reaction-area,
+    #reagent-bank,
+    .reagent-card {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .instruction-content {
+        padding: 30px 20px;
+    }
+    
+    .instruction-icon {
+        width: 40px;
+        height: 40px;
+        margin-right: 15px;
+    }
+    
+    .instruction-step p {
+        font-size: 1rem;
+    }
+}
