@@ -3,7 +3,7 @@ after pressing the 'start quiz button' the quiz shows instructions to drag molec
 
 
 *******
-invert colors of all SVG assets when switching to dark mode
+invert colors of all SVG assets when switching to dark mode. including the 'rosette-discount-check' which appears in the end of a perfect score
 *******
 
 
@@ -17,6 +17,10 @@ make a ton more questions
 *******
 
 
+
+*******
+when starting the quiz in dark mode - The title is white on a white background. We need both introduction screens to comply to the dark mode.
+*******
 
 
 

@@ -1,0 +1,54 @@
+name,smiles
+4-Phenyl-3-buten-2-one,CC(=O)/C=C/c1ccccc1
+Acetone,CC(=O)C
+Benzaldehyde,O=Cc1ccccc1
+Sodium Hydroxide,O[Na]
+Hydrochloric Acid,Cl
+Sodium Cyanide,N#C[Na]
+Lithium Aluminum Hydride,Li[AlH4]
+Norbornene,C1CC2C=CC1C2
+Cyclopentadiene,C1C=CC=C1
+Ethylene,C=C
+Maleic Anhydride,O=C1OC(=O)C=C1
+Aluminum Chloride,Cl[Al](Cl)Cl
+Benzoyl Peroxide,O=C(OOC(=O)c1ccccc1)c1ccccc1
+Palladium Catalyst,Pd
+Ethylbenzene,CCc1ccccc1
+Benzene,c1ccccc1
+Chloroethane,CCCl
+Acetyl Chloride,CC(=O)Cl
+Sulfuric Acid,OS(=O)(=O)O
+Ferric Chloride,Cl[Fe](Cl)Cl
+Styrene,C=Cc1ccccc1
+Methyltriphenylphosphonium Ylide,C=[P](c1ccccc1)(c1ccccc1)c1ccccc1
+Sodium Borohydride,B
+Potassium tert-butoxide,CC(C)(C)O[K]
+Vinyl Magnesium Bromide,C=C[Mg]Br
+1-Butanol,CCCCO
+1-Butene,CCC=C
+Borane-THF Complex,B.C1CCCO1
+Hydrogen Peroxide,OO
+Ozone,O=O=O
+Potassium Permanganate,O=[Mn](=O)(=O)[O-].[K+]
+Ethyl acetoacetate,CCOC(=O)CC(=O)C
+Ethyl Acetate,CCOC(=O)C
+Sodium Ethoxide,CCO[Na]
+Lithium Diisopropylamide,CN(C(C)C)C(C)C
+Diethyl Malonate,CCOC(=O)CC(=O)OCC
+trans-Stilbene,c1ccccc1/C=C/c2ccccc2
+Iodobenzene,Ic1ccccc1
+Palladium Acetate,CC(=O)O[Pd]OC(=O)C
+Triphenylphosphine,P(c1ccccc1)(c1ccccc1)c1ccccc1
+Triethylamine,CCN(CC)CC
+Ethyl 4-oxo-6-phenylhexanoate,CCOC(=O)CCC(=O)CCc1ccccc1
+Benzylacetone,CC(=O)CCc1ccccc1
+Ethyl Acrylate,CCOC(=O)C=C
+Sodium Methoxide,CO[Na]
+Cyclohexanone,O=C1CCCCC1
+Cyclohexanol,OC1CCCCC1
+Pyridinium Chlorochromate,ClO[Cr](=O)=O
+Jones Reagent,O=Cr(=O)O
+4-tert-Butylcyclohexanol,CC(C)(C)C1CCC(O)CC1
+4-tert-Butylcyclohexanone,CC(C)(C)C1CCC(=O)CC1
+Hydrogen/Palladium,H
+Lithium tri-tert-butoxyaluminum hydride,CC(C)(C)O[Al](OC(C)(C)C)OC(C)(C)C
