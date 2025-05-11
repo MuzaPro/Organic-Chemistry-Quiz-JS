@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development Environment | Organic Chemistry Quiz Documentation</title>
+    <link rel="stylesheet" href="../assets/css/documentation.css">
+    <link rel="icon" href="../../assets/images/favicon.svg">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../../assets/images/favicon.svg" alt="Organic Chemistry Quiz">
+                    <span>Organic Chemistry Quiz JS</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../project/overview.html">Project</a></li>
+                    <li><a href="getting-started.html" class="active">Developers</a></li>
+                    <li><a href="../components/main-app.html">Components</a></li>
+                    <li><a href="../features/question-nav.html">Features</a></li>
+                    <li><a href="../contributing/how-to-contribute.html">Contributing</a></li>
+                    <li><a href="../resources/faq.html">Resources</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Developers</h3>
+            <ul>
+                <li><a href="getting-started.html">Getting Started</a></li>
+                <li><a href="environment.html" class="active">Development Environment</a></li>
+                <li><a href="workflow.html">Development Workflow</a></li>
+                <li><a href="code-style.html">Code Style Guidelines</a></li>
+                <li><a href="testing.html">Testing Guidelines</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="deployment.html">Deployment Process</a></li>
+            </ul>
+        </aside>
+        
+        <main class="content">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="getting-started.html">Developers</a></li>
+                    <li>Development Environment</li>
+                </ul>
+            </nav>
+            
+            <article>
+                <h1>Development Environment Setup</h1>
+                
+                <div class="table-of-contents">
+                    <h3>Contents</h3>
+                    <!-- Automatically filled by JavaScript -->
+                </div>
+                
+                <section>
+                    <h2>Introduction</h2>
+                    
+                    <p>The Organic Chemistry Quiz JS project uses a lightweight development environment focused on modern web technologies. This guide will walk you through setting up your development environment for contributing to the project.</p>
+                    
+                    <div class="callout">
+                        <p>The project is designed to be easy to set up and work with, requiring minimal dependencies and configuration.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Required Software</h2>
+                    
+                    <h3>Essential Tools</h3>
+                    <ol>
+                        <li>
+                            <strong>Git</strong>
+                            <ul>
+                                <li><a href="https://git-scm.com/downloads" target="_blank">Download Git</a></li>
+                                <li>Used for version control and collaboration</li>
+                                <li>Recommended to use Git Bash on Windows</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Code Editor</strong>
+                            <ul>
+                                <li><a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> (recommended)</li>
+                                <li>Alternatives: Sublime Text, Atom, WebStorm</li>
+                                <li>Make sure your editor supports HTML, CSS, and JavaScript</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Web Browser</strong>
+                            <ul>
+                                <li>Modern browser with good developer tools (Chrome, Firefox, Edge)</li>
+                                <li>Chrome is recommended for its comprehensive DevTools</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h3>Recommended VS Code Extensions</h3>
+                    <ul>
+                        <li><strong>Live Server</strong> - For local development with auto-reload</li>
+                        <li><strong>ESLint</strong> - JavaScript linting</li>
+                        <li><strong>Prettier</strong> - Code formatting</li>
+                        <li><strong>HTML CSS Support</strong> - Enhanced HTML/CSS editing</li>
+                        <li><strong>SVG Preview</strong> - For viewing SVG molecule files</li>
+                        <li><strong>Git Lens</strong> - Enhanced Git capabilities</li>
+                    </ul>
+                    
+                    <div class="code-example">
+                        <pre><code># Installing VS Code extensions from command line
+code --install-extension ritwickdey.LiveServer
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension esbenp.prettier-vscode
+code --install-extension ecmel.vscode-html-css
+code --install-extension jock.svg
+code --install-extension eamodio.gitlens</code></pre>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Setting Up Your Local Environment</h2>
+                    
+                    <h3>1. Clone the Repository</h3>
+                    
+                    <div class="code-example">
+                        <pre><code># Clone the repository
+git clone https://github.com/muzapro/Organic-Chemistry-Quiz-JS.git
+
+# Navigate to the project directory
+cd Organic-Chemistry-Quiz-JS</code></pre>
+                    </div>
+                    
+                    <h3>2. Configure VS Code (Optional but Recommended)</h3>
+                    <p>Create a <code>.vscode</code> folder with the following files for consistent settings:</p>
+                    
+                    <h4>settings.json</h4>
+                    <div class="code-example">
+                        <pre><code>{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "html.format.wrapLineLength": 100,
+  "css.validate": true,
+  "javascript.format.semicolons": "insert",
+  "javascript.preferences.quoteStyle": "single",
+  "editor.tabSize": 2,
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true
+}</code></pre>
+                    </div>
+                    
+                    <h4>extensions.json</h4>
+                    <div class="code-example">
+                        <pre><code>{
+  "recommendations": [
+    "ritwickdey.LiveServer",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ecmel.vscode-html-css",
+    "jock.svg",
+    "eamodio.gitlens"
+  ]
+}</code></pre>
+                    </div>
+                    
+                    <h3>3. Set Up Live Server</h3>
+                    <ol>
+                        <li>Install the Live Server extension in VS Code</li>
+                        <li>Right-click on <code>index.html</code> in the project root</li>
+                        <li>Select "Open with Live Server"</li>
+                        <li>Your project should now open in your default browser</li>
+                    </ol>
+                    
+                    <div class="callout callout-info">
+                        <p>Live Server will automatically reload the page when you save changes to your files, making development faster and more efficient.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Optional Development Tools</h2>
+                    
+                    <h3>Linting and Formatting</h3>
+                    <p>For a more robust development setup, you can add ESLint and Prettier configuration:</p>
+                    
+                    <h4>1. Install Node.js</h4>
+                    <p>If you want to use ESLint and Prettier for better code quality:</p>
+                    <ul>
+                        <li><a href="https://nodejs.org/" target="_blank">Download Node.js</a> (LTS version recommended)</li>
+                    </ul>
+                    
+                    <h4>2. Install ESLint and Prettier</h4>
+                    <div class="code-example">
+                        <pre><code># Navigate to project directory
+cd Organic-Chemistry-Quiz-JS
+
+# Initialize npm (if not already done)
+npm init -y
+
+# Install ESLint and Prettier
+npm install --save-dev eslint prettier eslint-config-prettier eslint-plugin-prettier</code></pre>
+                    </div>
+                    
+                    <h4>3. Create ESLint Configuration</h4>
+                    <p>Create a <code>.eslintrc.json</code> file in the project root:</p>
+                    
+                    <div class="code-example">
+                        <pre><code>{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-unused-vars": "warn",
+    "no-console": "warn",
+    "prettier/prettier": "warn"
+  }
+}</code></pre>
+                    </div>
+                    
+                    <h4>4. Create Prettier Configuration</h4>
+                    <p>Create a <code>.prettierrc</code> file in the project root:</p>
+                    
+                    <div class="code-example">
+                        <pre><code>{
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "printWidth": 100,
+  "tabWidth": 2,
+  "semi": true
+}</code></pre>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Browser Developer Tools</h2>
+                    
+                    <p>Browser developer tools are essential for web development. Here's how to make the most of them:</p>
+                    
+                    <h3>Chrome DevTools</h3>
+                    <ol>
+                        <li>
+                            <strong>Open DevTools</strong>
+                            <ul>
+                                <li>Windows/Linux: Press F12 or Ctrl+Shift+I</li>
+                                <li>Mac: Press Command+Option+I</li>
+                                <li>Or right-click on the page and select "Inspect"</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Key Panels</strong>
+                            <ul>
+                                <li><strong>Elements</strong>: Inspect and modify the DOM and CSS</li>
+                                <li><strong>Console</strong>: View logged messages and run JavaScript code</li>
+                                <li><strong>Network</strong>: Monitor network requests</li>
+                                <li><strong>Application</strong>: Inspect local storage and session storage</li>
+                                <li><strong>Performance</strong>: Analyze runtime performance</li>
+                                <li><strong>Sources</strong>: Debug JavaScript code</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h3>Mobile Testing</h3>
+                    <p>Use the device emulation feature in Chrome DevTools to test mobile compatibility:</p>
+                    <ol>
+                        <li>Open DevTools</li>
+                        <li>Click the "Toggle device toolbar" button (or press Ctrl+Shift+M)</li>
+                        <li>Select a device from the dropdown or set custom dimensions</li>
+                    </ol>
+                    
+                    <div class="callout callout-tip">
+                        <p>When testing the drag-and-drop functionality on desktop in mobile emulation mode, use Chrome's touch emulation for more accurate testing.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Working with SVG Files</h2>
+                    
+                    <p>The project uses SVG files for molecular structures. Here are some tools to help work with them:</p>
+                    
+                    <h3>Recommended SVG Editors</h3>
+                    <ul>
+                        <li><a href="https://inkscape.org/" target="_blank">Inkscape</a> - Free, open-source vector graphics editor</li>
+                        <li><a href="https://www.figma.com/" target="_blank">Figma</a> - Web-based design tool with SVG support</li>
+                        <li><a href="https://vecta.io/nano" target="_blank">Vecta.io Nano</a> - Simple online SVG editor</li>
+                    </ul>
+                    
+                    <h3>SVG Optimization</h3>
+                    <p>Before adding new SVG files to the project, optimize them to reduce file size:</p>
+                    <ul>
+                        <li><a href="https://jakearchibald.github.io/svgomg/" target="_blank">SVGOMG</a> - Online SVG optimizer</li>
+                        <li>Command line: <a href="https://github.com/svg/svgo" target="_blank">SVGO</a></li>
+                    </ul>
+                    
+                    <div class="code-example">
+                        <pre><code># Install SVGO globally
+npm install -g svgo
+
+# Optimize an SVG file
+svgo molecule.svg -o molecule.min.svg</code></pre>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Troubleshooting Common Issues</h2>
+                    
+                    <h3>Live Server Not Starting</h3>
+                    <ul>
+                        <li>Check if the port is already in use (default: 5500)</li>
+                        <li>Try changing the Live Server port in VS Code settings</li>
+                        <li>Restart VS Code</li>
+                    </ul>
+                    
+                    <h3>CORS Errors When Loading JSON</h3>
+                    <ul>
+                        <li>Make sure you're running the project through a server (like Live Server)</li>
+                        <li>Check browser console for specific error messages</li>
+                        <li>Ensure paths to resources are correct and consistent</li>
+                    </ul>
+                    
+                    <h3>Git Issues</h3>
+                    <ul>
+                        <li>Make sure you have the correct permissions for the repository</li>
+                        <li>Use <code>git status</code> to check for uncommitted changes</li>
+                        <li>Use <code>git pull</code> to sync with the latest changes</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Next Steps</h2>
+                    
+                    <p>Now that your development environment is set up, you can:</p>
+                    
+                    <ul>
+                        <li><a href="workflow.html">Learn about the development workflow</a></li>
+                        <li><a href="code-style.html">Understand the code style guidelines</a></li>
+                        <li><a href="../contributing/how-to-contribute.html">Find out how to contribute</a></li>
+                    </ul>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 Organic Chemistry Quiz JS Project</p>
+            <p>
+                <a href="https://github.com/muzapro/Organic-Chemistry-Quiz-JS" target="_blank">GitHub Repository</a>
+            </p>
+        </div>
+    </footer>
+    
+    <script src="../assets/js/documentation.js"></script>
+</body>
+</html>

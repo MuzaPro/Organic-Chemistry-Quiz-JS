@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Overview | Organic Chemistry Quiz Documentation</title>
+    <link rel="stylesheet" href="../assets/css/documentation.css">
+    <link rel="icon" href="../../assets/images/favicon.svg">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../../assets/images/favicon.svg" alt="Organic Chemistry Quiz">
+                    <span>Organic Chemistry Quiz JS</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="overview.html" class="active">Project</a></li>
+                    <li><a href="../developers/getting-started.html">Developers</a></li>
+                    <li><a href="../components/main-app.html">Components</a></li>
+                    <li><a href="../features/question-nav.html">Features</a></li>
+                    <li><a href="../contributing/how-to-contribute.html">Contributing</a></li>
+                    <li><a href="../resources/faq.html">Resources</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Project</h3>
+            <ul>
+                <li><a href="overview.html" class="active">Overview</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="technologies.html">Technologies</a></li>
+                <li><a href="structure.html">Project Structure</a></li>
+                <li><a href="roadmap.html">Roadmap</a></li>
+            </ul>
+        </aside>
+        
+        <main class="content">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li>Project Overview</li>
+                </ul>
+            </nav>
+            
+            <article>
+                <h1>Organic Chemistry Quiz Game: Project Overview</h1>
+                
+                <div class="table-of-contents">
+                    <h3>Contents</h3>
+                    <!-- Automatically filled by JavaScript -->
+                </div>
+                
+                <section>
+                    <h2>Executive Summary</h2>
+                    
+                    <p>The Organic Chemistry Quiz Game is an interactive web-based educational application designed to help students learn organic chemistry reaction mechanisms through an engaging drag-and-drop interface. The application allows users to select reagents and place them in reaction slots to complete organic chemistry reactions, providing immediate feedback, detailed explanations, and progress tracking.</p>
+                    
+                    <p>The game is built using modern web technologies (HTML5, CSS3, JavaScript) with a focus on cross-platform compatibility, responsive design, and accessibility. It features an intuitive drag-and-drop interface that works on both desktop and mobile devices, audio feedback, and detailed chemistry notes for each reaction.</p>
+                    
+                    <div class="image-container">
+                        <img src="../../assets/images/ScreenShot.jpg" alt="Screenshot of the Organic Chemistry Quiz Game" class="screenshot">
+                        <p class="caption">The Organic Chemistry Quiz Game interface</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Project Purpose and Goals</h2>
+                    
+                    <h3>Primary Goals</h3>
+                    <ol>
+                        <li><strong>Educational Value</strong>: Provide an engaging way for chemistry, medical, and biology students to learn organic chemistry reaction mechanisms</li>
+                        <li><strong>Accessibility</strong>: Create a platform-agnostic tool that works across devices and browsers</li>
+                        <li><strong>Scientific Accuracy</strong>: Ensure all chemistry content is accurate and follows current IUPAC conventions</li>
+                        <li><strong>User Engagement</strong>: Use interactive elements and feedback to maintain student interest and enhance learning</li>
+                    </ol>
+                    
+                    <h3>Secondary Goals</h3>
+                    <ol>
+                        <li><strong>Extensibility</strong>: Create a platform that can be easily expanded with new reaction types and questions</li>
+                        <li><strong>Performance</strong>: Ensure smooth operation even on lower-powered devices</li>
+                        <li><strong>Visual Appeal</strong>: Maintain a clean, academic aesthetic with modern UI design</li>
+                        <li><strong>Progress Tracking</strong>: Allow students to track their learning progress</li>
+                    </ol>
+                    
+                    <div class="callout">
+                        <p>This project aims to transform how students learn complex organic chemistry concepts by making the learning process interactive, engaging, and accessible on any device.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Technologies Used</h2>
+                    
+                    <h3>Frontend</h3>
+                    <ul>
+                        <li><strong>HTML5</strong>: Semantic markup for application structure</li>
+                        <li><strong>CSS3</strong>: Modern styling with responsive design</li>
+                        <li><strong>JavaScript (ES6+)</strong>: Core application logic and interactivity</li>
+                        <li><strong>Drag and Drop API</strong>: Native browser API for drag-and-drop functionality</li>
+                        <li><strong>Hammer.js</strong>: Touch gesture library for mobile compatibility</li>
+                    </ul>
+                    
+                    <h3>Development Environment</h3>
+                    <ul>
+                        <li><strong>VS Code</strong>: Primary development environment</li>
+                        <li><strong>Git/GitHub</strong>: Version control and deployment</li>
+                        <li><strong>GitHub Pages</strong>: Hosting platform for live demo</li>
+                    </ul>
+                    
+                    <h3>Additional Libraries</h3>
+                    <ul>
+                        <li>Modern normalize CSS: Cross-browser consistency</li>
+                        <li>Custom audio system: Sound effect management</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Feature Summary</h2>
+                    
+                    <h3>Core Features</h3>
+                    <ol>
+                        <li>
+                            <strong>Interactive Drag-and-Drop Interface</strong>
+                            <ul>
+                                <li>Intuitive mechanism for moving reagents to reaction slots</li>
+                                <li>Support for both mouse and touch interactions</li>
+                                <li>Visual feedback during drag operations</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Comprehensive Question System</strong>
+                            <ul>
+                                <li>Multiple reaction types (SN1/SN2, E1/E2, Williamson Ether Synthesis, etc.)</li>
+                                <li>Randomized question order</li>
+                                <li>Detailed feedback for both correct and incorrect answers</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Educational Content</strong>
+                            <ul>
+                                <li>Reaction mechanism explanations</li>
+                                <li>Chemistry notes accessible through modal interface</li>
+                                <li>Visual representations of molecules and reactions</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Progress Tracking</strong>
+                            <ul>
+                                <li>Score calculation</li>
+                                <li>Visual progress indicators</li>
+                                <li>Completion feedback based on performance</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Accessibility Features</strong>
+                            <ul>
+                                <li>Keyboard navigation support</li>
+                                <li>Screen reader compatibility</li>
+                                <li>Responsive design for all device sizes</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Audio Feedback System</strong>
+                            <ul>
+                                <li>Sound effects for interactions (pickup, drop, correct, incorrect)</li>
+                                <li>Mute toggle with preference persistence</li>
+                                <li>Error handling for mobile browsers' autoplay restrictions</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Mobile Compatibility</strong>
+                            <ul>
+                                <li>Touch event handling via Hammer.js</li>
+                                <li>Responsive layout adjustments</li>
+                                <li>Mobile-specific interaction patterns</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <div class="callout callout-info">
+                        <p>For a detailed breakdown of each feature, visit the <a href="../features/question-nav.html">Features</a> section.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Development Timeline</h2>
+                    
+                    <h3>Phase 1 - Complete ✓</h3>
+                    <ul>
+                        <li>✓ Core quiz functionality implementation</li>
+                        <li>✓ Drag-and-drop system</li>
+                        <li>✓ Basic question database</li>
+                        <li>✓ Initial deployment</li>
+                    </ul>
+                    
+                    <h3>Phase 2 - Current</h3>
+                    <ul>
+                        <li>🔄 Expanded question database</li>
+                        <li>✓ Enhanced feedback systems</li>
+                        <li>✓ Mobile optimization improvements</li>
+                        <li>✓ User experience refinements</li>
+                        <li>✓ Audio feedback system</li>
+                    </ul>
+                    
+                    <h3>Phase 3 - Planned</h3>
+                    <ul>
+                        <li>Question Generator Tool expansion</li>
+                        <li>User progress persistence</li>
+                        <li>Achievement system</li>
+                        <li>Advanced visualization options</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Current Status</h2>
+                    
+                    <p>The Organic Chemistry Quiz Game is currently in Phase 2 of development. The core functionality is complete and deployed, with ongoing enhancements to the user experience, mobile compatibility, and question database.</p>
+                    
+                    <p>Recent implementations include:</p>
+                    <ul>
+                        <li>Audio feedback system for interactive elements</li>
+                        <li>Mobile touch compatibility with Hammer.js</li>
+                        <li>Enhanced question navigation and feedback</li>
+                        <li>Visual improvements and responsive design refinements</li>
+                    </ul>
+                    
+                    <p>The application is fully functional and deployed at <a href="https://muzapro.github.io/Organic-Chemistry-Quiz-JS/" target="_blank">https://muzapro.github.io/Organic-Chemistry-Quiz-JS/</a>, with plans for continued development and expansion.</p>
+                </section>
+                
+                <section>
+                    <h2>Target Audience</h2>
+                    
+                    <h3>Primary Audience</h3>
+                    <ul>
+                        <li>Undergraduate chemistry students</li>
+                        <li>Medical and pharmacy students</li>
+                        <li>Biology students with organic chemistry requirements</li>
+                    </ul>
+                    
+                    <h3>Secondary Audience</h3>
+                    <ul>
+                        <li>Chemistry educators</li>
+                        <li>Self-directed learners</li>
+                        <li>Chemistry enthusiasts</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Unique Selling Points</h2>
+                    
+                    <ol>
+                        <li><strong>Interactive Learning</strong>: Hands-on practice with reaction mechanisms versus passive reading</li>
+                        <li><strong>Immediate Feedback</strong>: Real-time response to submitted answers enhances learning</li>
+                        <li><strong>Cross-Platform Compatibility</strong>: Use on any device, from desktop to mobile</li>
+                        <li><strong>Scientific Accuracy</strong>: Content developed and verified by chemistry professionals</li>
+                        <li><strong>Engaged Learning</strong>: Gamification elements increase student engagement and retention</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2>Future Roadmap Highlights</h2>
+                    
+                    <ol>
+                        <li><strong>Question Generator Tool</strong>: Expanded capabilities for creating new questions</li>
+                        <li><strong>User Accounts</strong>: Save progress across sessions</li>
+                        <li><strong>Achievement System</strong>: Gamification elements to encourage completion</li>
+                        <li><strong>Advanced Visualizations</strong>: 3D molecular structures and animated reaction pathways</li>
+                        <li><strong>Learning Paths</strong>: Customized question sequences based on user proficiency</li>
+                    </ol>
+                    
+                    <div class="callout callout-tip">
+                        <h3>Contributing to the Roadmap</h3>
+                        <p>Interested in contributing to these future features? Check out the <a href="../contributing/how-to-contribute.html">Contributing</a> section to get started.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Getting Started</h2>
+                    
+                    <p>Ready to explore the project further?</p>
+                    
+                    <ul>
+                        <li><a href="structure.html">Project Structure</a> - Understand how the project is organized</li>
+                        <li><a href="../developers/getting-started.html">Developer Guide</a> - Set up your development environment</li>
+                        <li><a href="../features/question-nav.html">Features</a> - Deep dive into specific features</li>
+                        <li><a href="https://github.com/muzapro/Organic-Chemistry-Quiz-JS" target="_blank">GitHub Repository</a> - View the source code</li>
+                    </ul>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 Organic Chemistry Quiz JS Project</p>
+            <p>
+                <a href="https://github.com/muzapro/Organic-Chemistry-Quiz-JS" target="_blank">GitHub Repository</a>
+            </p>
+        </div>
+    </footer>
+    
+    <script src="../assets/js/documentation.js"></script>
+</body>
+</html>

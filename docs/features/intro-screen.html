@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction Screen | Organic Chemistry Quiz Documentation</title>
+    <link rel="stylesheet" href="../assets/css/documentation.css">
+    <link rel="icon" href="../../assets/images/favicon.svg">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../../assets/images/favicon.svg" alt="Organic Chemistry Quiz">
+                    <span>Organic Chemistry Quiz JS</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../project/overview.html">Project</a></li>
+                    <li><a href="../developers/getting-started.html">Developers</a></li>
+                    <li><a href="../components/main-app.html">Components</a></li>
+                    <li><a href="intro-screen.html" class="active">Features</a></li>
+                    <li><a href="../contributing/how-to-contribute.html">Contributing</a></li>
+                    <li><a href="../resources/faq.html">Resources</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Features</h3>
+            <ul>
+                <li><a href="question-nav.html">Question Navigation</a></li>
+                <li><a href="audio-system.html">Audio System</a></li>
+                <li><a href="intro-screen.html" class="active">Introduction Screen</a></li>
+            </ul>
+        </aside>
+        
+        <main class="content">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="intro-screen.html">Features</a></li>
+                    <li>Introduction Screen</li>
+                </ul>
+            </nav>
+            
+            <article>
+                <h1>Feature: Intro Screen</h1>
+                
+                <div class="feature-meta">
+                    <p><strong>Last Updated:</strong> April 12, 2025</p>
+                    <p><strong>Related Tickets:</strong> #16 (Initial Implementation), #28 (Visual Enhancements)</p>
+                </div>
+                
+                <div class="table-of-contents">
+                    <h3>Contents</h3>
+                    <!-- Automatically filled by JavaScript -->
+                </div>
+                
+                <section>
+                    <h2>Overview</h2>
+                    <p>The intro screen provides users with their first interaction with the Organic Chemistry Quiz Game. It welcomes users, sets expectations, and provides a clear entry point to start the quiz.</p>
+                    
+                    <div class="image-container">
+                        <img src="../../assets/images/ScreenShot.jpg" alt="Intro Screen Screenshot" class="screenshot">
+                        <p class="caption">The Introduction Screen welcomes users to the Organic Chemistry Quiz</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Technical Implementation</h2>
+                    <ul>
+                        <li>Implemented as a fixed-position overlay using CSS</li>
+                        <li>Uses favicon.svg as the main icon</li>
+                        <li>Incorporates the app's dynamic background with chemistry-themed animations</li>
+                        <li>Semi-transparent content area with backdrop blur for improved readability</li>
+                        <li>Smooth transitions between intro screen and quiz interface</li>
+                    </ul>
+                    
+                    <div class="code-example">
+                        <pre><code>.intro-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.85);
+  transition: opacity 0.5s ease-in-out;
+}
+
+.intro-content {
+  max-width: 600px;
+  padding: 2rem;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+}</code></pre>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>User Experience</h2>
+                    <ul>
+                        <li>Displays immediately when the application loads</li>
+                        <li>Shows a welcoming message explaining the quiz purpose</li>
+                        <li>Features a prominent "Start Quiz" button</li>
+                        <li>Provides clear instructions about the drag-and-drop mechanics</li>
+                        <li>Ensures text remains readable against the animated background</li>
+                    </ul>
+                    
+                    <div class="callout">
+                        <p>The intro screen creates an immediate connection with users by providing context and guidance before they dive into the quiz interactions.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Configuration Options</h2>
+                    <ul>
+                        <li>Icon size adjusts responsively based on screen size</li>
+                        <li>Background animation respects user's motion preferences</li>
+                        <li>Content area adapts to different viewport dimensions</li>
+                        <li>Supports both light and dark themes (when implemented)</li>
+                    </ul>
+                    
+                    <div class="callout callout-info">
+                        <h4>Implementation Note</h4>
+                        <p>The intro screen checks for the <code>prefers-reduced-motion</code> media query to respect user preferences for reduced motion, adjusting animations accordingly.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Known Limitations</h2>
+                    <ul>
+                        <li>Backdrop-filter blur effect may not be supported in older browsers</li>
+                        <li>SVG icon requires proper fallback for unsupported browsers</li>
+                        <li>Animation performance may vary on low-end devices</li>
+                    </ul>
+                    
+                    <div class="code-example">
+                        <pre><code>/* Fallback for browsers that don't support backdrop-filter */
+@supports not (backdrop-filter: blur(8px)) {
+  .intro-content {
+    background-color: rgba(255, 255, 255, 0.97);
+  }
+}</code></pre>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Future Enhancements</h2>
+                    <ul>
+                        <li>Add theme-specific background variations</li>
+                        <li>Consider adding quiz difficulty selection</li>
+                        <li>Implement user preferences/settings panel</li>
+                        <li>Add support for returning user recognition</li>
+                        <li>Consider adding tutorial option for first-time users</li>
+                    </ul>
+                </section>
+                
+                <div class="callout callout-tip">
+                    <h4>Tip for Developers</h4>
+                    <p>When modifying the intro screen, ensure that keyboard accessibility is maintained. All interactive elements should be accessible via keyboard navigation, with proper focus management.</p>
+                </div>
+                
+                <hr>
+                
+                <div class="related-content">
+                    <h3>Related Documentation</h3>
+                    <ul>
+                        <li><a href="../components/main-app.html">Main App Component</a></li>
+                        <li><a href="../developers/getting-started.html">Developer Guide</a></li>
+                    </ul>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 Organic Chemistry Quiz JS Project</p>
+            <p>
+                <a href="https://github.com/muzapro/Organic-Chemistry-Quiz-JS" target="_blank">GitHub Repository</a>
+            </p>
+        </div>
+    </footer>
+    
+    <script src="../assets/js/documentation.js"></script>
+</body>
+</html>

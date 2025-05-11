@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio System | Organic Chemistry Quiz Documentation</title>
+    <link rel="stylesheet" href="../assets/css/documentation.css">
+    <link rel="icon" href="../../assets/images/favicon.svg">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../../assets/images/favicon.svg" alt="Organic Chemistry Quiz">
+                    <span>Organic Chemistry Quiz JS</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../project/overview.html">Project</a></li>
+                    <li><a href="../developers/getting-started.html">Developers</a></li>
+                    <li><a href="../components/main-app.html">Components</a></li>
+                    <li><a href="audio-system.html" class="active">Features</a></li>
+                    <li><a href="../contributing/how-to-contribute.html">Contributing</a></li>
+                    <li><a href="../resources/faq.html">Resources</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Features</h3>
+            <ul>
+                <li><a href="question-nav.html">Question Navigation</a></li>
+                <li><a href="audio-system.html" class="active">Audio System</a></li>
+                <li><a href="intro-screen.html">Introduction Screen</a></li>
+            </ul>
+        </aside>
+        
+        <main class="content">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="audio-system.html">Features</a></li>
+                    <li>Audio System</li>
+                </ul>
+            </nav>
+            
+            <article>
+                <h1>Feature: Audio System</h1>
+                
+                <div class="feature-meta">
+                    <p><strong>Last Updated:</strong> April 11, 2025</p>
+                    <p><strong>Related Tickets:</strong> #15, #15.1.1, #15.1.2</p>
+                </div>
+                
+                <div class="table-of-contents">
+                    <h3>Contents</h3>
+                    <!-- Automatically filled by JavaScript -->
+                </div>
+                
+                <section>
+                    <h2>Overview</h2>
+                    <p>The Audio System provides sound effects feedback for key interactions in the Organic Chemistry Quiz application. It enhances the user experience through audio cues while maintaining performance and accessibility.</p>
+                </section>
+                
+                <section>
+                    <h2>Technical Implementation</h2>
+                    <p>The system is implemented through the <code>AudioManager</code> module in <code>audio.js</code>, which provides a clean API for playing sounds and managing audio preferences.</p>
+                    
+                    <h3>Core Components</h3>
+                    
+                    <h4>1. Sound Management</h4>
+                    <div class="code-example">
+                        <pre><code>const sounds = {
+    pickup: new Audio('assets/sound/pickup_card.mp3'),
+    drop: new Audio('assets/sound/drop_card.mp3'),
+    correct: new Audio('assets/sound/correct_answer.mp3'),
+    wrong: new Audio('assets/sound/wrong_answer.mp3')
+};</code></pre>
+                    </div>
+                    
+                    <h4>2. Public API</h4>
+                    <ul>
+                        <li><code>AudioManager.initialize()</code>: Set up sound system and mute button</li>
+                        <li><code>AudioManager.play(soundName)</code>: Play a specific sound effect with error handling</li>
+                        <li><code>AudioManager.toggleMute()</code>: Toggle mute state</li>
+                    </ul>
+                    
+                    <h3>Error Handling</h3>
+                    <p>The system includes robust error handling for sound playback:</p>
+                    <ul>
+                        <li>Checks for AudioManager existence before attempting playback</li>
+                        <li>Handles mobile autoplay restrictions gracefully</li>
+                        <li>Provides fallback behavior when sound playback fails</li>
+                        <li>Prevents errors from disrupting touch interactions</li>
+                    </ul>
+                    
+                    <h3>Integration Points</h3>
+                    <ul>
+                        <li>Drag-and-drop interactions (<code>drag-drop.js</code>)
+                            <ul>
+                                <li>Mouse events: dragstart, drop</li>
+                                <li>Touch events: panstart, panend, tap</li>
+                            </ul>
+                        </li>
+                        <li>Answer submission feedback (<code>app.js</code>)</li>
+                        <li>Global mute toggle (Footer UI)</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>User Experience</h2>
+                    <p>The audio system provides consistent feedback across all devices for:</p>
+                    <ol>
+                        <li>Picking up a molecule card (mouse drag or touch pan)</li>
+                        <li>Dropping a molecule in a drop zone</li>
+                        <li>Submitting correct answers</li>
+                        <li>Submitting incorrect answers</li>
+                    </ol>
+                    
+                    <p>Users can control the audio experience through a mute button in the footer, and their preference persists across sessions.</p>
+                    
+                    <div class="callout">
+                        <p>Sound effects provide important feedback cues that reinforce the user's actions and help create a more engaging, responsive experience.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Configuration Options</h2>
+                    <ul>
+                        <li>Sound volume is preset to 50%</li>
+                        <li>Mute state is stored in <code>localStorage</code> as 'quizSoundMuted'</li>
+                        <li>Sound files are loaded from the <code>assets/sound/</code> directory</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Known Limitations</h2>
+                    
+                    <h3>Browser Restrictions</h3>
+                    <ul>
+                        <li>iOS requires user interaction before playing audio</li>
+                        <li>Some mobile browsers restrict autoplay</li>
+                        <li>Legacy browsers may not support the Audio API</li>
+                        <li>Mobile sound limitations are handled gracefully with error catching</li>
+                    </ul>
+                    
+                    <h3>Performance Considerations</h3>
+                    <ul>
+                        <li>Sound files should be kept small (< 100KB)</li>
+                        <li>Multiple simultaneous sounds may not play well on mobile devices</li>
+                        <li>Sound playback is asynchronous to prevent UI blocking</li>
+                        <li>Error handling ensures smooth operation even when sound fails</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Best Practices</h2>
+                    
+                    <h3>Sound Design</h3>
+                    <ul>
+                        <li>Keep sound effects brief (< 500ms)</li>
+                        <li>Use consistent volume levels</li>
+                        <li>Ensure sounds are non-intrusive</li>
+                    </ul>
+                    
+                    <h3>Implementation</h3>
+                    <ul>
+                        <li>Always use playSoundSafely wrapper for sound playback</li>
+                        <li>Handle playback errors gracefully</li>
+                        <li>Check for AudioManager existence before calls</li>
+                        <li>Initialize audio system before touch events</li>
+                    </ul>
+                    
+                    <div class="code-example">
+                        <pre><code>// Safe sound playback example
+function playSoundSafely(soundName) {
+  try {
+    if (AudioManager && typeof AudioManager.play === 'function') {
+      AudioManager.play(soundName);
+    }
+  } catch (error) {
+    console.warn('Sound playback failed:', error);
+    // Continue with the app normally
+  }
+}</code></pre>
+                    </div>
+                    
+                    <h3>Performance</h3>
+                    <ul>
+                        <li>Preload sounds on initialization</li>
+                        <li>Reuse Audio instances</li>
+                        <li>Stop any playing sounds before starting new ones</li>
+                        <li>Handle mobile autoplay restrictions appropriately</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Mobile Integration</h2>
+                    
+                    <h3>Touch Event Handling</h3>
+                    <ul>
+                        <li>Sound effects mirror mouse event equivalents</li>
+                        <li>Error handling prevents touch disruption</li>
+                        <li>Proper initialization order with Hammer.js</li>
+                        <li>Consistent feedback across devices</li>
+                    </ul>
+                    
+                    <h3>Mobile-Specific Considerations</h3>
+                    <ul>
+                        <li>Autoplay restriction handling</li>
+                        <li>Touch event synchronization</li>
+                        <li>Performance optimization</li>
+                        <li>Fallback behavior when sound fails</li>
+                    </ul>
+                    
+                    <div class="callout callout-info">
+                        <h4>Implementation Note</h4>
+                        <p>Touch interactions are managed via Hammer.js, which provides consistent touch behavior across different mobile devices. Sound triggers are integrated into the touch event handlers.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Future Enhancements</h2>
+                    <ul>
+                        <li>Volume control slider</li>
+                        <li>Different sound themes</li>
+                        <li>Haptic feedback for mobile devices</li>
+                        <li>Web Audio API integration for advanced effects</li>
+                        <li>Sound sprites for better performance</li>
+                        <li>Preloader for sound assets</li>
+                        <li>Sound playback status monitoring</li>
+                    </ul>
+                </section>
+                
+                <div class="callout callout-tip">
+                    <h4>Tip for Developers</h4>
+                    <p>When integrating with the audio system, always wrap your sound calls in try/catch blocks to prevent any audio playback failures from affecting core functionality.</p>
+                </div>
+                
+                <hr>
+                
+                <div class="related-content">
+                    <h3>Related Documentation</h3>
+                    <ul>
+                        <li><a href="../components/audio.html">Audio Manager Component</a></li>
+                        <li><a href="../components/drag-drop.html">Drag-Drop Component</a></li>
+                    </ul>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 Organic Chemistry Quiz JS Project</p>
+            <p>
+                <a href="https://github.com/muzapro/Organic-Chemistry-Quiz-JS" target="_blank">GitHub Repository</a>
+            </p>
+        </div>
+    </footer>
+    
+    <script src="../assets/js/documentation.js"></script>
+</body>
+</html>

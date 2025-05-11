@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Guidelines | Organic Chemistry Quiz Documentation</title>
+    <link rel="stylesheet" href="../assets/css/documentation.css">
+    <link rel="icon" href="../../assets/images/favicon.svg">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../../assets/images/favicon.svg" alt="Organic Chemistry Quiz">
+                    <span>Organic Chemistry Quiz JS</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../project/overview.html">Project</a></li>
+                    <li><a href="getting-started.html" class="active">Developers</a></li>
+                    <li><a href="../components/main-app.html">Components</a></li>
+                    <li><a href="../features/question-nav.html">Features</a></li>
+                    <li><a href="../contributing/how-to-contribute.html">Contributing</a></li>
+                    <li><a href="../resources/faq.html">Resources</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Developers</h3>
+            <ul>
+                <li><a href="getting-started.html">Getting Started</a></li>
+                <li><a href="environment.html">Development Environment</a></li>
+                <li><a href="workflow.html">Development Workflow</a></li>
+                <li><a href="code-style.html">Code Style Guidelines</a></li>
+                <li><a href="testing.html" class="active">Testing Guidelines</a></li>
+                <li><a href="architecture.html">Architecture Overview</a></li>
+                <li><a href="deployment.html">Deployment Process</a></li>
+            </ul>
+        </aside>
+        
+        <main class="content">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="getting-started.html">Developers</a></li>
+                    <li>Testing Guidelines</li>
+                </ul>
+            </nav>
+            
+            <article>
+                <h1>Testing Guidelines</h1>
+                
+                <div class="table-of-contents">
+                    <h3>Contents</h3>
+                    <!-- Automatically filled by JavaScript -->
+                </div>
+                
+                <section>
+                    <h2>Introduction to Testing</h2>
+                    
+                    <p>Thorough testing is essential to ensure the Organic Chemistry Quiz functions correctly across all supported devices and browsers. This document outlines our testing approach and provides guidelines for contributors.</p>
+                    
+                    <div class="callout callout-info">
+                        <p>All new features and bug fixes should be thoroughly tested before submitting a pull request. This helps maintain the quality and reliability of the application.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Testing Levels</h2>
+                    
+                    <p>The Organic Chemistry Quiz project employs several levels of testing:</p>
+                    
+                    <h3>1. Manual Testing</h3>
+                    <p>The primary method for validating functionality, UI interactions, and visual appearance.</p>
+                    <ul>
+                        <li>Functional testing of quiz mechanics</li>
+                        <li>UI/UX testing</li>
+                        <li>Cross-browser compatibility</li>
+                        <li>Responsive design verification</li>
+                        <li>Accessibility testing</li>
+                    </ul>
+                    
+                    <h3>2. Console-Based Testing</h3>
+                    <p>Using browser developer tools to validate code execution and catch errors.</p>
+                    <ul>
+                        <li>Checking for JavaScript errors</li>
+                        <li>Verifying proper data loading</li>
+                        <li>Testing state management</li>
+                    </ul>
+                    
+                    <h3>3. Automated Testing (Future Implementation)</h3>
+                    <p>Plans for implementing automated tests using Jest and Puppeteer are in progress.</p>
+                    <ul>
+                        <li>Unit tests for core functions</li>
+                        <li>Integration tests for component interactions</li>
+                        <li>End-to-end tests for complete user journeys</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Manual Testing Checklist</h2>
+                    
+                    <p>Follow this checklist when testing changes to ensure a consistent experience:</p>
+                    
+                    <h3>General Application Testing</h3>
+                    <ol>
+                        <li>
+                            <strong>Application Startup</strong>
+                            <ul>
+                                <li>Application loads without errors</li>
+                                <li>Welcome screen displays correctly</li>
+                                <li>Start button functions properly</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Quiz Navigation</strong>
+                            <ul>
+                                <li>Question navigation buttons work correctly</li>
+                                <li>Question counter displays accurately</li>
+                                <li>Progress indicator updates appropriately</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Quiz Functionality</strong>
+                            <ul>
+                                <li>Questions display correctly with all required elements</li>
+                                <li>Reagents appear in the reagent area</li>
+                                <li>Drop zones are clearly marked</li>
+                                <li>Score tracking functions properly</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Feedback Mechanisms</strong>
+                            <ul>
+                                <li>Correct/incorrect feedback displays appropriately</li>
+                                <li>Feedback contains helpful chemistry information</li>
+                                <li>Visual indicators work as expected</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Quiz Completion</strong>
+                            <ul>
+                                <li>Final score calculates correctly</li>
+                                <li>Completion screen displays appropriately</li>
+                                <li>Restart functionality works</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h3>Drag and Drop Functionality</h3>
+                    <ol>
+                        <li>
+                            <strong>Drag Initiation</strong>
+                            <ul>
+                                <li>Items can be picked up with mouse click and hold</li>
+                                <li>Touch events work on mobile devices</li>
+                                <li>Visual indication of dragging state</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Drag Movement</strong>
+                            <ul>
+                                <li>Dragged items follow cursor/finger smoothly</li>
+                                <li>Z-index ensures dragged item appears above other elements</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Drop Zones</strong>
+                            <ul>
+                                <li>Drop zones highlight when valid item hovers over them</li>
+                                <li>Items can be dropped in designated zones only</li>
+                                <li>Visual feedback when item is dropped</li>
+                                <li>Items return to original position when dropped outside valid zones</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Answer Validation</strong>
+                            <ul>
+                                <li>Correct combinations are recognized</li>
+                                <li>Incorrect combinations provide appropriate feedback</li>
+                                <li>Multiple reagent combinations work correctly</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h3>Audio Functionality</h3>
+                    <ol>
+                        <li>
+                            <strong>Sound Effects</strong>
+                            <ul>
+                                <li>Pick up sound plays when dragging begins</li>
+                                <li>Drop sound plays when reagent is dropped</li>
+                                <li>Correct answer sound plays on correct answer</li>
+                                <li>Incorrect answer sound plays on incorrect answer</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Sound Controls</strong>
+                            <ul>
+                                <li>Mute button toggles all sounds</li>
+                                <li>Sound preference persists between sessions (localStorage)</li>
+                                <li>Initial sound state respects user's previous preference</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <div class="callout callout-tip">
+                        <h3>Testing Tip</h3>
+                        <p>Use console.log statements to output values at key points in your code while testing. Remove these before submitting your pull request.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Cross-Browser Testing</h2>
+                    
+                    <p>The application should be tested across multiple browsers to ensure compatibility. At minimum, test in:</p>
+                    
+                    <ul>
+                        <li>
+                            <strong>Desktop Browsers</strong>
+                            <ul>
+                                <li>Chrome (latest version)</li>
+                                <li>Firefox (latest version)</li>
+                                <li>Safari (latest version, if available)</li>
+                                <li>Edge (latest version)</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Mobile Browsers</strong>
+                            <ul>
+                                <li>Chrome for Android</li>
+                                <li>Safari for iOS</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <p>Browser testing can be done using:</p>
+                    <ul>
+                        <li>Real devices when available</li>
+                        <li>Browser emulation tools (Chrome DevTools Device Mode)</li>
+                        <li>BrowserStack or similar service for broader testing (when available)</li>
+                    </ul>
+                    
+                    <div class="callout callout-warning">
+                        <p>Pay special attention to touch interactions when testing on mobile browsers or emulators, as they are critical to the drag-and-drop functionality.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Responsive Design Testing</h2>
+                    
+                    <p>Test the application at various screen sizes to ensure responsive behavior:</p>
+                    
+                    <h3>Key Breakpoints to Test</h3>
+                    <ul>
+                        <li><strong>Mobile</strong>: 320px - 480px width</li>
+                        <li><strong>Tablet</strong>: 481px - 768px width</li>
+                        <li><strong>Small Desktop</strong>: 769px - 1024px width</li>
+                        <li><strong>Large Desktop</strong>: 1025px and above</li>
+                    </ul>
+                    
+                    <h3>Responsive Features to Check</h3>
+                    <ul>
+                        <li>Layout adapts appropriately to screen size</li>
+                        <li>Text remains readable at all sizes</li>
+                        <li>Images scale properly</li>
+                        <li>Interactive elements (buttons, drag areas) are appropriately sized for touch on mobile</li>
+                        <li>No horizontal scrolling occurs at any width</li>
+                    </ul>
+                    
+                    <p>Use Chrome DevTools Device Mode or Firefox Responsive Design Mode to test different screen sizes:</p>
+                    <ol>
+                        <li>Open DevTools (F12 or Ctrl+Shift+I)</li>
+                        <li>Enter responsive design mode (Ctrl+Shift+M in Chrome)</li>
+                        <li>Test at various dimensions or select device presets</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2>Accessibility Testing</h2>
+                    
+                    <p>Ensure the application is accessible to users with disabilities:</p>
+                    
+                    <h3>Manual Accessibility Checks</h3>
+                    <ol>
+                        <li>
+                            <strong>Keyboard Navigation</strong>
+                            <ul>
+                                <li>All interactive elements can be reached using the Tab key</li>
+                                <li>Focus indicators are visible on all interactive elements</li>
+                                <li>Enter/Space keys activate buttons and controls</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Screen Reader Compatibility</strong>
+                            <ul>
+                                <li>All images have appropriate alt text</li>
+                                <li>Form controls have associated labels</li>
+                                <li>Semantic HTML is used appropriately</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Color and Contrast</strong>
+                            <ul>
+                                <li>Color is not the only means of conveying information</li>
+                                <li>Text has sufficient contrast against backgrounds</li>
+                                <li>UI is usable with high contrast mode</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <h3>Automated Accessibility Testing</h3>
+                    <p>Use automated tools to identify potential accessibility issues:</p>
+                    <ul>
+                        <li>
+                            <a href="https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd" target="_blank">axe DevTools</a> 
+                            (Chrome extension)
+                        </li>
+                        <li>
+                            Lighthouse accessibility audit in Chrome DevTools
+                        </li>
+                        <li>
+                            <a href="https://wave.webaim.org/" target="_blank">WAVE Web Accessibility Evaluation Tool</a>
+                        </li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Performance Testing</h2>
+                    
+                    <p>Check that the application performs efficiently:</p>
+                    
+                    <h3>Performance Metrics to Monitor</h3>
+                    <ul>
+                        <li>Initial loading time</li>
+                        <li>Time to interactive</li>
+                        <li>Smooth animations (60fps target)</li>
+                        <li>Responsiveness to user input</li>
+                    </ul>
+                    
+                    <h3>Performance Testing Tools</h3>
+                    <ul>
+                        <li>Chrome DevTools Performance panel</li>
+                        <li>Lighthouse performance audit</li>
+                        <li>Network throttling for simulating slow connections</li>
+                    </ul>
+                    
+                    <h3>Common Performance Issues to Watch For</h3>
+                    <ul>
+                        <li>Large image files causing slow loading</li>
+                        <li>Inefficient JavaScript causing janky animations</li>
+                        <li>Excessive DOM operations</li>
+                        <li>Memory leaks during long quiz sessions</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Reporting Test Results</h2>
+                    
+                    <p>When submitting a pull request, include information about your testing:</p>
+                    
+                    <div class="code-example">
+                        <pre><code># Testing Notes
+
+## Browsers Tested
+- Chrome 115.0.5790.171 (Windows)
+- Firefox 115.0.2 (Windows)
+- Safari 16.5 (iOS)
+
+## Devices/Resolutions Tested
+- Desktop (1920x1080)
+- iPhone 12 Pro (390x844)
+- iPad (768x1024)
+
+## Test Results
+- All test cases passed on desktop browsers
+- On mobile, drag and drop is working as expected
+- Interactive elements appropriately sized for touch
+- No console errors observed
+
+## Known Issues
+- None</code></pre>
+                    </div>
+                    
+                    <h3>Reporting Bugs</h3>
+                    <p>If you encounter bugs while testing, report them with the following format:</p>
+                    
+                    <div class="code-example">
+                        <pre><code># Bug Report
+
+## Description
+Brief description of the issue
+
+## Steps to Reproduce
+1. Step 1
+2. Step 2
+3. Step 3
+
+## Expected Behavior
+What should happen
+
+## Actual Behavior
+What actually happens
+
+## Environment
+- Browser: Chrome 115.0.5790.171
+- OS: Windows 11
+- Device: Desktop 1920x1080
+
+## Screenshots
+[If applicable]</code></pre>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Future Automated Testing Plans</h2>
+                    
+                    <p>We plan to implement automated testing in future iterations:</p>
+                    
+                    <h3>Unit Testing</h3>
+                    <p>Using Jest to test individual functions and components:</p>
+                    <ul>
+                        <li>Core quiz engine functions</li>
+                        <li>Score calculation</li>
+                        <li>Question parsing and validation</li>
+                    </ul>
+                    
+                    <h3>Integration Testing</h3>
+                    <p>Testing interactions between components:</p>
+                    <ul>
+                        <li>Question navigation workflow</li>
+                        <li>Drag and drop interaction with scoring</li>
+                        <li>Audio system integration with quiz events</li>
+                    </ul>
+                    
+                    <h3>End-to-End Testing</h3>
+                    <p>Using Puppeteer to automate full user journeys:</p>
+                    <ul>
+                        <li>Complete quiz completion flow</li>
+                        <li>Cross-browser automated testing</li>
+                        <li>Simulation of user interactions</li>
+                    </ul>
+                    
+                    <div class="callout callout-info">
+                        <h3>Contributing to Testing</h3>
+                        <p>Contributors who are interested in helping implement automated testing are encouraged to contact the project maintainers.</p>
+                    </div>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 Organic Chemistry Quiz JS Project</p>
+            <p>
+                <a href="https://github.com/muzapro/Organic-Chemistry-Quiz-JS" target="_blank">GitHub Repository</a>
+            </p>
+        </div>
+    </footer>
+    
+    <script src="../assets/js/documentation.js"></script>
+</body>
+</html>

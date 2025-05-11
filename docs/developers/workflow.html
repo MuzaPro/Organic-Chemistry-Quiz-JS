@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development Workflow | Organic Chemistry Quiz Documentation</title>
+    <link rel="stylesheet" href="../assets/css/documentation.css">
+    <link rel="icon" href="../../assets/images/favicon.svg">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../../assets/images/favicon.svg" alt="Organic Chemistry Quiz">
+                    <span>Organic Chemistry Quiz JS</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../project/overview.html">Project</a></li>
+                    <li><a href="getting-started.html" class="active">Developers</a></li>
+                    <li><a href="../components/main-app.html">Components</a></li>
+                    <li><a href="../features/question-nav.html">Features</a></li>
+                    <li><a href="../contributing/how-to-contribute.html">Contributing</a></li>
+                    <li><a href="../resources/faq.html">Resources</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Developers</h3>
+            <ul>
+                <li><a href="getting-started.html">Getting Started</a></li>
+                <li><a href="environment.html">Development Environment</a></li>
+                <li><a href="workflow.html" class="active">Development Workflow</a></li>
+                <li><a href="code-style.html">Code Style Guidelines</a></li>
+                <li><a href="testing.html">Testing Guidelines</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="deployment.html">Deployment Process</a></li>
+            </ul>
+        </aside>
+        
+        <main class="content">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="getting-started.html">Developers</a></li>
+                    <li>Development Workflow</li>
+                </ul>
+            </nav>
+            
+            <article>
+                <h1>Development Workflow</h1>
+                
+                <div class="table-of-contents">
+                    <h3>Contents</h3>
+                    <!-- Automatically filled by JavaScript -->
+                </div>
+                
+                <section>
+                    <h2>Branching Strategy</h2>
+                    
+                    <p>Use the following branching strategy for all contributions to the project:</p>
+                    
+                    <ul>
+                        <li><code>main</code> - Production branch, contains stable code</li>
+                        <li><code>development</code> - Integration branch for testing features</li>
+                        <li><code>feature/feature-name</code> - Feature branches for new development</li>
+                        <li><code>bugfix/bug-name</code> - Bug fix branches</li>
+                    </ul>
+                    
+                    <div class="image-container">
+                        <img src="../assets/images/branching-strategy.svg" alt="Diagram showing the git branching strategy" class="diagram">
+                        <p class="caption">Git branching strategy visualization</p>
+                    </div>
+                    
+                    <div class="callout">
+                        <p>Never commit directly to <code>main</code> or <code>development</code>. Always create a feature or bugfix branch and submit a pull request.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Workflow Steps</h2>
+                    
+                    <ol>
+                        <li>
+                            <h3>Create a new branch</h3>
+                            <div class="code-example">
+                                <pre><code>git checkout development
+git pull
+git checkout -b feature/your-feature-name</code></pre>
+                            </div>
+                            <p>When naming your branch, use descriptive names that indicate what you're working on, for example:</p>
+                            <ul>
+                                <li><code>feature/audio-volume-control</code></li>
+                                <li><code>bugfix/mobile-drag-issue</code></li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <h3>Make changes to the codebase</h3>
+                            <p>Implement your feature or bug fix according to the ticket requirements. Follow the <a href="code-style.html">Code Style Guidelines</a> for consistency.</p>
+                        </li>
+                        
+                        <li>
+                            <h3>Commit your changes</h3>
+                            <div class="code-example">
+                                <pre><code>git add .
+git commit -m "Meaningful commit message"</code></pre>
+                            </div>
+                            <p>Write clear, descriptive commit messages that explain what changes were made and why. For example:</p>
+                            <ul>
+                                <li>"Add volume control slider to audio system"</li>
+                                <li>"Fix drag event handling on mobile devices"</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <h3>Push your branch</h3>
+                            <div class="code-example">
+                                <pre><code>git push -u origin feature/your-feature-name</code></pre>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <h3>Create a pull request</h3>
+                            <p>Go to the GitHub repository and create a pull request to merge your changes into the <code>development</code> branch. Include:</p>
+                            <ul>
+                                <li>A clear title describing the change</li>
+                                <li>A description of what was changed and why</li>
+                                <li>Reference to any related issues or tickets (e.g., "Fixes #27")</li>
+                                <li>Screenshots or GIFs if the change affects the UI</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <h3>Address review comments</h3>
+                            <p>Respond to any feedback provided by reviewers. Make requested changes on your branch and push additional commits.</p>
+                        </li>
+                        
+                        <li>
+                            <h3>Merge into development</h3>
+                            <p>Once approved, your branch will be merged into <code>development</code>. This step is typically done by a project maintainer.</p>
+                        </li>
+                        
+                        <li>
+                            <h3>Test in development</h3>
+                            <p>Verify that your changes work as expected in the integrated <code>development</code> branch before they're considered for merging to <code>main</code>.</p>
+                        </li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2>Creating New Features</h2>
+                    
+                    <p>When adding new features to the quiz game, follow these guidelines:</p>
+                    
+                    <h3>1. Plan Your Feature</h3>
+                    <ul>
+                        <li>Create a ticket describing the feature</li>
+                        <li>Outline the requirements and acceptance criteria</li>
+                        <li>Identify which existing components will be affected</li>
+                        <li>Plan new components if needed</li>
+                    </ul>
+                    
+                    <h3>2. Code Organization</h3>
+                    <ul>
+                        <li>Create new files for significant new features</li>
+                        <li>Follow the existing module pattern</li>
+                        <li>Keep related functionality together</li>
+                        <li>Document public APIs</li>
+                    </ul>
+                    
+                    <h3>3. Integration Steps</h3>
+                    <ol>
+                        <li>
+                            <strong>Create new modules</strong> if needed:
+                            <div class="code-example">
+                                <pre><code>const NewFeature = (() => {
+  // Private variables and functions
+  
+  // Public API
+  return {
+    initialize: () => { /* Implementation */ },
+    publicMethod: () => { /* Implementation */ }
+  };
+})();</code></pre>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <strong>Register with main application</strong> in <code>app.js</code>:
+                            <div class="code-example">
+                                <pre><code>document.addEventListener('DOMContentLoaded', () => {
+  // Initialize existing components
+  
+  // Initialize new feature
+  NewFeature.initialize();
+});</code></pre>
+                            </div>
+                        </li>
+                        
+                        <li><strong>Update HTML</strong> to include new UI elements if needed</li>
+                        
+                        <li><strong>Add CSS</strong> for new components</li>
+                    </ol>
+                    
+                    <h3>4. Documentation</h3>
+                    <p>Always document your new feature:</p>
+                    <ol>
+                        <li>Update relevant documentation files</li>
+                        <li>Add JSDoc comments to functions</li>
+                        <li>Create a feature-specific documentation file if substantial</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2>Ticket System</h2>
+                    
+                    <p>The project uses a ticket system for tracking work. Each ticket should include:</p>
+                    
+                    <h3>Ticket Format</h3>
+                    <div class="code-example">
+                        <pre><code># Ticket #[Number]: [Title]
+
+**STATUS:** OPEN/IN PROGRESS/CLOSED
+**Priority:** High/Medium/Low
+**Type:** Feature/Bug/Enhancement
+**Estimate:** [Time Estimate]
+**Assigned to:** [Developer Name]
+
+## Description
+[Detailed description of the task]
+
+## Tasks
+1. [Specific task 1]
+2. [Specific task 2]
+...
+
+## Acceptance Criteria
+- [ ] [Criterion 1]
+- [ ] [Criterion 2]
+...
+
+## Related Files
+- [File path 1]
+- [File path 2]
+...
+
+## Implementation Notes
+[Notes for implementation, if any]</code></pre>
+                    </div>
+                    
+                    <h3>Ticket Workflow</h3>
+                    <ol>
+                        <li><strong>Create</strong> a new ticket for each feature or bug</li>
+                        <li><strong>Assign</strong> the ticket to a developer</li>
+                        <li>Update the status to <strong>IN PROGRESS</strong> when work begins</li>
+                        <li>Create a feature branch based on the ticket number</li>
+                        <li>Reference the ticket number in commit messages</li>
+                        <li>Update the ticket with progress notes</li>
+                        <li>Mark acceptance criteria as completed</li>
+                        <li>Change status to <strong>CLOSED</strong> when completed</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2>Pull Request Guidelines</h2>
+                    
+                    <p>When creating pull requests, follow these guidelines to ensure smooth reviews and integrations:</p>
+                    
+                    <h3>Before Submitting a Pull Request</h3>
+                    <ul>
+                        <li>Ensure all tests pass</li>
+                        <li>Verify that your code follows the style guidelines</li>
+                        <li>Check for any console errors or warnings</li>
+                        <li>Test your changes across different browsers and screen sizes</li>
+                        <li>Make sure all acceptance criteria are met</li>
+                    </ul>
+                    
+                    <h3>What to Include in a Pull Request</h3>
+                    <ul>
+                        <li>A clear and descriptive title</li>
+                        <li>A detailed description of the changes</li>
+                        <li>References to relevant issues or tickets</li>
+                        <li>Screenshots or GIFs for visual changes</li>
+                        <li>Notes about any breaking changes</li>
+                        <li>Any special testing instructions</li>
+                    </ul>
+                </section>
+                
+                <div class="callout callout-tip">
+                    <h3>Communication Tip</h3>
+                    <p>When working on features, regular communication helps avoid duplicate work and ensures alignment with project goals. Don't hesitate to ask questions in pull request comments or via project communication channels.</p>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 Organic Chemistry Quiz JS Project</p>
+            <p>
+                <a href="https://github.com/muzapro/Organic-Chemistry-Quiz-JS" target="_blank">GitHub Repository</a>
+            </p>
+        </div>
+    </footer>
+    
+    <script src="../assets/js/documentation.js"></script>
+</body>
+</html>

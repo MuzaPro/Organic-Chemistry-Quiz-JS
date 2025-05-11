@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Management Overview | Organic Chemistry Quiz Documentation</title>
+    <link rel="stylesheet" href="../assets/css/documentation.css">
+    <link rel="icon" href="../../assets/images/favicon.svg">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../../assets/images/favicon.svg" alt="Organic Chemistry Quiz">
+                    <span>Organic Chemistry Quiz JS</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../project/overview.html">Project</a></li>
+                    <li><a href="getting-started.html" class="active">Developers</a></li>
+                    <li><a href="../components/main-app.html">Components</a></li>
+                    <li><a href="../features/question-nav.html">Features</a></li>
+                    <li><a href="../contributing/how-to-contribute.html">Contributing</a></li>
+                    <li><a href="../resources/faq.html">Resources</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Developers</h3>
+            <ul>
+                <li><a href="getting-started.html">Getting Started</a></li>
+                <li><a href="environment.html">Development Environment</a></li>
+                <li><a href="workflow.html">Development Workflow</a></li>
+                <li><a href="code-style.html">Code Style Guidelines</a></li>
+                <li><a href="testing.html">Testing Guidelines</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="management-overview.html" class="active">Management Overview</a></li>
+                <li><a href="deployment.html">Deployment Process</a></li>
+            </ul>
+        </aside>
+        
+        <main class="content">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="getting-started.html">Developers</a></li>
+                    <li>Management Overview</li>
+                </ul>
+            </nav>
+            
+            <article>
+                <h1>Management Overview</h1>
+                
+                <div class="table-of-contents">
+                    <h3>Contents</h3>
+                    <!-- Automatically filled by JavaScript -->
+                </div>
+                
+                <section>
+                    <h2>Executive Summary</h2>
+                    
+                    <p>The Organic Chemistry Quiz Game is an interactive web-based educational tool designed to help students learn organic chemistry reactions through an engaging drag-and-drop interface. The application targets chemistry, medical, and biology students who need to master organic chemistry concepts, providing them with immediate feedback and detailed explanations.</p>
+                    
+                    <p>The application is currently in Phase 2 of development, with core functionality completed and deployed. Recent enhancements include audio feedback, mobile touch support, and user interface improvements. The project uses modern web technologies and follows an iterative development approach.</p>
+                </section>
+                
+                <section>
+                    <h2>Business Value</h2>
+                    
+                    <h3>Target Audience</h3>
+                    <ul>
+                        <li>Undergraduate chemistry students</li>
+                        <li>Medical and pharmacy students</li>
+                        <li>Biology students with organic chemistry requirements</li>
+                        <li>Chemistry educators and institutions</li>
+                    </ul>
+                    
+                    <h3>Value Proposition</h3>
+                    <ol>
+                        <li><strong>Enhanced Learning</strong>: Interactive practice reinforces understanding compared to traditional methods</li>
+                        <li><strong>Accessibility</strong>: Available on any device with a web browser</li>
+                        <li><strong>Immediate Feedback</strong>: Students receive instant confirmation of understanding</li>
+                        <li><strong>Self-Paced Learning</strong>: Students can practice at their own pace</li>
+                        <li><strong>Supplemental Resource</strong>: Complements formal chemistry education</li>
+                    </ol>
+                    
+                    <h3>Competitive Advantage</h3>
+                    <ul>
+                        <li>No installation required (works in any modern browser)</li>
+                        <li>Designed specifically for organic chemistry reactions</li>
+                        <li>Simple, intuitive interface focused on learning</li>
+                        <li>Scientifically accurate content developed by chemistry educators</li>
+                        <li>Free and open-source</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Project Overview for Non-Technical Stakeholders</h2>
+                    
+                    <h3>What It Does</h3>
+                    <p>The Organic Chemistry Quiz Game presents students with chemistry reaction questions where they must select the correct reagents to complete a given reaction. Users drag molecules from a "reagent bank" into reaction slots, submit their answer, and receive immediate feedback. Detailed chemistry notes are available for each reaction to help students understand the underlying mechanisms.</p>
+                    
+                    <h3>Key Features</h3>
+                    <ol>
+                        <li><strong>Interactive Drag-and-Drop Interface</strong>: Users physically move molecule cards to answer questions</li>
+                        <li><strong>Multiple Reaction Types</strong>: Covers important organic chemistry reactions including substitution, elimination, and synthesis reactions</li>
+                        <li><strong>Progress Tracking</strong>: Visual progress bar and scoring system</li>
+                        <li><strong>Detailed Feedback</strong>: Explanations for both correct and incorrect answers</li>
+                        <li><strong>Chemistry Notes</strong>: In-depth explanations of reaction mechanisms</li>
+                        <li><strong>Mobile Support</strong>: Works on smartphones and tablets</li>
+                        <li><strong>Sound Effects</strong>: Audio feedback enhances the interactive experience</li>
+                    </ol>
+                    
+                    <h3>How It Works (Simplified)</h3>
+                    <ol>
+                        <li>The application loads a set of chemistry questions</li>
+                        <li>A question is presented showing the desired product of a reaction</li>
+                        <li>The user drags the correct reagents into reaction slots</li>
+                        <li>Upon submission, the answer is evaluated and feedback is provided</li>
+                        <li>The user can progress to the next question or try again</li>
+                        <li>After completing all questions, the user receives a score and feedback</li>
+                    </ol>
+                    
+                    <h3>Current Status</h3>
+                    <p>The application is fully functional and deployed online, with ongoing enhancements in Phase 2 of development. Recent improvements include:</p>
+                    <ul>
+                        <li>Mobile touch compatibility</li>
+                        <li>Audio feedback system</li>
+                        <li>Enhanced user interface</li>
+                        <li>Improved question navigation</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>System Architecture (Simplified)</h2>
+                    
+                    <p>The application is built using a modular structure that separates different aspects of functionality:</p>
+                    
+                    <pre class="code-block">
+┌─────────────────────────────────────────────────────────┐
+│                   User Interface                         │
+└─────────────────┬─────────────────┬─────────────────────┘
+                  │                 │
+┌─────────────────▼─────┐ ┌─────────▼─────────────────────┐
+│   Drag-and-Drop System │ │        Quiz Engine            │
+└─────────────────┬─────┘ └─────────┬─────────────────────┘
+                  │                 │
+┌─────────────────▼─────┐ ┌─────────▼─────────────────────┐
+│    Audio System       │ │      Question Database         │
+└─────────────────┬─────┘ └─────────┬─────────────────────┘
+                  │                 │
+┌─────────────────▼─────────────────▼─────────────────────┐
+│                    Web Browser                           │
+└─────────────────────────────────────────────────────────┘
+                    </pre>
+                    
+                    <h3>Key Components</h3>
+                    <ul>
+                        <li><strong>User Interface</strong>: What the user sees and interacts with</li>
+                        <li><strong>Drag-and-Drop System</strong>: Handles the interactive molecule movement</li>
+                        <li><strong>Quiz Engine</strong>: Manages questions, answers, and scoring</li>
+                        <li><strong>Audio System</strong>: Provides sound feedback for interactions</li>
+                        <li><strong>Question Database</strong>: Stores all chemistry questions and answers</li>
+                    </ul>
+                    
+                    <h3>Technical Stack (Simplified)</h3>
+                    <ul>
+                        <li><strong>Frontend</strong>: HTML, CSS, and JavaScript</li>
+                        <li><strong>Deployment</strong>: Hosted on GitHub Pages (a free web hosting service)</li>
+                        <li><strong>Dependencies</strong>: Minimal external libraries for maximum compatibility</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Development Roadmap</h2>
+                    
+                    <h3>Completed (Phase 1)</h3>
+                    <ul class="roadmap-list">
+                        <li class="completed">Core quiz functionality</li>
+                        <li class="completed">Drag-and-drop system</li>
+                        <li class="completed">Basic question database</li>
+                        <li class="completed">Initial deployment</li>
+                    </ul>
+                    
+                    <h3>In Progress (Phase 2)</h3>
+                    <ul class="roadmap-list">
+                        <li class="completed">Enhanced feedback systems</li>
+                        <li class="completed">Mobile optimization improvements</li>
+                        <li class="completed">User experience refinements</li>
+                        <li class="completed">Audio feedback system</li>
+                        <li class="in-progress">Expanded question database</li>
+                    </ul>
+                    
+                    <h3>Planned (Phase 3)</h3>
+                    <ul class="roadmap-list">
+                        <li>Question Generator Tool expansion</li>
+                        <li>User progress persistence</li>
+                        <li>Achievement system</li>
+                        <li>Advanced visualization options</li>
+                    </ul>
+                    
+                    <h3>Future Possibilities</h3>
+                    <ul class="roadmap-list">
+                        <li>Integration with Learning Management Systems</li>
+                        <li>User accounts with progress tracking</li>
+                        <li>Performance analytics for educators</li>
+                        <li>Additional quiz modes (timed, exam prep)</li>
+                        <li>3D molecular visualization</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Resource Requirements</h2>
+                    
+                    <h3>Development Resources</h3>
+                    <ul>
+                        <li><strong>Frontend Developer</strong>: JavaScript expertise (part-time)</li>
+                        <li><strong>Chemistry Content Expert</strong>: For question creation and verification (consulting)</li>
+                        <li><strong>UX Designer</strong>: For interface improvements (consulting)</li>
+                        <li><strong>QA Tester</strong>: For cross-platform testing (part-time)</li>
+                    </ul>
+                    
+                    <h3>Infrastructure</h3>
+                    <ul>
+                        <li><strong>Hosting</strong>: GitHub Pages (free)</li>
+                        <li><strong>Domain</strong>: Currently using GitHub subdomain (free)</li>
+                        <li><strong>Content Delivery</strong>: Standard web delivery (no additional cost)</li>
+                    </ul>
+                    
+                    <h3>Ongoing Maintenance</h3>
+                    <ul>
+                        <li>Question database expansion and verification</li>
+                        <li>Browser compatibility updates</li>
+                        <li>Feature enhancements based on user feedback</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Success Metrics</h2>
+                    
+                    <h3>Key Performance Indicators</h3>
+                    <ol>
+                        <li><strong>User Engagement</strong>: Average time spent in the application</li>
+                        <li><strong>Completion Rate</strong>: Percentage of users who complete the full quiz</li>
+                        <li><strong>Accuracy Rate</strong>: Average score across all users</li>
+                        <li><strong>Return Rate</strong>: Percentage of users who return to practice again</li>
+                        <li><strong>Device Distribution</strong>: Usage across desktop vs. mobile devices</li>
+                    </ol>
+                    
+                    <h3>Measurement Methods</h3>
+                    <ul>
+                        <li>Simple analytics integration</li>
+                        <li>User feedback surveys</li>
+                        <li>Educator feedback on student performance</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Glossary of Technical Terms</h2>
+                    
+                    <h3>Chemistry Terms</h3>
+                    <dl>
+                        <dt>SN1/SN2 Reactions</dt>
+                        <dd>Types of nucleophilic substitution reactions</dd>
+                        
+                        <dt>E1/E2 Reactions</dt>
+                        <dd>Types of elimination reactions</dd>
+                        
+                        <dt>Williamson Ether Synthesis</dt>
+                        <dd>Method for preparing ethers</dd>
+                        
+                        <dt>Esterification</dt>
+                        <dd>Formation of esters from alcohols and carboxylic acids</dd>
+                        
+                        <dt>Grignard Reaction</dt>
+                        <dd>Method for forming carbon-carbon bonds</dd>
+                    </dl>
+                    
+                    <h3>Technical Terms</h3>
+                    <dl>
+                        <dt>Drag and Drop</dt>
+                        <dd>User interface interaction where elements can be moved</dd>
+                        
+                        <dt>Responsive Design</dt>
+                        <dd>Layout that adapts to different screen sizes</dd>
+                        
+                        <dt>Module Pattern</dt>
+                        <dd>Code organization technique for separation of concerns</dd>
+                        
+                        <dt>API</dt>
+                        <dd>Application Programming Interface - how software components communicate</dd>
+                        
+                        <dt>SVG</dt>
+                        <dd>Scalable Vector Graphics - format used for molecule illustrations</dd>
+                        
+                        <dt>JSON</dt>
+                        <dd>JavaScript Object Notation - data format used for questions</dd>
+                        
+                        <dt>localStorage</dt>
+                        <dd>Browser feature for saving data between sessions</dd>
+                    </dl>
+                </section>
+                
+                <section>
+                    <h2>Appendix: Screenshots</h2>
+                    
+                    <figure>
+                        <img src="../../assets/images/ScreenShot.jpg" alt="Organic Chemistry Quiz Game Screenshot" class="full-width-image">
+                        <figcaption>Organic Chemistry Quiz Game Screenshot</figcaption>
+                    </figure>
+                </section>
+            </article>
+        </main>
+    </div>
+    
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2023-2025 Organic Chemistry Quiz Project. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/documentation.js"></script>
+</body>
+</html>

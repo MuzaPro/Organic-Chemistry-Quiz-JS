@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Architecture | Organic Chemistry Quiz Documentation</title>
+    <link rel="stylesheet" href="../assets/css/documentation.css">
+    <link rel="icon" href="../../assets/images/favicon.svg">
+    <!-- Include Mermaid.js for rendering diagrams -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            mermaid.initialize({
+                startOnLoad: true,
+                theme: 'default',
+                securityLevel: 'loose'
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../../assets/images/favicon.svg" alt="Organic Chemistry Quiz">
+                    <span>Organic Chemistry Quiz JS</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../project/overview.html">Project</a></li>
+                    <li><a href="getting-started.html" class="active">Developers</a></li>
+                    <li><a href="../components/main-app.html">Components</a></li>
+                    <li><a href="../features/question-nav.html">Features</a></li>
+                    <li><a href="../contributing/how-to-contribute.html">Contributing</a></li>
+                    <li><a href="../resources/faq.html">Resources</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Developers</h3>
+            <ul>
+                <li><a href="getting-started.html">Getting Started</a></li>
+                <li><a href="environment.html">Development Environment</a></li>
+                <li><a href="workflow.html">Development Workflow</a></li>
+                <li><a href="architecture.html" class="active">Technical Architecture</a></li>
+                <li><a href="code-style.html">Code Style Guidelines</a></li>
+                <li><a href="testing.html">Testing Guidelines</a></li>
+                <li><a href="deployment.html">Deployment Process</a></li>
+            </ul>
+        </aside>
+        
+        <main class="content">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="getting-started.html">Developers</a></li>
+                    <li>Technical Architecture</li>
+                </ul>
+            </nav>
+            
+            <article>
+                <h1>Technical Architecture</h1>
+                
+                <div class="table-of-contents">
+                    <h3>Contents</h3>
+                    <!-- Automatically filled by JavaScript -->
+                </div>
+                
+                <section>
+                    <h2>System Architecture Overview</h2>
+                    
+                    <p>The Organic Chemistry Quiz Game uses a modular frontend architecture built with vanilla JavaScript. It follows component-based design principles without relying on a framework. The application is structured around several core modules that handle specific functionality domains, with clear separation of concerns and well-defined interfaces between components.</p>
+                    
+                    <p>The architecture prioritizes:</p>
+                    <ol>
+                        <li><strong>Modularity</strong>: Independent components with specific responsibilities</li>
+                        <li><strong>Maintainability</strong>: Clean code with consistent patterns</li>
+                        <li><strong>Performance</strong>: Optimized for smooth interactions</li>
+                        <li><strong>Extensibility</strong>: Easy to add new features and questions</li>
+                        <li><strong>Compatibility</strong>: Works across modern browsers and devices</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2>Architecture Diagram</h2>
+                    
+                    <p>This diagram shows the core structure of the application and how the different components interact:</p>
+                    
+                    <div class="diagram-container">
+                        <div class="mermaid">
+graph TD
+    A[index.html] --> B[app.js]
+    B --> C[quiz-engine.js]
+    B --> D[drag-drop.js]
+    B --> E[audio.js]
+    C --> F[questions.json]
+    D --> G[Hammer.js]
+    
+    subgraph Core Modules
+        B
+        C
+        D
+        E
+    end
+    
+    subgraph External Dependencies
+        G
+    end
+    
+    subgraph Data
+        F
+    end
+
+    %% Interactions
+    C --"Loads Questions"--> F
+    B --"Initializes"--> C
+    B --"Initializes"--> D
+    B --"Initializes"--> E
+    D --"Touch Events"--> G
+                        </div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Design Patterns</h2>
+                    
+                    <p>The application implements several key design patterns:</p>
+                    
+                    <h3>1. Module Pattern</h3>
+                    <p>Each core JavaScript file uses the Immediately Invoked Function Expression (IIFE) pattern to create private scopes and expose only intended public methods:</p>
+                    
+                    <div class="code-example">
+                        <pre><code>const ModuleName = (() => {
+    // Private variables and functions
+    let privateVar = 'value';
+    
+    function privateFunction() {
+        // Implementation
+    }
+    
+    // Public API
+    return {
+        publicMethod1: function() { /* Implementation */ },
+        publicMethod2: function() { /* Implementation */ }
+    };
+})();</code></pre>
+                    </div>
+                    
+                    <p>This pattern enables encapsulation and prevents global namespace pollution.</p>
+                    
+                    <h3>2. Event-Driven Architecture</h3>
+                    <p>The application uses a DOM event-driven approach for handling user interactions and component communication:</p>
+                    
+                    <div class="code-example">
+                        <pre><code>// Example: Event listeners for user interactions
+submitButton.addEventListener('click', handleSubmit);
+nextButton.addEventListener('click', handleNextQuestion);</code></pre>
+                    </div>
+                    
+                    <h3>3. Factory Pattern</h3>
+                    <p>Used for creating standardized objects like questions and reagents:</p>
+                    
+                    <div class="code-example">
+                        <pre><code>// Example: Creating reagent cards
+reagentBank.forEach(reagent => {
+    const reagentCard = document.createElement('div');
+    reagentCard.className = 'reagent-card';
+    reagentCard.setAttribute('data-id', reagent.id);
+    // Additional setup...
+});</code></pre>
+                    </div>
+                    
+                    <h3>4. State Management</h3>
+                    <p>Each module maintains its own state, with clear interfaces for state changes:</p>
+                    
+                    <div class="code-example">
+                        <pre><code>// Example: QuizEngine manages question state
+const QuizEngine = (() => {
+    // Private state
+    let questions = [];
+    let currentQuestionIndex = 0;
+    let score = 0;
+    
+    // Public methods to interact with state
+    return {
+        getCurrentQuestion: () => questions[currentQuestionIndex],
+        getScore: () => score
+        // Additional methods...
+    };
+})();</code></pre>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Component Interactions</h2>
+                    
+                    <p>The application consists of several core components that interact as follows:</p>
+                    
+                    <h3>1. Main Application (<code>app.js</code>)</h3>
+                    <ul>
+                        <li>Acts as the controller and entry point</li>
+                        <li>Initializes all other modules</li>
+                        <li>Handles high-level user interactions</li>
+                        <li>Orchestrates communication between modules</li>
+                    </ul>
+                    
+                    <h3>2. Quiz Engine (<code>quiz-engine.js</code>)</h3>
+                    <ul>
+                        <li>Loads and manages question data</li>
+                        <li>Tracks user progress and score</li>
+                        <li>Evaluates answers</li>
+                        <li>Provides question navigation</li>
+                    </ul>
+                    
+                    <h3>3. Drag and Drop Handler (<code>drag-drop.js</code>)</h3>
+                    <ul>
+                        <li>Manages drag-and-drop interactions</li>
+                        <li>Handles both mouse and touch events</li>
+                        <li>Maintains state of dragged elements</li>
+                        <li>Evaluates drop targets</li>
+                    </ul>
+                    
+                    <h3>4. Audio Manager (<code>audio.js</code>)</h3>
+                    <ul>
+                        <li>Manages sound effects</li>
+                        <li>Handles mute state</li>
+                        <li>Ensures compatibility with browser audio restrictions</li>
+                        <li>Persists user audio preferences</li>
+                    </ul>
+                    
+                    <h3>Interaction Flow Example</h3>
+                    <ol>
+                        <li>User initiates drag on a reagent card</li>
+                        <li><code>drag-drop.js</code> handles the drag event and plays a pickup sound via <code>audio.js</code></li>
+                        <li>User drops the card in a drop zone</li>
+                        <li><code>drag-drop.js</code> places the reagent in the zone and plays a drop sound</li>
+                        <li>User clicks submit</li>
+                        <li><code>app.js</code> gets drop zone contents from <code>drag-drop.js</code></li>
+                        <li><code>app.js</code> sends answer to <code>quiz-engine.js</code> for validation</li>
+                        <li>Based on the result, <code>app.js</code> plays correct/incorrect sound via <code>audio.js</code></li>
+                        <li><code>app.js</code> updates the UI and enables/disables appropriate controls</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2>Data Flow</h2>
+                    
+                    <p>This diagram visualizes the data flow between components during typical user interactions:</p>
+                    
+                    <div class="diagram-container">
+                        <div class="mermaid">
+sequenceDiagram
+    participant HTML as DOM
+    participant App as app.js
+    participant Quiz as quiz-engine.js
+    participant DragDrop as drag-drop.js
+    participant Audio as audio.js
+    participant Data as questions.json
+    
+    HTML->>App: DOMContentLoaded
+    App->>Audio: initialize()
+    App->>Quiz: loadQuestions()
+    Quiz->>Data: fetch()
+    Data-->>Quiz: question data
+    Quiz-->>App: questions loaded
+    App->>Quiz: loadQuestion(0)
+    Quiz-->>App: current question
+    App->>HTML: update UI
+    App->>DragDrop: initialize()
+    
+    Note over HTML,DragDrop: User Interaction
+    HTML->>DragDrop: dragstart
+    DragDrop->>Audio: play('pickup')
+    HTML->>DragDrop: drop
+    DragDrop->>Audio: play('drop')
+    HTML->>App: click submit
+    App->>DragDrop: getDropZoneContent()
+    DragDrop-->>App: drop zone content
+    App->>Quiz: checkAnswer()
+    Quiz-->>App: result
+    App->>Audio: play('correct'/'wrong')
+    App->>HTML: update feedback
+                        </div>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Module Dependencies</h2>
+                    
+                    <p>This diagram shows the dependencies between the various modules in the application:</p>
+                    
+                    <div class="diagram-container">
+                        <div class="mermaid">
+graph LR
+    A[app.js] --> B[quiz-engine.js]
+    A --> C[drag-drop.js]
+    A --> D[audio.js]
+    C --> D
+    A --> E[DOM API]
+    B --> F[Fetch API]
+    C --> G[Hammer.js]
+    C --> E
+    D --> H[Web Audio API]
+    B --> I[questions.json]
+                        </div>
+                    </div>
+                    
+                    <h3>Key Dependencies:</h3>
+                    <ul>
+                        <li><strong>app.js</strong>: Depends on all core modules</li>
+                        <li><strong>quiz-engine.js</strong>: Depends on questions.json data</li>
+                        <li><strong>drag-drop.js</strong>: Depends on Hammer.js for touch events and audio.js for sound effects</li>
+                        <li><strong>audio.js</strong>: No dependencies on other application modules</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>State Management</h2>
+                    
+                    <p>The application uses module-scoped state management rather than a global state, with each module responsible for a specific domain:</p>
+                    
+                    <h3>Quiz Engine State</h3>
+                    <ul>
+                        <li>Questions array</li>
+                        <li>Current question index</li>
+                        <li>User score</li>
+                        <li>Quiz completion status</li>
+                    </ul>
+                    
+                    <h3>Drag and Drop State</h3>
+                    <ul>
+                        <li>Dragging enabled/disabled flag</li>
+                        <li>Current drag element</li>
+                        <li>Drop zone contents</li>
+                        <li>Touch dragging state (for mobile)</li>
+                    </ul>
+                    
+                    <h3>Audio System State</h3>
+                    <ul>
+                        <li>Sound muted state (persisted in localStorage)</li>
+                        <li>Sound definitions</li>
+                        <li>Play states</li>
+                    </ul>
+                    
+                    <h3>State Transitions Example:</h3>
+                    <ol>
+                        <li>Initial state: Question loaded, dragging enabled, dropzones empty</li>
+                        <li>User drags reagent: Current drag element updated</li>
+                        <li>User drops in zone: Drop zone content updated</li>
+                        <li>User submits answer: Answer evaluated, score updated</li>
+                        <li>Correct answer: Dragging disabled, next button shown</li>
+                        <li>Next question: Question index incremented, UI reset, dragging enabled</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2>Technical Decisions</h2>
+                    
+                    <h3>1. Vanilla JS vs. Framework</h3>
+                    <p>The application uses vanilla JavaScript without a framework to:</p>
+                    <ul>
+                        <li>Minimize dependencies</li>
+                        <li>Maintain full control over implementation</li>
+                        <li>Reduce bundle size</li>
+                        <li>Simplify deployment</li>
+                    </ul>
+                    
+                    <h3>2. Module Pattern vs. ES Modules</h3>
+                    <p>The application uses the module pattern (IIFEs) rather than ES modules to:</p>
+                    <ul>
+                        <li>Ensure broader browser compatibility</li>
+                        <li>Simplify deployment without build tools</li>
+                        <li>Maintain encapsulation while allowing controlled access between modules</li>
+                    </ul>
+                    
+                    <h3>3. Hammer.js for Touch</h3>
+                    <p>Hammer.js was chosen for touch event handling to:</p>
+                    <ul>
+                        <li>Provide consistent touch behavior across devices</li>
+                        <li>Abstract complex touch gesture handling</li>
+                        <li>Support tap, pan, and other touch interactions</li>
+                    </ul>
+                    
+                    <h3>4. Client-Side Only Architecture</h3>
+                    <p>The application operates entirely client-side to:</p>
+                    <ul>
+                        <li>Enable deployment on GitHub Pages</li>
+                        <li>Eliminate server dependencies</li>
+                        <li>Allow offline use after initial load</li>
+                        <li>Simplify architecture</li>
+                    </ul>
+                    
+                    <h3>5. Custom Audio Management</h3>
+                    <p>A custom audio system was implemented to:</p>
+                    <ul>
+                        <li>Handle browser autoplay restrictions</li>
+                        <li>Provide consistent sound behavior</li>
+                        <li>Enable user control over sound</li>
+                        <li>Improve mobile compatibility</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Related Resources</h2>
+                    <ul>
+                        <li><a href="../components/main-app.html">Main Application Component</a></li>
+                        <li><a href="../components/quiz-engine.html">Quiz Engine Component</a></li>
+                        <li><a href="../components/drag-drop.html">Drag and Drop System</a></li>
+                        <li><a href="../components/audio.html">Audio System</a></li>
+                        <li><a href="workflow.html">Development Workflow</a></li>
+                    </ul>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 Organic Chemistry Quiz JS Project</p>
+            <p>
+                <a href="https://github.com/muzapro/Organic-Chemistry-Quiz-JS" target="_blank">GitHub Repository</a>
+            </p>
+        </div>
+    </footer>
+    
+    <script src="../assets/js/documentation.js"></script>
+</body>
+</html>

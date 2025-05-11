@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started | Organic Chemistry Quiz Documentation</title>
+    <link rel="stylesheet" href="../assets/css/documentation.css">
+    <link rel="icon" href="../../assets/images/favicon.svg">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../../assets/images/favicon.svg" alt="Organic Chemistry Quiz">
+                    <span>Organic Chemistry Quiz JS</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../project/overview.html">Project</a></li>
+                    <li><a href="getting-started.html" class="active">Developers</a></li>
+                    <li><a href="../components/main-app.html">Components</a></li>
+                    <li><a href="../features/question-nav.html">Features</a></li>
+                    <li><a href="../contributing/how-to-contribute.html">Contributing</a></li>
+                    <li><a href="../resources/faq.html">Resources</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Developers</h3>
+            <ul>
+                <li><a href="getting-started.html" class="active">Getting Started</a></li>
+                <li><a href="environment.html">Development Environment</a></li>
+                <li><a href="workflow.html">Development Workflow</a></li>
+                <li><a href="code-style.html">Code Style Guidelines</a></li>
+                <li><a href="testing.html">Testing Guidelines</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="deployment.html">Deployment Process</a></li>
+            </ul>
+        </aside>
+        
+        <main class="content">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="getting-started.html">Developers</a></li>
+                    <li>Getting Started</li>
+                </ul>
+            </nav>
+            
+            <article>
+                <h1>Getting Started</h1>
+                
+                <div class="table-of-contents">
+                    <h3>Contents</h3>
+                    <!-- Automatically filled by JavaScript -->
+                </div>
+                
+                <section>
+                    <h2>Introduction</h2>
+                    
+                    <p>This guide will help you set up your development environment and understand the workflow for contributing to the Organic Chemistry Quiz Game project.</p>
+                    
+                    <div class="callout">
+                        <p>Whether you're looking to contribute new features, fix bugs, or expand the question database, this guide will help you get started quickly with the project.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Prerequisites</h2>
+                    
+                    <p>Before you begin, make sure you have the following installed:</p>
+                    <ul>
+                        <li>Git</li>
+                        <li>A modern web browser (Chrome, Firefox, Safari, or Edge)</li>
+                        <li>A code editor (VS Code recommended)</li>
+                        <li>Basic understanding of HTML, CSS, and JavaScript</li>
+                        <li>[Optional] Node.js (for local server)</li>
+                        <li>[Optional] Python (for local server alternative)</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Development Environment</h2>
+                    
+                    <h3>Recommended Tools</h3>
+                    
+                    <ol>
+                        <li>
+                            <strong>VS Code</strong> - Primary IDE with the following extensions:
+                            <ul>
+                                <li>Live Server</li>
+                                <li>Prettier - Code formatter</li>
+                                <li>ESLint</li>
+                                <li>HTML CSS Support</li>
+                                <li>JavaScript (ES6) code snippets</li>
+                                <li>Markdown All in One</li>
+                                <li>GitHub Copilot (if available)</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Browser DevTools</strong> - For debugging and testing
+                            <ul>
+                                <li>Chrome DevTools or Firefox Developer Tools</li>
+                                <li>Mobile device emulation for responsive testing</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Git</strong> - For version control
+                            <ul>
+                                <li>GitHub Desktop or GitKraken (optional GUI clients)</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Local Server</strong> - For development
+                            <ul>
+                                <li>VS Code Live Server extension</li>
+                                <li>Node.js <code>npx serve</code> command</li>
+                                <li>Python's <code>python -m http.server</code></li>
+                            </ul>
+                        </li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2>Project Setup</h2>
+                    
+                    <h3>Cloning the Repository</h3>
+                    
+                    <ol>
+                        <li>
+                            <p>Clone the repository:</p>
+                            <div class="code-example">
+                                <pre><code>git clone https://github.com/your-username/Organic-Chemistry-Quiz-JS.git</code></pre>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <p>Navigate to the project directory:</p>
+                            <div class="code-example">
+                                <pre><code>cd organic-chemistry-quiz</code></pre>
+                            </div>
+                        </li>
+                    </ol>
+                    
+                    <h3>Setting up VS Code</h3>
+                    
+                    <ol>
+                        <li>
+                            <p>Open the project in VS Code:</p>
+                            <div class="code-example">
+                                <pre><code>code .</code></pre>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <p>Configure workspace settings:</p>
+                            <p>Create <code>.vscode/settings.json</code> with:</p>
+                            <div class="code-example">
+                                <pre><code>{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "files.eol": "\n"
+}</code></pre>
+                            </div>
+                        </li>
+                    </ol>
+                    
+                    <h3>Running the Project</h3>
+                    
+                    <ol>
+                        <li>
+                            <p>Using VS Code Live Server:</p>
+                            <ul>
+                                <li>Right-click on <code>index.html</code></li>
+                                <li>Select "Open with Live Server"</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <p>Using Node.js:</p>
+                            <div class="code-example">
+                                <pre><code>npx serve</code></pre>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <p>Using Python:</p>
+                            <div class="code-example">
+                                <pre><code>python -m http.server</code></pre>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <p>Access the application at:</p>
+                            <ul>
+                                <li>http://localhost:5500/index.html (Live Server)</li>
+                                <li>http://localhost:3000 (Node.js)</li>
+                                <li>http://localhost:8000 (Python)</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2>Project Structure Overview</h2>
+                    
+                    <p>The project follows a modular structure to separate concerns:</p>
+                    
+                    <div class="code-example">
+                        <pre><code>organic-chemistry-quiz/
+├── index.html              # Main entry point
+├── css/
+│   └── styles.css          # Main stylesheet
+├── js/
+│   ├── app.js              # Main application controller
+│   ├── quiz-engine.js      # Quiz functionality
+│   ├── drag-drop.js        # Drag & drop functionality
+│   └── audio.js            # Audio system
+├── data/
+│   └── questions.json      # Question database
+└── assets/
+    ├── images/             # UI images and icons
+    ├── molecules/          # SVG molecule structures
+    └── sound/              # Audio files</code></pre>
+                    </div>
+                    
+                    <div class="callout callout-info">
+                        <p>For more detailed information about the project structure, refer to the <a href="../project/structure.html">Project Structure</a> page.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Next Steps</h2>
+                    
+                    <p>Now that you have the project set up locally, you can explore:</p>
+                    
+                    <ul>
+                        <li><a href="workflow.html">Development Workflow</a> - Learn the branching strategy and how to contribute</li>
+                        <li><a href="code-style.html">Code Style Guidelines</a> - Understand the coding standards</li>
+                        <li><a href="../components/main-app.html">Components</a> - Explore the main components of the application</li>
+                        <li><a href="../contributing/adding-questions.html">Adding Questions</a> - Learn how to expand the question database</li>
+                    </ul>
+                    
+                    <div class="callout callout-tip">
+                        <h3>Quick Tip</h3>
+                        <p>Opening browser developer tools (F12 or Ctrl+Shift+I) while running the app will help you understand the component interactions and troubleshoot any issues.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Common Issues</h2>
+                    
+                    <h3>CORS Errors</h3>
+                    <p>If you see CORS errors in the console, make sure you're running the app through a local server and not opening the HTML file directly.</p>
+                    
+                    <h3>JavaScript Not Loading</h3>
+                    <p>Check that all script references in index.html are correct and that no JavaScript errors are occurring in the console.</p>
+                    
+                    <h3>Audio Not Working</h3>
+                    <p>Browser autoplay restrictions may prevent audio from playing automatically. This is expected behavior, and the application includes fallbacks.</p>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 Organic Chemistry Quiz JS Project</p>
+            <p>
+                <a href="https://github.com/muzapro/Organic-Chemistry-Quiz-JS" target="_blank">GitHub Repository</a>
+            </p>
+        </div>
+    </footer>
+    
+    <script src="../assets/js/documentation.js"></script>
+</body>
+</html>

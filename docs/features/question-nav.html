@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Navigation | Organic Chemistry Quiz Documentation</title>
+    <link rel="stylesheet" href="../assets/css/documentation.css">
+    <link rel="icon" href="../../assets/images/favicon.svg">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../../assets/images/favicon.svg" alt="Organic Chemistry Quiz">
+                    <span>Organic Chemistry Quiz JS</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../project/overview.html">Project</a></li>
+                    <li><a href="../developers/getting-started.html">Developers</a></li>
+                    <li><a href="../components/main-app.html">Components</a></li>
+                    <li><a href="question-nav.html" class="active">Features</a></li>
+                    <li><a href="../contributing/how-to-contribute.html">Contributing</a></li>
+                    <li><a href="../resources/faq.html">Resources</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Features</h3>
+            <ul>
+                <li><a href="question-nav.html" class="active">Question Navigation</a></li>
+                <li><a href="audio-system.html">Audio System</a></li>
+                <li><a href="intro-screen.html">Introduction Screen</a></li>
+            </ul>
+        </aside>
+        
+        <main class="content">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="question-nav.html">Features</a></li>
+                    <li>Question Navigation</li>
+                </ul>
+            </nav>
+            
+            <article>
+                <h1>Feature: Question Navigation</h1>
+                
+                <div class="feature-meta">
+                    <p><strong>Last Updated:</strong> April 12, 2025</p>
+                    <p><strong>Related Tickets:</strong> #10 (Next Question Option), #27 (Button Enhancement), #27.1 (UX Fix)</p>
+                </div>
+                
+                <div class="table-of-contents">
+                    <h3>Contents</h3>
+                    <!-- Automatically filled by JavaScript -->
+                </div>
+                
+                <section>
+                    <h2>Overview</h2>
+                    <p>The Question Navigation feature allows users to progress through the quiz efficiently, with a clear visual hierarchy that guides them through the correct interaction sequence. The system uses visual state management to indicate the primary action (Submit) while maintaining the option to proceed to the next question.</p>
+                </section>
+                
+                <section>
+                    <h2>Technical Implementation</h2>
+                    <ul>
+                        <li>Uses visual state management to guide user interactions</li>
+                        <li>Integrates with the quiz engine's question management system</li>
+                        <li>Maintains score tracking system integrity</li>
+                        <li>Preserves accessibility through semantic HTML and ARIA attributes</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>User Experience</h2>
+                    
+                    <h3>Initial Question State</h3>
+                    <ul>
+                        <li>Submit button appears prominent (primary styling, enhanced weight)</li>
+                        <li>Next Question button appears subdued (secondary styling, reduced opacity)</li>
+                    </ul>
+                    
+                    <div class="callout">
+                        <p>The visual hierarchy guides users to first attempt to answer the question before proceeding.</p>
+                    </div>
+                    
+                    <h3>After Submit Click</h3>
+                    <ul>
+                        <li>Next Question button transitions to primary styling</li>
+                        <li>Clear visual feedback indicates progression path</li>
+                        <li>Submit button disables after correct answers</li>
+                        <li>Error feedback shown for invalid submissions</li>
+                    </ul>
+                    
+                    <h3>Next Question Transition</h3>
+                    <ul>
+                        <li>Resets button states for new question</li>
+                        <li>Maintains consistent interaction pattern</li>
+                        <li>Preserves user's mental model of quiz flow</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Button States</h2>
+                    
+                    <h3>Submit Button</h3>
+                    <ul>
+                        <li>Primary styling with enhanced visual weight</li>
+                        <li>Box shadow for depth</li>
+                        <li>Disabled state after correct answers</li>
+                        <li>Clear active/hover states</li>
+                    </ul>
+                    
+                    <h3>Next Question Button</h3>
+                    <ul>
+                        <li>Secondary styling initially (reduced opacity)</li>
+                        <li>Transitions to primary after submission</li>
+                        <li>Animated arrow icon indicates direction</li>
+                        <li>Resets to secondary on new questions</li>
+                    </ul>
+                    
+                    <div class="callout callout-info">
+                        <h4>Implementation Note</h4>
+                        <p>The button state transitions are implemented using CSS classes that are toggled via JavaScript event handlers in the quiz engine.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Accessibility Features</h2>
+                    <ul>
+                        <li>Semantic button markup</li>
+                        <li>Clear focus indicators</li>
+                        <li>Screen reader announcements</li>
+                        <li>Keyboard navigation support</li>
+                        <li>ARIA attributes for state changes</li>
+                    </ul>
+                    
+                    <div class="code-example">
+                        <pre><code>&lt;button 
+  id="submit-btn" 
+  class="btn btn-primary" 
+  aria-disabled="false"
+  aria-label="Submit your answer"&gt;
+  Submit
+&lt;/button&gt;
+
+&lt;button 
+  id="next-btn" 
+  class="btn btn-secondary" 
+  aria-disabled="false"
+  aria-label="Go to next question"&gt;
+  Next Question 
+  &lt;img src="assets/images/arrow-right.svg" alt="" aria-hidden="true"&gt;
+&lt;/button&gt;</code></pre>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Configuration Options</h2>
+                    <ul>
+                        <li>Button styling configurable via CSS custom properties</li>
+                        <li>Visual state transitions customizable</li>
+                        <li>Feedback message customization</li>
+                        <li>Flexible layout options for different screen sizes</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Known Limitations</h2>
+                    <ul>
+                        <li>No option to review previous questions</li>
+                        <li>Cannot skip questions without submitting</li>
+                        <li>Must complete quiz in sequential order</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Future Enhancements</h2>
+                    <ul>
+                        <li>Consider adding question review mode</li>
+                        <li>Add progress persistence</li>
+                        <li>Implement question bookmarking</li>
+                        <li>Consider tutorial overlay for first-time users</li>
+                    </ul>
+                </section>
+                
+                <div class="callout callout-tip">
+                    <h4>Tip for Developers</h4>
+                    <p>When implementing a new feature that interacts with question navigation, make sure to respect the existing button state management to maintain a consistent user experience.</p>
+                </div>
+                
+                <hr>
+                
+                <div class="related-content">
+                    <h3>Related Documentation</h3>
+                    <ul>
+                        <li><a href="../components/quiz-engine.html">Quiz Engine Component</a></li>
+                        <li><a href="../components/main-app.html">Main App Component</a></li>
+                    </ul>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 Organic Chemistry Quiz JS Project</p>
+            <p>
+                <a href="https://github.com/muzapro/Organic-Chemistry-Quiz-JS" target="_blank">GitHub Repository</a>
+            </p>
+        </div>
+    </footer>
+    
+    <script src="../assets/js/documentation.js"></script>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Structure | Organic Chemistry Quiz Documentation</title>
+    <link rel="stylesheet" href="../assets/css/documentation.css">
+    <link rel="icon" href="../../assets/images/favicon.svg">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../../assets/images/favicon.svg" alt="Organic Chemistry Quiz">
+                    <span>Organic Chemistry Quiz JS</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="overview.html" class="active">Project</a></li>
+                    <li><a href="../developers/getting-started.html">Developers</a></li>
+                    <li><a href="../components/main-app.html">Components</a></li>
+                    <li><a href="../features/question-nav.html">Features</a></li>
+                    <li><a href="../contributing/how-to-contribute.html">Contributing</a></li>
+                    <li><a href="../resources/faq.html">Resources</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Project</h3>
+            <ul>
+                <li><a href="overview.html">Overview</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="technologies.html">Technologies</a></li>
+                <li><a href="structure.html" class="active">Project Structure</a></li>
+                <li><a href="roadmap.html">Roadmap</a></li>
+            </ul>
+        </aside>
+        
+        <main class="content">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="overview.html">Project</a></li>
+                    <li>Project Structure</li>
+                </ul>
+            </nav>
+            
+            <article>
+                <h1>Organic Chemistry Quiz Game: Project Structure</h1>
+                
+                <div class="table-of-contents">
+                    <h3>Contents</h3>
+                    <!-- Automatically filled by JavaScript -->
+                </div>
+                
+                <section>
+                    <h2>Directory Structure Overview</h2>
+                    
+                    <p>The Organic Chemistry Quiz Game follows a clear directory structure organized by file type and function:</p>
+                    
+                    <div class="code-example">
+                        <pre><code>organic-chemistry-quiz/
+│
+├── index.html              # Main HTML entry point
+├── css/
+│   └── styles.css          # Main stylesheet
+│
+├── js/
+│   ├── app.js              # Main application logic
+│   ├── quiz-engine.js      # Quiz functionality
+│   ├── drag-drop.js        # Drag and drop functionality
+│   └── audio.js            # Audio system
+│
+├── data/
+│   └── questions.json      # Question database
+│
+├── assets/
+│   ├── images/             # UI images and icons
+│   ├── molecules/          # SVG files for molecule structures
+│   └── sound/              # Audio files for sound effects
+│
+├── docs/                   # Project documentation
+│   ├── technical/          # Technical documentation
+│   └── features/           # Feature-specific documentation
+│
+└── README.md               # Project overview</code></pre>
+                    </div>
+                    
+                    <p>This structure separates concerns, keeps related files together, and makes it easy to find and modify specific components of the application.</p>
+                </section>
+                
+                <section>
+                    <h2>Root Directory</h2>
+                    
+                    <p>The root directory contains:</p>
+                    
+                    <ul>
+                        <li>
+                            <strong>index.html</strong>: The main HTML file that serves as the entry point for the application.
+                            <ul>
+                                <li>Includes all necessary script and style references</li>
+                                <li>Contains the basic HTML structure</li>
+                                <li>Initializes the application when loaded</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>README.md</strong>: Project overview documentation with:
+                            <ul>
+                                <li>Brief description</li>
+                                <li>Features list</li>
+                                <li>Installation instructions</li>
+                                <li>Usage guidelines</li>
+                                <li>Project structure overview</li>
+                                <li>Contribution information</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>CSS Directory</h2>
+                    
+                    <p>The CSS directory contains styling resources:</p>
+                    
+                    <ul>
+                        <li>
+                            <strong>styles.css</strong>: The main stylesheet for the entire application
+                            <ul>
+                                <li>Uses CSS variables for theming (defined in the <code>:root</code> selector)</li>
+                                <li>Organized by component type</li>
+                                <li>Includes responsive design breakpoints</li>
+                                <li>Contains all animation and transition definitions</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Key Sections in styles.css</h3>
+                    <ol>
+                        <li>Base styles and variables</li>
+                        <li>Layout and container styles</li>
+                        <li>Quiz components (questions, reagents, reactions)</li>
+                        <li>Interactive element styles</li>
+                        <li>Feedback and notification styles</li>
+                        <li>Modal styles</li>
+                        <li>Responsive design adjustments</li>
+                        <li>Animation definitions</li>
+                        <li>Utility classes</li>
+                        <li>Accessibility overrides</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2>JavaScript Directory</h2>
+                    
+                    <p>The JavaScript directory contains the application logic divided into modular files:</p>
+                    
+                    <ul>
+                        <li>
+                            <strong>app.js</strong>: The main application script
+                            <ul>
+                                <li>Initializes the application</li>
+                                <li>Coordinates other modules</li>
+                                <li>Sets up event listeners</li>
+                                <li>Handles high-level application flow</li>
+                                <li>Manages user interactions with the quiz</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>quiz-engine.js</strong>: Handles quiz logic
+                            <ul>
+                                <li>Loads questions from the data file</li>
+                                <li>Tracks current question and progress</li>
+                                <li>Evaluates answers</li>
+                                <li>Manages question navigation</li>
+                                <li>Calculates and tracks score</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>drag-drop.js</strong>: Implements drag and drop functionality
+                            <ul>
+                                <li>Sets up drag events for reagent cards</li>
+                                <li>Manages drop zones</li>
+                                <li>Handles both mouse and touch interactions via Hammer.js</li>
+                                <li>Tracks the state of dragged elements</li>
+                                <li>Provides interfaces for checking drop zone contents</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>audio.js</strong>: Manages sound effects and audio preferences
+                            <ul>
+                                <li>Loads and plays sound effects</li>
+                                <li>Handles mute toggling and persistence</li>
+                                <li>Manages browser autoplay restrictions</li>
+                                <li>Provides error handling for audio playback</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Data Directory</h2>
+                    
+                    <p>The data directory contains structured data used by the application:</p>
+                    
+                    <ul>
+                        <li>
+                            <strong>questions.json</strong>: The question database
+                            <ul>
+                                <li>Defines all quiz questions</li>
+                                <li>Includes question text, reagents, and products</li>
+                                <li>Contains correct and incorrect feedback messages</li>
+                                <li>Includes detailed chemistry notes</li>
+                                <li>Follows a consistent structure for all questions</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Question Format</h3>
+                    <div class="code-example">
+                        <pre><code>{
+  "id": "q1",
+  "questionText": "Drag reactants to complete the following...",
+  "product": {
+    "name": "Product Name",
+    "formula": "Chemical Formula",
+    "imagePath": "assets/molecules/product.svg",
+    "textRepresentation": "Text Representation"
+  },
+  "reagents": [
+    // Array of reagent objects with similar structure
+  ],
+  "correctReagents": ["reagent-id-1", "reagent-id-2"],
+  "reactionType": "Reaction Type",
+  "correctFeedback": "Correct answer feedback",
+  "incorrectFeedback": "Incorrect answer feedback",
+  "chemistryNotes": "Detailed notes about the reaction"
+}</code></pre>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Assets Directory</h2>
+                    
+                    <p>The assets directory contains all static resources:</p>
+                    
+                    <h3>Images</h3>
+                    <ul>
+                        <li>Contains navigation icons</li>
+                        <li>UI elements like buttons and backgrounds</li>
+                        <li>Branding assets</li>
+                        <li>Screenshot for documentation</li>
+                    </ul>
+                    
+                    <h3>Molecules</h3>
+                    <ul>
+                        <li>Contains all molecular structure illustrations</li>
+                        <li>Follows consistent naming convention: <code>molecule-name.svg</code></li>
+                        <li>Organized by reaction type for easy reference</li>
+                        <li>Created and maintained with the custom Promatheus MolGen tool</li>
+                    </ul>
+                    
+                    <h3>Sound</h3>
+                    <ul>
+                        <li>Contains all sound effects used in the application</li>
+                        <li>Uses MP3 format for broad compatibility</li>
+                        <li>Follows consistent naming convention: <code>action_name.mp3</code></li>
+                        <li>Includes:
+                            <ul>
+                                <li><code>pickup_card.mp3</code>: Sound for picking up a reagent</li>
+                                <li><code>drop_card.mp3</code>: Sound for dropping a reagent</li>
+                                <li><code>correct_answer.mp3</code>: Sound for correct answers</li>
+                                <li><code>wrong_answer.mp3</code>: Sound for incorrect answers</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <div class="callout callout-info">
+                        <p>All assets are optimized for web performance, with SVG format used for scalable graphics and compressed audio files for quick loading.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Documentation Directory</h2>
+                    
+                    <p>The docs directory contains all project documentation:</p>
+                    
+                    <ul>
+                        <li>
+                            <strong>technical/</strong>: Technical documentation
+                            <ul>
+                                <li>Contains architecture and component documentation</li>
+                                <li>Includes development guides</li>
+                                <li>Technical specifications</li>
+                                <li>Code standards and conventions</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>features/</strong>: Feature-specific documentation
+                            <ul>
+                                <li>Detailed documentation for specific features</li>
+                                <li>Includes implementation details</li>
+                                <li>Usage guidelines</li>
+                                <li>Feature limitations and future enhancements</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
+                    <h3>Key Documentation Files</h3>
+                    <ul>
+                        <li><code>audio-system.md</code>: Documentation for the audio feedback system</li>
+                        <li><code>question-navigation.md</code>: Documentation for the question navigation system</li>
+                        <li><code>touch-events.md</code>: Documentation for mobile touch support</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>File Naming Conventions</h2>
+                    
+                    <p>The project follows these naming conventions:</p>
+                    
+                    <ol>
+                        <li><strong>HTML Files</strong>: Lowercase with hyphens (e.g., <code>index.html</code>)</li>
+                        <li><strong>CSS Files</strong>: Lowercase with hyphens (e.g., <code>styles.css</code>)</li>
+                        <li><strong>JavaScript Files</strong>: Camel case with hyphens for functional separation (e.g., <code>quiz-engine.js</code>)</li>
+                        <li><strong>JSON Files</strong>: Lowercase with hyphens (e.g., <code>questions.json</code>)</li>
+                        <li><strong>Image Files</strong>: Lowercase with hyphens (e.g., <code>molecule-name.svg</code>)</li>
+                        <li><strong>Audio Files</strong>: Lowercase with underscores for clarity (e.g., <code>pickup_card.mp3</code>)</li>
+                        <li><strong>Documentation Files</strong>: Lowercase with hyphens (e.g., <code>audio-system.md</code>)</li>
+                    </ol>
+                </section>
+                
+                <section>
+                    <h2>Organization Principles</h2>
+                    
+                    <h3>1. Separation of Concerns</h3>
+                    <ul>
+                        <li>HTML for structure</li>
+                        <li>CSS for presentation</li>
+                        <li>JavaScript for behavior</li>
+                        <li>JSON for data</li>
+                    </ul>
+                    
+                    <h3>2. Modularity</h3>
+                    <ul>
+                        <li>Each JavaScript file has a specific responsibility</li>
+                        <li>Components communicate through well-defined interfaces</li>
+                        <li>Minimal dependencies between modules</li>
+                    </ul>
+                    
+                    <h3>3. Progressive Enhancement</h3>
+                    <ul>
+                        <li>Core functionality works without advanced features</li>
+                        <li>Enhanced experience with JavaScript enabled</li>
+                        <li>Accessibility considerations throughout</li>
+                    </ul>
+                    
+                    <h3>4. Resource Optimization</h3>
+                    <ul>
+                        <li>Small, focused files</li>
+                        <li>SVG for scalable graphics</li>
+                        <li>Minimized asset sizes</li>
+                        <li>Efficient code patterns</li>
+                    </ul>
+                    
+                    <h3>5. Consistent Structure</h3>
+                    <ul>
+                        <li>Predictable file locations</li>
+                        <li>Standard naming conventions</li>
+                        <li>Logical grouping of related files</li>
+                        <li>Clear separation of application code and assets</li>
+                    </ul>
+                    
+                    <h3>6. Documentation Integration</h3>
+                    <ul>
+                        <li>Documentation alongside code</li>
+                        <li>Feature-specific documentation</li>
+                        <li>Technical and non-technical documentation</li>
+                        <li>Maintained with code changes</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Directory Structure Diagram</h2>
+                    
+                    <div class="code-example">
+                        <pre><code>organic-chemistry-quiz-js/
+├── assets/
+│   ├── images/             # UI images, icons, and design elements
+│   │   ├── backgrounds/
+│   │   └── Tabler-Icons_files/
+│   ├── molecules/          # SVG files of chemical structures
+│   │   └── [many SVG files]
+│   └── sound/              # Audio effect files
+│       ├── correct_answer.mp3
+│       ├── drop_card.mp3
+│       ├── pickup_card.mp3
+│       └── wrong_answer.mp3
+├── css/
+│   └── styles.css          # Main stylesheet
+├── data/
+│   ├── questions.json      # Question database
+│   └── Old-versions/       # Archive of previous data versions
+├── docs/                   # Documentation
+│   ├── assets/             # Documentation-specific assets
+│   ├── components/         # Component documentation
+│   ├── contributing/       # Contribution guides
+│   ├── developers/         # Developer guides
+│   ├── features/           # Feature documentation
+│   ├── implementations/    # Implementation notes
+│   ├── project/            # Project overview docs
+│   └── resources/          # Additional resources
+├── js/
+│   ├── app.js              # Main application controller
+│   ├── audio.js            # Audio system
+│   ├── drag-drop.js        # Drag and drop functionality
+│   └── quiz-engine.js      # Quiz logic
+├── tickets/                # Project management
+│   ├── back_log/           # Pending tickets
+│   ├── closed/             # Completed tickets
+│   └── Research/           # Research notes
+├── index.html              # Main entry point
+├── LICENSE                 # License information
+└── README.md               # Project overview</code></pre>
+                    </div>
+                </section>
+                
+                <div class="callout callout-tip">
+                    <h3>Best Practice</h3>
+                    <p>When contributing to this project, make sure to follow the existing structure and naming conventions to maintain consistency across the codebase.</p>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 Organic Chemistry Quiz JS Project</p>
+            <p>
+                <a href="https://github.com/muzapro/Organic-Chemistry-Quiz-JS" target="_blank">GitHub Repository</a>
+            </p>
+        </div>
+    </footer>
+    
+    <script src="../assets/js/documentation.js"></script>
+</body>
+</html>

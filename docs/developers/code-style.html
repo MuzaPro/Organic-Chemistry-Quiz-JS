@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Style Guidelines | Organic Chemistry Quiz Documentation</title>
+    <link rel="stylesheet" href="../assets/css/documentation.css">
+    <link rel="icon" href="../../assets/images/favicon.svg">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../../assets/images/favicon.svg" alt="Organic Chemistry Quiz">
+                    <span>Organic Chemistry Quiz JS</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../project/overview.html">Project</a></li>
+                    <li><a href="getting-started.html" class="active">Developers</a></li>
+                    <li><a href="../components/main-app.html">Components</a></li>
+                    <li><a href="../features/question-nav.html">Features</a></li>
+                    <li><a href="../contributing/how-to-contribute.html">Contributing</a></li>
+                    <li><a href="../resources/faq.html">Resources</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Developers</h3>
+            <ul>
+                <li><a href="getting-started.html">Getting Started</a></li>
+                <li><a href="environment.html">Development Environment</a></li>
+                <li><a href="workflow.html">Development Workflow</a></li>
+                <li><a href="code-style.html" class="active">Code Style Guidelines</a></li>
+                <li><a href="testing.html">Testing Guidelines</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="deployment.html">Deployment Process</a></li>
+            </ul>
+        </aside>
+        
+        <main class="content">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="getting-started.html">Developers</a></li>
+                    <li>Code Style Guidelines</li>
+                </ul>
+            </nav>
+            
+            <article>
+                <h1>Code Style Guidelines</h1>
+                
+                <div class="table-of-contents">
+                    <h3>Contents</h3>
+                    <!-- Automatically filled by JavaScript -->
+                </div>
+                
+                <section>
+                    <h2>Introduction</h2>
+                    
+                    <p>Consistent code style throughout the Organic Chemistry Quiz project helps to maintain readability, reduce errors, and make collaboration easier. This document outlines the coding standards and practices that all contributors should follow.</p>
+                    
+                    <div class="callout">
+                        <p>Following these guidelines ensures that the codebase remains consistent, maintainable, and easier for all contributors to understand.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>HTML Guidelines</h2>
+                    
+                    <ul>
+                        <li>Use semantic HTML elements</li>
+                        <li>Include appropriate ARIA attributes for accessibility</li>
+                        <li>Keep markup clean and properly indented</li>
+                        <li>Use HTML5 doctype</li>
+                    </ul>
+                    
+                    <div class="code-example">
+                        <pre><code>&lt;section class="quiz-section">
+  &lt;h2>Question&lt;/h2>
+  &lt;div class="question-content" aria-live="polite">
+    &lt;p id="question-text">Question text goes here&lt;/p>
+  &lt;/div>
+&lt;/section></code></pre>
+                    </div>
+                    
+                    <h3>Best Practices</h3>
+                    <ul>
+                        <li>Use classes for styling and JavaScript hooks</li>
+                        <li>Add descriptive alt text to images</li>
+                        <li>Group related form elements with fieldset</li>
+                        <li>Keep HTML structure logically nested</li>
+                        <li>Use comments for complex sections</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>CSS Guidelines</h2>
+                    
+                    <ul>
+                        <li>Use the BEM (Block, Element, Modifier) naming convention</li>
+                        <li>Organize CSS by component</li>
+                        <li>Use CSS variables for theming</li>
+                        <li>Include responsive designs with media queries</li>
+                    </ul>
+                    
+                    <h3>BEM Naming Convention</h3>
+                    <div class="code-example">
+                        <pre><code>/* BEM Naming Example */
+.question-card {}           /* Block */
+.question-card__title {}    /* Element */
+.question-card__content {}  /* Element */
+.question-card--highlighted {} /* Modifier */</code></pre>
+                    </div>
+                    
+                    <h3>Using CSS Variables</h3>
+                    <div class="code-example">
+                        <pre><code>/* Variables in :root */
+:root {
+  --primary-color: #4361ee;
+  --secondary-color: #f8f9fa;
+}
+
+/* Using variables */
+.button {
+  background-color: var(--primary-color);
+}</code></pre>
+                    </div>
+                    
+                    <h3>Media Queries</h3>
+                    <div class="code-example">
+                        <pre><code>/* Mobile-first approach */
+.container {
+  width: 100%;
+  padding: 1rem;
+}
+
+/* Tablet breakpoint */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+    padding: 1.5rem;
+  }
+}
+
+/* Desktop breakpoint */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+    padding: 2rem;
+  }
+}</code></pre>
+                    </div>
+                    
+                    <h3>Best Practices</h3>
+                    <ul>
+                        <li>Use relative units (em, rem) for scalability</li>
+                        <li>Comment complex or non-intuitive CSS</li>
+                        <li>Minimize specificity conflicts</li>
+                        <li>Group related properties</li>
+                        <li>Maintain a consistent order of properties</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>JavaScript Guidelines</h2>
+                    
+                    <ul>
+                        <li>Use ES6+ features</li>
+                        <li>Follow the Module Pattern for encapsulation</li>
+                        <li>Use descriptive variable and function names</li>
+                        <li>Include JSDoc comments for functions</li>
+                        <li>Handle errors appropriately</li>
+                    </ul>
+                    
+                    <h3>Module Pattern</h3>
+                    <div class="code-example">
+                        <pre><code>const ModuleName = (() => {
+  // Private variables
+  let privateVar = 'value';
+  
+  // Private functions
+  function privateFunction() {
+    // Implementation
+  }
+  
+  // Public API
+  return {
+    publicMethod: function() {
+      // Use private variables/functions
+      return privateFunction();
+    },
+    
+    anotherPublicMethod: function(param) {
+      // Implementation
+    }
+  };
+})();</code></pre>
+                    </div>
+                    
+                    <h3>JSDoc Comments</h3>
+                    <div class="code-example">
+                        <pre><code>/**
+ * Check if the answer is correct
+ * @param {Array} userAnswer - Array of reagent IDs
+ * @returns {boolean} Whether the answer is correct
+ */
+const checkAnswer = (userAnswer) => {
+  try {
+    const currentQuestion = questions[currentQuestionIndex];
+    const correctAnswer = currentQuestion.correctReagents;
+    
+    // Sort both arrays to ensure order doesn't matter
+    const sortedUserAnswer = [...userAnswer].sort();
+    const sortedCorrectAnswer = [...correctAnswer].sort();
+    
+    return JSON.stringify(sortedUserAnswer) === JSON.stringify(sortedCorrectAnswer);
+  } catch (error) {
+    console.error('Error checking answer:', error);
+    return false;
+  }
+};</code></pre>
+                    </div>
+                    
+                    <h3>Error Handling</h3>
+                    <div class="code-example">
+                        <pre><code>function playSound(soundName) {
+  try {
+    if (!sounds[soundName]) {
+      throw new Error(`Sound "${soundName}" does not exist`);
+    }
+    
+    const sound = sounds[soundName];
+    sound.currentTime = 0;
+    
+    // Return a promise to handle mobile autoplay restrictions
+    return sound.play()
+      .catch(error => {
+        console.warn(`Sound playback failed: ${error.message}`);
+        // Graceful fallback - continue without sound
+      });
+  } catch (error) {
+    console.error('Error in playSound:', error);
+    // Return a resolved promise for consistent API
+    return Promise.resolve();
+  }
+}</code></pre>
+                    </div>
+                    
+                    <h3>Variable Naming</h3>
+                    <ul>
+                        <li>Use camelCase for variables and functions</li>
+                        <li>Use PascalCase for constructor functions and classes</li>
+                        <li>Use UPPER_SNAKE_CASE for constants</li>
+                        <li>Use descriptive names that indicate purpose</li>
+                    </ul>
+                    
+                    <h3>Best Practices</h3>
+                    <ul>
+                        <li>Avoid global variables</li>
+                        <li>Use const and let instead of var</li>
+                        <li>Use arrow functions for callbacks</li>
+                        <li>Chain promises with .then() or use async/await</li>
+                        <li>Destructure objects and arrays when appropriate</li>
+                        <li>Use template literals for string concatenation</li>
+                        <li>Use optional chaining and nullish coalescing when appropriate</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>Documentation Guidelines</h2>
+                    
+                    <h3>Code Comments</h3>
+                    <ul>
+                        <li>Use JSDoc comments for functions</li>
+                        <li>Add inline comments for complex logic</li>
+                        <li>Keep comments current with code changes</li>
+                        <li>Use comments to explain "why", not "what"</li>
+                    </ul>
+                    
+                    <h3>Feature Documentation</h3>
+                    <ul>
+                        <li>Create feature documentation for significant features</li>
+                        <li>Include usage examples</li>
+                        <li>Document limitations and known issues</li>
+                        <li>Provide integration instructions</li>
+                    </ul>
+                    
+                    <div class="callout callout-info">
+                        <p>Good documentation makes your code more maintainable and helps other developers understand your thought process.</p>
+                    </div>
+                </section>
+                
+                <section>
+                    <h2>Accessibility Guidelines</h2>
+                    
+                    <ul>
+                        <li>Use semantic HTML elements</li>
+                        <li>Include appropriate ARIA attributes</li>
+                        <li>Ensure proper focus management</li>
+                        <li>Provide text alternatives for non-text content</li>
+                        <li>Ensure sufficient color contrast</li>
+                        <li>Support keyboard navigation</li>
+                    </ul>
+                    
+                    <h3>Focus Management Example</h3>
+                    <div class="code-example">
+                        <pre><code>// When opening a modal
+function openModal(modalElement) {
+  // Store the current active element to restore focus later
+  previouslyFocused = document.activeElement;
+  
+  // Make modal visible
+  modalElement.classList.add('visible');
+  
+  // Find the first focusable element and focus it
+  const firstFocusable = modalElement.querySelector(
+    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+  );
+  
+  if (firstFocusable) {
+    firstFocusable.focus();
+  }
+}
+
+// When closing a modal
+function closeModal(modalElement) {
+  // Hide modal
+  modalElement.classList.remove('visible');
+  
+  // Restore focus to the previously focused element
+  if (previouslyFocused) {
+    previouslyFocused.focus();
+  }
+}</code></pre>
+                    </div>
+                </section>
+                
+                <div class="callout callout-tip">
+                    <h3>Style Enforcement</h3>
+                    <p>Consider using ESLint and Prettier in your development environment to automatically enforce many of these style guidelines.</p>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 Organic Chemistry Quiz JS Project</p>
+            <p>
+                <a href="https://github.com/muzapro/Organic-Chemistry-Quiz-JS" target="_blank">GitHub Repository</a>
+            </p>
+        </div>
+    </footer>
+    
+    <script src="../assets/js/documentation.js"></script>
+</body>
+</html>
