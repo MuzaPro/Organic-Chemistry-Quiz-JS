@@ -8,7 +8,7 @@
 An interactive educational web application designed to help students learn organic chemistry reactions through drag-and-drop quizzes.
 
 <div align="center">
-  <iframe src="https://player.vimeo.com/video/1083900933" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+  <video src="docs/trailer/Organic_chem_quiz_TRAILER.m4v" controls width="640" alt="Organic Chemistry Quiz Trailer"></video>
 </div>
 
 ## Features
