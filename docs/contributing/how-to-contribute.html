@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contributing to the Question Bank | Organic Chemistry Quiz</title>
+    <link rel="stylesheet" href="../assets/css/documentation.css">
+    <link rel="icon" href="../../assets/images/favicon.svg">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../../assets/images/favicon.svg" alt="Organic Chemistry Quiz">
+                    <span>Organic Chemistry Quiz JS</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../project/overview.html">Project</a></li>
+                    <li><a href="../developers/getting-started.html">Developers</a></li>
+                    <li><a href="../components/main-app.html">Components</a></li>
+                    <li><a href="../features/question-nav.html">Features</a></li>
+                    <li><a href="../contributing/how-to-contribute.html" class="active">Contributing</a></li>
+                    <li><a href="../resources/faq.html">Resources</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <main class="content">
+            <h1>Contributing to the Organic Chemistry Quiz</h1>
+            
+            <section class="intro">
+                <p>Thank you for your interest in contributing to the Organic Chemistry Quiz! As a community-driven educational tool, we particularly value contributions from chemists, educators, and researchers who can help expand our question bank with accurate, pedagogically sound content.</p>
+                
+                <p>While our <a href="../developers/getting-started.html">Developer Guide</a> covers code contributions, this page focuses on how subject matter experts can contribute chemistry questions without necessarily needing programming expertise.</p>
+            </section>
+            
+            <section>
+                <h2>Why We Need Your Chemistry Expertise</h2>
+                <p>Creating effective chemistry questions requires both:</p>
+                <ul>
+                    <li>Deep understanding of organic chemistry concepts</li>
+                    <li>Pedagogical insight into common student misconceptions</li>
+                    <li>Ability to craft explanatory content that clarifies difficult concepts</li>
+                </ul>
+                <p>Your expertise as a chemist or educator is invaluable in creating questions that are both technically accurate and educationally effective.</p>
+            </section>
+            
+            <section>
+                <h2>Question Bank Format</h2>
+                <p>Our questions are stored in a structured JSON format. Each question includes:</p>
+                
+                <ul>
+                    <li><strong>Basic information</strong>: Question ID, text, and reaction type</li>
+                    <li><strong>Product details</strong>: The target molecule students need to synthesize</li>
+                    <li><strong>Reagent options</strong>: Both correct and incorrect reagents for students to choose from</li>
+                    <li><strong>Feedback</strong>: Educational responses for both correct and incorrect answers</li>
+                    <li><strong>Chemistry notes</strong>: Detailed explanations of the reaction mechanism and theory</li>
+                </ul>
+                
+                <h3>JSON Structure Example</h3>
+                <pre><code class="language-json">{
+  "id": "q21",
+  "questionText": "Select reagents for this aldol condensation reaction:",
+  "product": {
+    "name": "4-Hydroxy-4-methyl-2-pentanone",
+    "formula": "C6H12O2",
+    "imagePath": "assets/molecules/4-hydroxy-4-methyl-2-pentanone.svg",
+    "textRepresentation": "CH3-CO-CH2-C(OH)(CH3)2"
+  },
+  "reagents": [
+    {
+      "id": "acetone",
+      "name": "Acetone",
+      "formula": "C3H6O",
+      "imagePath": "assets/molecules/acetone.svg",
+      "textRepresentation": "CH3-CO-CH3"
+    },
+    /* Additional reagent options... */
+  ],
+  "correctReagents": ["acetone", "sodium-hydroxide"],
+  "reactionType": "Aldol Condensation",
+  "correctFeedback": "Correct! In base-catalyzed aldol condensation, acetone forms an enolate that attacks another acetone molecule...",
+  "incorrectFeedback": "Incorrect. Aldol condensation requires a base catalyst and a carbonyl compound with α-hydrogens...",
+  "chemistryNotes": "<p>The <strong>Aldol Condensation</strong> is an important C-C bond forming reaction in organic chemistry:</p>..."
+}</code></pre>
+            </section>
+            
+            <section>
+                <h2>How to Contribute Questions</h2>
+                
+                <h3>Option 1: Direct JSON Contribution (Technical)</h3>
+                <p>If you're comfortable with JSON formatting:</p>
+                <ol>
+                    <li>Fork the repository on <a href="https://github.com/muzapro/Organic-Chemistry-Quiz-JS" target="_blank">GitHub</a></li>
+                    <li>Add your questions to the <code>data/questions.json</code> file following our format</li>
+                    <li>Submit a pull request with your additions</li>
+                </ol>
+                
+                <h3>Option 2: Simplified Submission (Non-Technical)</h3>
+                <p>If you prefer not to work directly with JSON:</p>
+                <ol>
+                    <li>Create a document (Word, Google Doc, etc.) with your question details</li>
+                    <li>Submit it via email to <a href="mailto:studio@muzascience.com">studio@muzascience.com</a> or open an issue on GitHub</li>
+                    <li>Our team will convert your submission into the proper format</li>
+                </ol>
+                
+                <h3>Using AI Tools to Format Contributions</h3>
+                <p>You can use AI tools like ChatGPT to help format your questions into our JSON structure:</p>
+                <ol>
+                    <li>Write your question, correct answer, wrong answers, and explanations in plain text</li>
+                    <li>Ask the AI to format it according to our JSON schema (share the example above)</li>
+                    <li>Review the output for accuracy before submitting</li>
+                </ol>
+            </section>
+            
+            <section>
+                <h2>Question Requirements</h2>
+                
+                <h3>Essential Components for Each Question</h3>
+                <ul>
+                    <li><strong>IUPAC Names</strong>: All molecules (reagents and products) must include proper IUPAC names</li>
+                    <li><strong>Molecular Formulas</strong>: Include accurate chemical formulas</li>
+                    <li><strong>Text Representations</strong>: Simple text-based molecular representations</li>
+                    <li><strong>Detailed Feedback</strong>: Educational responses for both correct and incorrect answers</li>
+                    <li><strong>Chemistry Notes</strong>: In-depth explanation of the reaction mechanism, theory, and practical applications</li>
+                </ul>
+                
+                <h3>Types of Reactions We're Looking For</h3>
+                <p>While we welcome all types of organic chemistry reactions, we're particularly interested in expanding our coverage of:</p>
+                <ul>
+                    <li>Pericyclic reactions (Diels-Alder, cycloadditions)</li>
+                    <li>Transition metal-catalyzed reactions</li>
+                    <li>Carbohydrate and amino acid chemistry</li>
+                    <li>Stereochemistry-focused problems</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2>Template for Question Submissions</h2>
+                <p>If you're using Option 2 (non-JSON submission), please include the following information:</p>
+                
+                <div class="template-box">
+                    <h3>Question Template</h3>
+                    <ul>
+                        <li><strong>Question Text:</strong> [Brief description of the reaction]</li>
+                        <li><strong>Reaction Type:</strong> [E.g., "SN2", "Aldol Condensation", etc.]</li>
+                        <li><strong>Product:</strong>
+                            <ul>
+                                <li>IUPAC Name: [Full IUPAC name]</li>
+                                <li>Formula: [Chemical formula]</li>
+                                <li>Text Representation: [E.g., "CH3-CH2-OH"]</li>
+                            </ul>
+                        </li>
+                        <li><strong>Correct Reagents:</strong>
+                            <ul>
+                                <li>For each reagent:
+                                    <ul>
+                                        <li>IUPAC Name: [Full IUPAC name]</li>
+                                        <li>Formula: [Chemical formula]</li>
+                                        <li>Text Representation: [E.g., "CH3-COOH"]</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><strong>Incorrect Reagent Options:</strong> [Same format as correct reagents]</li>
+                        <li><strong>Correct Answer Feedback:</strong> [Detailed explanation of why the answer is correct]</li>
+                        <li><strong>Incorrect Answer Feedback:</strong> [Helpful guidance for students who answer incorrectly]</li>
+                        <li><strong>Chemistry Notes:</strong> [Comprehensive explanation of the reaction, including mechanism, conditions, applications, etc.]</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section>
+                <h2>Review Process</h2>
+                <p>All question submissions go through a review process:</p>
+                <ol>
+                    <li>Initial screening for format completeness</li>
+                    <li>Technical review for chemical accuracy</li>
+                    <li>Educational review for pedagogical effectiveness</li>
+                    <li>Final formatting and inclusion in the question bank</li>
+                </ol>
+                <p>We may contact you with questions or suggestions to improve your submission.</p>
+            </section>
+            
+            <section class="example-section">
+                <h2>Example Submission</h2>
+                <p>Here's an example of a well-formatted question submission:</p>
+                
+                <div class="example-box">
+                    <h3>Example: Aldehyde Reduction Question</h3>
+                    <p><strong>Question Text:</strong> Select reagents for this aldehyde reduction reaction:</p>
+                    <p><strong>Reaction Type:</strong> Reduction</p>
+                    <p><strong>Product:</strong></p>
+                    <ul>
+                        <li>IUPAC Name: 1-Phenylethanol</li>
+                        <li>Formula: C8H10O</li>
+                        <li>Text Representation: C6H5-CHOH-CH3</li>
+                    </ul>
+                    
+                    <p><strong>Correct Reagents:</strong></p>
+                    <ul>
+                        <li>IUPAC Name: Acetophenone (1-phenylethanone)</li>
+                        <li>Formula: C8H8O</li>
+                        <li>Text Representation: C6H5-CO-CH3</li>
+                    </ul>
+                    <ul>
+                        <li>IUPAC Name: Sodium borohydride</li>
+                        <li>Formula: NaBH4</li>
+                        <li>Text Representation: NaBH4</li>
+                    </ul>
+                    
+                    <p><strong>Incorrect Reagent Options:</strong></p>
+                    <ul>
+                        <li>IUPAC Name: Lithium aluminum hydride</li>
+                        <li>IUPAC Name: Benzaldehyde</li>
+                        <li>IUPAC Name: Hydrogen (with palladium catalyst)</li>
+                        <li>IUPAC Name: Sodium hydroxide</li>
+                    </ul>
+                    
+                    <p><strong>Correct Answer Feedback:</strong> Correct! Sodium borohydride (NaBH4) is a mild reducing agent that effectively reduces ketones like acetophenone to secondary alcohols. In this case, acetophenone is reduced to 1-phenylethanol.</p>
+                    
+                    <p><strong>Incorrect Answer Feedback:</strong> Incorrect. Ketone reduction to a secondary alcohol requires a suitable reducing agent. Consider which reagent can deliver hydride to the carbonyl carbon while being mild enough not to reduce other functional groups.</p>
+                    
+                    <p><strong>Chemistry Notes:</strong> &lt;p&gt;The &lt;strong&gt;Reduction of Ketones&lt;/strong&gt; to secondary alcohols is a fundamental transformation in organic synthesis:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Sodium borohydride (NaBH4) is a mild, selective reducing agent&lt;/li&gt;&lt;li&gt;It delivers a hydride nucleophile to the electrophilic carbonyl carbon&lt;/li&gt;&lt;li&gt;The reaction is typically performed in protic solvents like methanol or ethanol&lt;/li&gt;&lt;li&gt;NaBH4 reduces aldehydes and ketones but is not strong enough to reduce esters, amides, or carboxylic acids&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;The mechanism involves:&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Nucleophilic attack of hydride on the carbonyl carbon&lt;/li&gt;&lt;li&gt;Formation of an alkoxide intermediate&lt;/li&gt;&lt;li&gt;Protonation by the solvent to form the alcohol product&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;This reaction produces a stereogenic center when the ketone is asymmetric, typically giving a racemic mixture unless chiral reducing agents are employed.&lt;/p&gt;</p>
+                </div>
+            </section>
+            
+            <section class="cta-section">
+                <h2>Ready to Contribute?</h2>
+                <p>Your expertise will help students worldwide better understand organic chemistry. Whether you contribute one question or many, your knowledge makes a difference!</p>
+                <div class="cta-buttons">
+                    <a href="https://github.com/muzapro/Organic-Chemistry-Quiz-JS" class="btn btn-primary" target="_blank">Visit GitHub Repository</a>
+                    <a href="mailto:studio@muzascience.com" class="btn btn-secondary">Email a Submission</a>
+                </div>
+                <div class="submission-note">
+                    <p><strong>Note:</strong> The email button opens your default email client. If that doesn't work, you can manually send your submission to <code>studio@muzascience.com</code> with the subject "Organic Chemistry Quiz Question Submission".</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 Organic Chemistry Quiz JS Project</p>
+            <p>
+                <a href="https://github.com/muzapro/Organic-Chemistry-Quiz-JS" target="_blank">GitHub Repository</a>
+            </p>
+        </div>
+    </footer>
+    
+    <script src="../assets/js/documentation.js"></script>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Manager | Components | Organic Chemistry Quiz Documentation</title>
+    <link rel="stylesheet" href="../assets/css/documentation.css">
+    <link rel="icon" href="../../assets/images/favicon.svg">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../../assets/images/favicon.svg" alt="Organic Chemistry Quiz">
+                    <span>Organic Chemistry Quiz JS</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../project/overview.html">Project</a></li>
+                    <li><a href="../developers/getting-started.html">Developers</a></li>
+                    <li><a href="main-app.html" class="active">Components</a></li>
+                    <li><a href="../features/question-nav.html">Features</a></li>
+                    <li><a href="../contributing/how-to-contribute.html">Contributing</a></li>
+                    <li><a href="../resources/faq.html">Resources</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Components</h3>
+            <ul>
+                <li><a href="main-app.html">Overview</a></li>
+                <li><a href="quiz-engine.html">Quiz Engine</a></li>
+                <li><a href="drag-drop.html">Drag and Drop</a></li>
+                <li><a href="audio-manager.html">Audio Manager</a></li>
+                <li><a href="theme-manager.html" class="active">Theme Manager</a></li>
+            </ul>
+        </aside>
+        
+        <main class="content">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="main-app.html">Components</a></li>
+                    <li>Theme Manager</li>
+                </ul>
+            </nav>
+            
+            <article>
+                <h1>Theme Manager</h1>
+                
+                <div class="table-of-contents">
+                    <h3>Contents</h3>
+                    <ul>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#functionality">Key Functionality</a></li>
+                        <li><a href="#api-reference">API Reference</a></li>
+                        <li><a href="#implementation">Implementation Details</a></li>
+                        <li><a href="#user-preferences">User Preferences</a></li>
+                        <li><a href="#usage-examples">Usage Examples</a></li>
+                        <li><a href="#customization">Customization Options</a></li>
+                    </ul>
+                </div>
+                
+                <section id="overview">
+                    <h2>Overview</h2>
+                    
+                    <p>The Theme Manager is responsible for handling theme switching (light/dark mode) in the Organic Chemistry Quiz application. It detects user preferences, applies the appropriate theme, and persists theme choices across sessions.</p>
+                    
+                    <div class="callout">
+                        <p>The Theme Manager enhances user experience by respecting both explicit user choices and system-level preferences, ensuring the application is comfortable to use in different lighting conditions.</p>
+                    </div>
+                    
+                    <p>This component follows the Revealing Module Pattern and provides a simple API for theme toggling and initialization.</p>
+                </section>
+                
+                <section id="functionality">
+                    <h2>Key Functionality</h2>
+                    
+                    <h3>Theme Detection</h3>
+                    <ul>
+                        <li>Detects system-level color scheme preference via <code>prefers-color-scheme</code> media query</li>
+                        <li>Reads previously stored user preferences from localStorage</li>
+                        <li>Prioritizes explicit user choice over system preference</li>
+                    </ul>
+                    
+                    <h3>Theme Application</h3>
+                    <ul>
+                        <li>Applies theme by setting a <code>data-theme</code> attribute on the document element</li>
+                        <li>Updates toggle button UI to reflect the current theme</li>
+                        <li>Triggers smooth transitions between themes</li>
+                    </ul>
+                    
+                    <h3>Persistence</h3>
+                    <ul>
+                        <li>Stores user theme preference in localStorage</li>
+                        <li>Maintains consistent theme across page reloads</li>
+                        <li>Preserves choice across browser sessions</li>
+                    </ul>
+                </section>
+                
+                <section id="api-reference">
+                    <h2>API Reference</h2>
+                    
+                    <p>The Theme Manager exposes a minimal API with three primary methods:</p>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Theme Manager API Reference
+
+/**
+ * Initialize the theme manager
+ * Sets up initial theme and event listeners
+ */
+ThemeManager.initialize()
+
+/**
+ * Toggle between light and dark themes
+ * @returns {string} The new theme ('light' or 'dark')
+ */
+ThemeManager.toggleTheme()
+
+/**
+ * Get the current theme
+ * @returns {string} The current theme ('light' or 'dark')
+ */
+ThemeManager.getCurrentTheme()</code></pre>
+                    </div>
+                </section>
+                
+                <section id="implementation">
+                    <h2>Implementation Details</h2>
+                    
+                    <p>The Theme Manager is implemented in <code>js/theme-manager.js</code> using the Revealing Module Pattern. Here's how the key functionality is implemented:</p>
+                    
+                    <div class="diagram-container">
+                        <div class="mermaid">
+                            flowchart TD
+                                A[Initialize Theme Manager] --> B{Check localStorage\nfor theme preference}
+                                B -->|Found| C[Use stored preference]
+                                B -->|Not found| D{Check system\nprefers-color-scheme}
+                                D -->|dark| E[Use dark theme]
+                                D -->|light/not supported| F[Use light theme]
+                                C --> G[Apply theme to document]
+                                E --> G
+                                F --> G
+                                G --> H[Update toggle button UI]
+                                
+                                I[User clicks toggle button] --> J[Toggle theme]
+                                J --> K[Store new preference]
+                                K --> G
+                        </div>
+                    </div>
+                    
+                    <h3>Theme Detection Logic</h3>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Determine initial theme based on preferences
+const getInitialTheme = () => {
+    // Check if theme is stored in localStorage
+    const storedTheme = localStorage.getItem('quizTheme');
+    if (storedTheme) {
+        return storedTheme;
+    }
+    
+    // Check system preference
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+    }
+    
+    // Default to light theme
+    return 'light';
+};</code></pre>
+                    </div>
+                    
+                    <h3>Theme Application</h3>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Apply theme to document and update UI
+const applyTheme = (theme) => {
+    document.documentElement.setAttribute('data-theme', theme);
+    updateToggleButton(theme);
+};
+
+// Update the toggle button to reflect current theme
+const updateToggleButton = (theme) => {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (!themeToggle) return;
+    
+    if (theme === 'dark') {
+        themeToggle.setAttribute('title', 'Switch to light mode');
+        // Update button appearance for dark mode
+    } else {
+        themeToggle.setAttribute('title', 'Switch to dark mode');
+        // Update button appearance for light mode
+    }
+};</code></pre>
+                    </div>
+                </section>
+                
+                <section id="user-preferences">
+                    <h2>User Preferences</h2>
+                    
+                    <p>The Theme Manager respects user preferences in the following priority order:</p>
+                    
+                    <ol>
+                        <li><strong>Explicit User Choice</strong>: If the user has previously selected a theme (stored in localStorage), that choice is respected above all</li>
+                        <li><strong>System Preference</strong>: If no explicit choice exists, the system's <code>prefers-color-scheme</code> setting is used</li>
+                        <li><strong>Default Theme</strong>: If neither of the above can be determined, light theme is used as default</li>
+                    </ol>
+                    
+                    <p>When a user explicitly toggles the theme using the theme toggle button:</p>
+                    
+                    <ol>
+                        <li>The new theme preference is immediately applied</li>
+                        <li>The preference is stored in localStorage as 'quizTheme'</li>
+                        <li>The toggle button's appearance is updated to reflect the new theme</li>
+                    </ol>
+                    
+                    <div class="callout callout-info">
+                        <p>The Theme Manager does not automatically switch themes when the system preference changes while the app is running. This prevents unexpected theme changes during use.</p>
+                    </div>
+                </section>
+                
+                <section id="usage-examples">
+                    <h2>Usage Examples</h2>
+                    
+                    <h3>Initializing the Theme Manager</h3>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Initialize at application startup
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        // Initialize audio first
+        AudioManager.initialize();
+        
+        // Initialize theme manager
+        ThemeManager.initialize();
+        
+        // Continue with other initialization...
+    } catch (error) {
+        console.error('Failed to initialize application:', error);
+    }
+});</code></pre>
+                    </div>
+                    
+                    <h3>Programmatically Changing Theme</h3>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Example: Force dark theme for a specific feature
+function enableDarkModeForFeature() {
+    const currentTheme = ThemeManager.getCurrentTheme();
+    
+    // Save current theme to restore later
+    sessionStorage.setItem('previousTheme', currentTheme);
+    
+    // Only switch if not already in dark mode
+    if (currentTheme !== 'dark') {
+        ThemeManager.toggleTheme();
+    }
+}
+
+// Restore previous theme
+function restoreTheme() {
+    const previousTheme = sessionStorage.getItem('previousTheme');
+    const currentTheme = ThemeManager.getCurrentTheme();
+    
+    // Only toggle if needed to restore
+    if (previousTheme && previousTheme !== currentTheme) {
+        ThemeManager.toggleTheme();
+    }
+}</code></pre>
+                    </div>
+                    
+                    <h3>Responding to Theme Changes</h3>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Example: Custom component that needs to know about theme changes
+const MyComponent = (() => {
+    // Initialize with current theme
+    let isDarkMode = ThemeManager.getCurrentTheme() === 'dark';
+    
+    // Setup an observer for theme changes
+    const themeObserver = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+            if (mutation.attributeName === 'data-theme') {
+                isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
+                updateComponentStyles();
+            }
+        }
+    });
+    
+    // Start observing
+    themeObserver.observe(document.documentElement, { attributes: true });
+    
+    // Update component based on theme
+    function updateComponentStyles() {
+        // Apply theme-specific styling
+        const elements = document.querySelectorAll('.my-component');
+        elements.forEach(el => {
+            el.style.backgroundColor = isDarkMode ? '#333' : '#fff';
+            el.style.color = isDarkMode ? '#fff' : '#333';
+        });
+    }
+    
+    // Public API
+    return {
+        initialize() {
+            updateComponentStyles();
+        }
+    };
+})();</code></pre>
+                    </div>
+                </section>
+                
+                <section id="customization">
+                    <h2>Customization Options</h2>
+                    
+                    <h3>Adding Additional Themes</h3>
+                    
+                    <p>The Theme Manager can be extended to support more than just light and dark modes:</p>
+                    
+                    <ol>
+                        <li>Add new theme CSS variables in <code>styles.css</code></li>
+                        <li>Modify the Theme Manager to support additional themes</li>
+                        <li>Update the toggle behavior to cycle through available themes</li>
+                    </ol>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-css">/* Example: Adding a high-contrast theme option */
+[data-theme="high-contrast"] {
+    --primary-color: #ff0;
+    --primary-hover: #ff6;
+    --background-primary: #000;
+    --text-color: #fff;
+    --border-color: #ff0;
+    /* Additional variables... */
+}</code></pre>
+                    </div>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Modified theme toggle for multiple themes
+const toggleTheme = () => {
+    const currentTheme = getCurrentTheme();
+    let newTheme;
+    
+    // Cycle through available themes
+    switch (currentTheme) {
+        case 'light':
+            newTheme = 'dark';
+            break;
+        case 'dark':
+            newTheme = 'high-contrast';
+            break;
+        case 'high-contrast':
+            newTheme = 'light';
+            break;
+        default:
+            newTheme = 'light';
+    }
+    
+    // Apply new theme
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('quizTheme', newTheme);
+    updateToggleButton(newTheme);
+    
+    return newTheme;
+};</code></pre>
+                    </div>
+                    
+                    <h3>Automatic Theme Switching</h3>
+                    
+                    <p>You can enhance the Theme Manager to automatically switch themes based on time of day:</p>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Example: Auto-switch based on time of day
+const enableAutoThemeSwitching = () => {
+    // Only apply if user hasn't explicitly set a preference
+    if (!localStorage.getItem('quizTheme')) {
+        const hour = new Date().getHours();
+        const isDaytime = hour >= 7 && hour < 19; // 7 AM to 7 PM
+        
+        const preferredTheme = isDaytime ? 'light' : 'dark';
+        applyTheme(preferredTheme);
+    }
+    
+    // Check again in an hour
+    setTimeout(enableAutoThemeSwitching, 60 * 60 * 1000);
+};</code></pre>
+                    </div>
+                    
+                    <div class="callout callout-tip">
+                        <h3>Accessibility Considerations</h3>
+                        <p>When customizing themes, always ensure sufficient color contrast (minimum 4.5:1 for normal text, 3:1 for large text) for accessibility. Test with color contrast analyzers and screen readers to verify your theme is accessible to all users.</p>
+                    </div>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 Organic Chemistry Quiz JS Project</p>
+            <p>
+                <a href="https://github.com/muzapro/Organic-Chemistry-Quiz-JS" target="_blank">GitHub Repository</a>
+            </p>
+        </div>
+    </footer>
+    
+    <script src="../assets/js/documentation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            mermaid.initialize({
+                startOnLoad: true,
+                theme: 'default',
+                securityLevel: 'loose',
+                fontFamily: 'Inter, sans-serif'
+            });
+        });
+    </script>
+</body>
+</html>

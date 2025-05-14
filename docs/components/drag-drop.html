@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Drop | Components | Organic Chemistry Quiz Documentation</title>
+    <link rel="stylesheet" href="../assets/css/documentation.css">
+    <link rel="icon" href="../../assets/images/favicon.svg">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../../assets/images/favicon.svg" alt="Organic Chemistry Quiz">
+                    <span>Organic Chemistry Quiz JS</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../project/overview.html">Project</a></li>
+                    <li><a href="../developers/getting-started.html">Developers</a></li>
+                    <li><a href="main-app.html" class="active">Components</a></li>
+                    <li><a href="../features/question-nav.html">Features</a></li>
+                    <li><a href="../contributing/how-to-contribute.html">Contributing</a></li>
+                    <li><a href="../resources/faq.html">Resources</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Components</h3>
+            <ul>
+                <li><a href="main-app.html">Overview</a></li>
+                <li><a href="quiz-engine.html">Quiz Engine</a></li>
+                <li><a href="drag-drop.html" class="active">Drag and Drop</a></li>
+                <li><a href="audio-manager.html">Audio Manager</a></li>
+                <li><a href="theme-manager.html">Theme Manager</a></li>
+            </ul>
+        </aside>
+        
+        <main class="content">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="main-app.html">Components</a></li>
+                    <li>Drag and Drop</li>
+                </ul>
+            </nav>
+            
+            <article>
+                <h1>Drag and Drop System</h1>
+                
+                <div class="table-of-contents">
+                    <h3>Contents</h3>
+                    <ul>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#architecture">Architecture</a></li>
+                        <li><a href="#interaction-flow">Interaction Flow</a></li>
+                        <li><a href="#api-reference">API Reference</a></li>
+                        <li><a href="#implementation">Implementation Details</a></li>
+                        <li><a href="#touch-support">Touch Support</a></li>
+                        <li><a href="#usage-examples">Usage Examples</a></li>
+                        <li><a href="#customization">Customization Options</a></li>
+                    </ul>
+                </div>
+                
+                <section id="overview">
+                    <h2>Overview</h2>
+                    
+                    <p>The Drag and Drop System is a critical component of the Organic Chemistry Quiz that enables the core interactive functionality. It allows users to drag reagent cards from the reagent bank and drop them into reaction slots, forming the basis of the quiz interaction.</p>
+                    
+                    <div class="callout">
+                        <p>The system was designed with both traditional mouse interactions and modern touch interfaces in mind, ensuring compatibility across desktop and mobile devices.</p>
+                    </div>
+                    
+                    <p>Key capabilities of the Drag and Drop System include:</p>
+                    
+                    <ul>
+                        <li>Mouse-based drag and drop with standard browser APIs</li>
+                        <li>Touch-based drag and drop using Hammer.js</li>
+                        <li>Real-time visual feedback during drag operations</li>
+                        <li>Management of drop zone states</li>
+                        <li>Integration with audio feedback system</li>
+                        <li>Support for re-arranging and removing placed reagents</li>
+                    </ul>
+                </section>
+                
+                <section id="architecture">
+                    <h2>Architecture</h2>
+                    
+                    <p>The Drag and Drop System follows the Revealing Module Pattern, encapsulating its functionality within a self-contained module that exposes only necessary methods. It maintains its own state and interacts with the DOM directly for visual operations.</p>
+                    
+                    <h3>Component Structure</h3>
+                    
+                    <div class="diagram-container">
+                        <div class="mermaid">
+                            classDiagram
+                                class DragDrop {
+                                    -draggingEnabled: boolean
+                                    -currentDragElement: Element
+                                    -dropZones: array
+                                    -reagentCards: array
+                                    -isTouchDevice: boolean
+                                    -isDragging: boolean
+                                    +initialize()
+                                    +setDraggingEnabled(boolean)
+                                    +getDropZoneContent(number)
+                                    +clearDropZones()
+                                    +removeFromDropZone(object)
+                                    +returnToBank(Element)
+                                }
+                                class DropZone {
+                                    +element: Element
+                                    +zone: number
+                                    +content: object
+                                }
+                                class ReagentCard {
+                                    +element: Element
+                                    +hammerInstance: object
+                                }
+                                DragDrop --> "0..*" DropZone: manages
+                                DragDrop --> "0..*" ReagentCard: manages
+                        </div>
+                    </div>
+                    
+                    <h3>Design Patterns</h3>
+                    
+                    <ul>
+                        <li><strong>Revealing Module Pattern</strong>: Encapsulates functionality while exposing only necessary methods</li>
+                        <li><strong>Event Delegation</strong>: Uses event listeners efficiently for dynamic elements</li>
+                        <li><strong>Feature Detection</strong>: Adapts to device capabilities (touch vs. mouse)</li>
+                        <li><strong>Observer Pattern</strong>: Elements react to state changes (e.g., highlighting drop zones)</li>
+                    </ul>
+                </section>
+                
+                <section id="interaction-flow">
+                    <h2>Interaction Flow</h2>
+                    
+                    <p>The system handles two primary interaction flows - mouse-based and touch-based - with additional handling for existing cards in drop zones.</p>
+                    
+                    <div class="diagram-container">
+                        <div class="mermaid">
+                            sequenceDiagram
+                                participant User
+                                participant ReagentCard
+                                participant DragDrop
+                                participant DropZone
+                                participant AudioManager
+                                
+                                Note over User,AudioManager: Mouse Interaction Flow
+                                
+                                User->>ReagentCard: Mouse drag start
+                                ReagentCard->>DragDrop: dragstart event
+                                DragDrop->>AudioManager: Play pickup sound
+                                DragDrop->>ReagentCard: Add dragging class
+                                User->>DropZone: Drag over zone
+                                DropZone->>DropZone: Add highlight class
+                                User->>DropZone: Drop reagent
+                                DropZone->>DragDrop: drop event
+                                DragDrop->>DragDrop: Clear existing content (if any)
+                                DragDrop->>DropZone: Add reagent clone to zone
+                                DragDrop->>AudioManager: Play drop sound
+                                DragDrop->>ReagentCard: Hide original card
+                                
+                                Note over User,AudioManager: Touch Interaction Flow
+                                
+                                User->>ReagentCard: Touch and move
+                                ReagentCard->>DragDrop: panstart event (Hammer.js)
+                                DragDrop->>AudioManager: Play pickup sound
+                                DragDrop->>ReagentCard: Apply touch-dragging style
+                                DragDrop->>ReagentCard: Move to follow finger
+                                User->>DropZone: Pan over zone
+                                DropZone->>DropZone: Add touch-highlight class
+                                User->>DropZone: Release finger
+                                DragDrop->>DragDrop: Check element at point
+                                DragDrop->>DragDrop: Clear existing content (if any)
+                                DragDrop->>DropZone: Add reagent clone to zone
+                                DragDrop->>AudioManager: Play drop sound
+                                DragDrop->>ReagentCard: Hide original card
+                        </div>
+                    </div>
+                    
+                    <h3>Drop Zone Management</h3>
+                    
+                    <p>When a reagent is dropped onto a zone:</p>
+                    <ol>
+                        <li>The system checks if the zone already contains a reagent</li>
+                        <li>If occupied, the existing reagent is returned to the bank</li>
+                        <li>A clone of the new reagent is created and placed in the drop zone</li>
+                        <li>The original reagent card is hidden from view</li>
+                        <li>The drop zone's content state is updated with reference to both original and clone</li>
+                    </ol>
+                    
+                    <h3>Card Removal</h3>
+                    
+                    <p>Users can remove a reagent from a drop zone by:</p>
+                    <ul>
+                        <li>Clicking/tapping directly on the reagent in the drop zone</li>
+                        <li>Dragging a new reagent onto an occupied drop zone</li>
+                        <li>Using the "Reset Question" button (clears all drop zones)</li>
+                    </ul>
+                </section>
+                
+                <section id="api-reference">
+                    <h2>API Reference</h2>
+                    
+                    <p>The Drag and Drop System exposes the following methods to interact with other components:</p>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Drag and Drop API Reference
+
+/**
+ * Initialize the drag and drop functionality
+ * Sets up event listeners and prepares elements
+ */
+DragDrop.initialize()
+
+/**
+ * Enable or disable dragging functionality
+ * @param {boolean} enabled - Whether dragging should be enabled
+ */
+DragDrop.setDraggingEnabled(enabled)
+
+/**
+ * Get the content of a specific drop zone
+ * @param {number} zoneNumber - The zone number (1 or 2)
+ * @returns {Object|null} - The drop zone content or null if empty
+ */
+DragDrop.getDropZoneContent(zoneNumber)
+
+/**
+ * Clear all drop zones and return reagents to bank
+ */
+DragDrop.clearDropZones()
+
+/**
+ * Remove content from a specific drop zone
+ * @param {Object} zone - The drop zone object
+ */
+DragDrop.removeFromDropZone(zone)
+
+/**
+ * Return a reagent card to the reagent bank
+ * @param {Element} reagentCard - The reagent card element
+ */
+DragDrop.returnToBank(reagentCard)</code></pre>
+                    </div>
+                </section>
+                
+                <section id="implementation">
+                    <h2>Implementation Details</h2>
+                    
+                    <p>The Drag and Drop System is implemented in <code>js/drag-drop.js</code>. Here's a breakdown of key implementation details:</p>
+                    
+                    <h3>Device Detection</h3>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Detect if we're on a touch device
+const isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;</code></pre>
+                    </div>
+                    
+                    <p>Based on this detection, different event handling strategies are employed:</p>
+                    <ul>
+                        <li>For mouse input: Native HTML5 Drag and Drop API events like <code>dragstart</code>, <code>dragover</code>, and <code>drop</code></li>
+                        <li>For touch input: Hammer.js touch events including <code>panstart</code>, <code>pan</code>, and <code>panend</code></li>
+                    </ul>
+                    
+                    <h3>Element Tracking</h3>
+                    
+                    <p>The system maintains careful tracking of elements to handle the cloning and visibility management:</p>
+                    <ul>
+                        <li>Original reagent cards in the reagent bank</li>
+                        <li>Clone elements in drop zones</li>
+                        <li>Relationships between originals and clones</li>
+                    </ul>
+                    
+                    <h3>State Management</h3>
+                    
+                    <p>Drop zone state is tracked in a structured way:</p>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Structure for tracking drop zone content
+zone.content = {
+    element: cardClone,            // The clone in the drop zone
+    originalElement: reagentCard,  // The original card in reagent bank
+    reagentId: reagentId,          // ID of the reagent for answer checking
+    originalId: reagentId          // Backup of original ID
+};</code></pre>
+                    </div>
+                </section>
+                
+                <section id="touch-support">
+                    <h2>Touch Support</h2>
+                    
+                    <p>The Drag and Drop System implements comprehensive touch support using the Hammer.js library. This enables drag-and-drop functionality on mobile and tablet devices that would otherwise not be possible with the standard HTML5 Drag and Drop API.</p>
+                    
+                    <h3>Touch-Specific Challenges</h3>
+                    
+                    <ul>
+                        <li><strong>Position Tracking</strong>: Elements must be manually positioned during touch drags</li>
+                        <li><strong>Drop Detection</strong>: Uses <code>document.elementsFromPoint()</code> to detect what's under the finger</li>
+                        <li><strong>Visual Feedback</strong>: Custom animations and styles for touch interactions</li>
+                        <li><strong>Gesture Conflicts</strong>: Preventing scrolling and other gestures during drag</li>
+                    </ul>
+                    
+                    <h3>Touch-Specific Code Example</h3>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Example touch movement code
+hammer.on('pan', (e) => {
+    if (!draggingEnabled || !isDragging) return;
+    
+    // Calculate new position based on touch movement
+    const deltaX = e.center.x - touchStartX;
+    const deltaY = e.center.y - touchStartY;
+    
+    // Move the element
+    card.style.position = 'fixed';
+    card.style.zIndex = '1000';
+    card.style.left = `${elementStartX + deltaX}px`;
+    card.style.top = `${elementStartY + deltaY}px`;
+    
+    // Check for drop zones under the touch point
+    const elementsAtPoint = document.elementsFromPoint(e.center.x, e.center.y);
+    dropZones.forEach(zone => {
+        if (elementsAtPoint.includes(zone.element)) {
+            zone.element.classList.add('touch-highlight');
+        } else {
+            zone.element.classList.remove('touch-highlight');
+        }
+    });
+    
+    // Prevent scrolling while dragging
+    e.srcEvent.preventDefault();
+});</code></pre>
+                    </div>
+                </section>
+                
+                <section id="usage-examples">
+                    <h2>Usage Examples</h2>
+                    
+                    <h3>Initializing the Drag and Drop System</h3>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Initialize after questions are loaded
+async function initializeQuiz() {
+    try {
+        // Load questions from JSON
+        await QuizEngine.loadQuestions();
+        
+        // Update UI elements...
+        
+        // Initialize drag and drop after question data is loaded
+        DragDrop.initialize();
+    } catch (error) {
+        console.error('Failed to initialize quiz:', error);
+    }
+}</code></pre>
+                    </div>
+                    
+                    <h3>Checking Answer Contents from Drop Zones</h3>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Retrieve drop zone content for answer checking
+function handleSubmit() {
+    // Get the current drop zones' content
+    const dropZone1Content = DragDrop.getDropZoneContent(1);
+    const dropZone2Content = DragDrop.getDropZoneContent(2);
+    
+    // Check if both drop zones have reagents
+    if (!dropZone1Content || !dropZone2Content) {
+        showFeedback('Please place both reactants before submitting.', 'error');
+        return;
+    }
+    
+    // Check the answer using the reagent IDs
+    const isCorrect = QuizEngine.checkAnswer([
+        dropZone1Content.reagentId, 
+        dropZone2Content.reagentId
+    ]);
+    
+    // Handle result...
+}</code></pre>
+                    </div>
+                    
+                    <h3>Disabling Drag Operations After Submission</h3>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Disable dragging after correct answer
+if (isCorrect) {
+    showFeedback(QuizEngine.getCurrentQuestion().correctFeedback, 'success');
+    
+    // Update score
+    document.getElementById('score').textContent = QuizEngine.getScore();
+    
+    // Disable dragging after correct submission
+    DragDrop.setDraggingEnabled(false);
+    
+    // Disable reset button
+    const resetButton = document.getElementById('reset-btn');
+    resetButton.disabled = true;
+    resetButton.classList.add('disabled');
+}</code></pre>
+                    </div>
+                    
+                    <h3>Resetting for Next Question</h3>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Reset UI for next question
+function handleNextQuestion() {
+    // Move to next question...
+    
+    if (nextQuestionLoaded) {
+        // Clear drop zones
+        DragDrop.clearDropZones();
+        
+        // Re-enable dragging
+        DragDrop.setDraggingEnabled(true);
+        
+        // Re-initialize for the new question content
+        DragDrop.initialize();
+    }
+}</code></pre>
+                    </div>
+                </section>
+                
+                <section id="customization">
+                    <h2>Customization Options</h2>
+                    
+                    <p>The Drag and Drop System can be customized in several ways to adapt to different requirements:</p>
+                    
+                    <h3>Adding More Drop Zones</h3>
+                    
+                    <p>To add additional drop zones for reactions with more reagents:</p>
+                    
+                    <ol>
+                        <li>Add new drop zone HTML elements with appropriate IDs and data attributes</li>
+                        <li>Update the <code>dropZones</code> array in the <code>initialize()</code> function</li>
+                        <li>Modify answer checking logic to consider additional drop zones</li>
+                    </ol>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Modified dropZones initialization for three zones
+dropZones = [
+    { element: document.getElementById('drop-zone-1'), zone: 1, content: null },
+    { element: document.getElementById('drop-zone-2'), zone: 2, content: null },
+    { element: document.getElementById('drop-zone-3'), zone: 3, content: null }
+];</code></pre>
+                    </div>
+                    
+                    <h3>Customizing Visual Feedback</h3>
+                    
+                    <p>To modify the visual feedback during drag operations:</p>
+                    
+                    <ol>
+                        <li>Edit CSS classes for different states (<code>highlight</code>, <code>touch-highlight</code>, <code>dragging</code>, <code>touch-dragging</code>)</li>
+                        <li>Add animation effects to the element transitions</li>
+                        <li>Add visual indicators for valid/invalid drop targets</li>
+                    </ol>
+                    
+                    <h3>Enhancing Accessibility</h3>
+                    
+                    <p>To improve accessibility features:</p>
+                    
+                    <ol>
+                        <li>Add keyboard navigation support for reagent selection and placement</li>
+                        <li>Implement ARIA attributes for drag and drop operations</li>
+                        <li>Add screen reader announcements for state changes and feedback</li>
+                    </ol>
+                    
+                    <div class="callout callout-tip">
+                        <h3>Development Tip</h3>
+                        <p>When customizing the Drag and Drop System, maintain separation between interaction logic and visual presentation. This makes it easier to adapt the system for different interfaces while preserving core functionality.</p>
+                    </div>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 Organic Chemistry Quiz JS Project</p>
+            <p>
+                <a href="https://github.com/muzapro/Organic-Chemistry-Quiz-JS" target="_blank">GitHub Repository</a>
+            </p>
+        </div>
+    </footer>
+    
+    <script src="../assets/js/documentation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            mermaid.initialize({
+                startOnLoad: true,
+                theme: 'default',
+                securityLevel: 'loose',
+                fontFamily: 'Inter, sans-serif'
+            });
+        });
+    </script>
+</body>
+</html>

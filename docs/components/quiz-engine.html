@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Engine | Components | Organic Chemistry Quiz Documentation</title>
+    <link rel="stylesheet" href="../assets/css/documentation.css">
+    <link rel="icon" href="../../assets/images/favicon.svg">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../../assets/images/favicon.svg" alt="Organic Chemistry Quiz">
+                    <span>Organic Chemistry Quiz JS</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../project/overview.html">Project</a></li>
+                    <li><a href="../developers/getting-started.html">Developers</a></li>
+                    <li><a href="main-app.html" class="active">Components</a></li>
+                    <li><a href="../features/question-nav.html">Features</a></li>
+                    <li><a href="../contributing/how-to-contribute.html">Contributing</a></li>
+                    <li><a href="../resources/faq.html">Resources</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Components</h3>
+            <ul>
+                <li><a href="main-app.html">Overview</a></li>
+                <li><a href="quiz-engine.html" class="active">Quiz Engine</a></li>
+                <li><a href="drag-drop.html">Drag and Drop</a></li>
+                <li><a href="audio-manager.html">Audio Manager</a></li>
+                <li><a href="theme-manager.html">Theme Manager</a></li>
+            </ul>
+        </aside>
+        
+        <main class="content">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="main-app.html">Components</a></li>
+                    <li>Quiz Engine</li>
+                </ul>
+            </nav>
+            
+            <article>
+                <h1>Quiz Engine</h1>
+                
+                <div class="table-of-contents">
+                    <h3>Contents</h3>
+                    <ul>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#architecture">Architecture</a></li>
+                        <li><a href="#data-flow">Data Flow</a></li>
+                        <li><a href="#api-reference">API Reference</a></li>
+                        <li><a href="#implementation">Implementation Details</a></li>
+                        <li><a href="#usage-examples">Usage Examples</a></li>
+                        <li><a href="#customization">Customization Options</a></li>
+                    </ul>
+                </div>
+                
+                <section id="overview">
+                    <h2>Overview</h2>
+                    
+                    <p>The Quiz Engine is the core component responsible for managing questions, validating answers, and tracking user progress throughout the quiz. It serves as the "brain" of the application, handling all quiz logic while remaining decoupled from the UI.</p>
+                    
+                    <div class="callout">
+                        <p>The Quiz Engine follows the Revealing Module Pattern, providing a clean API for other components while keeping internal implementation details private.</p>
+                    </div>
+                    
+                    <p>Key responsibilities of the Quiz Engine include:</p>
+                    
+                    <ul>
+                        <li>Loading and parsing the question data from JSON</li>
+                        <li>Randomizing questions for variety</li>
+                        <li>Providing questions to the UI layer</li>
+                        <li>Validating user answers</li>
+                        <li>Tracking quiz progress and score</li>
+                        <li>Managing question navigation</li>
+                    </ul>
+                </section>
+                
+                <section id="architecture">
+                    <h2>Architecture</h2>
+                    
+                    <p>The Quiz Engine is designed as a stateful module that maintains the current state of the quiz. It uses private variables to track the question bank, current question index, and score, while exposing a controlled interface through its public methods.</p>
+                    
+                    <h3>Design Patterns</h3>
+                    
+                    <ul>
+                        <li><strong>Revealing Module Pattern</strong>: Encapsulates functionality while exposing only necessary methods</li>
+                        <li><strong>Promise-based Async/Await</strong>: Handles asynchronous data loading cleanly</li>
+                    </ul>
+                    
+                    <h3>Component Structure</h3>
+                    
+                    <div class="diagram-container">
+                        <div class="mermaid">
+                            classDiagram
+                                class QuizEngine {
+                                    -questions: array
+                                    -currentQuestionIndex: number
+                                    -score: number
+                                    +loadQuestions(): Promise
+                                    +loadQuestion(index): boolean
+                                    +checkAnswer(userAnswer): boolean
+                                    +nextQuestion(): boolean
+                                    +getCurrentQuestion(): Object
+                                    +getCurrentQuestionNumber(): number
+                                    +getTotalQuestions(): number
+                                    +getScore(): number
+                                }
+                                class QuestionData {
+                                    +id: string
+                                    +questionText: string
+                                    +product: Object
+                                    +reagents: array
+                                    +correctReagents: array
+                                    +reactionType: string
+                                    +correctFeedback: string
+                                    +incorrectFeedback: string
+                                    +chemistryNotes: string
+                                }
+                                QuizEngine --> "0..*" QuestionData: manages
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="data-flow">
+                    <h2>Data Flow</h2>
+                    
+                    <p>The Quiz Engine manages the flow of question data through the application. Below is a visualization of how data moves through the Quiz Engine during typical operations:</p>
+                    
+                    <div class="diagram-container">
+                        <div class="mermaid">
+                            sequenceDiagram
+                                participant App
+                                participant QuizEngine
+                                participant JSON
+                                participant UI
+                                
+                                App->>QuizEngine: loadQuestions()
+                                QuizEngine->>JSON: fetch('data/questions.json')
+                                JSON-->>QuizEngine: question data
+                                QuizEngine->>QuizEngine: shuffleQuestions()
+                                QuizEngine-->>App: Promise resolved
+                                
+                                App->>QuizEngine: loadQuestion(0)
+                                QuizEngine->>UI: Update DOM with question data
+                                QuizEngine-->>App: true (success)
+                                
+                                Note over App,UI: User interacts and submits answer
+                                
+                                App->>QuizEngine: checkAnswer(['reagent-1', 'reagent-2'])
+                                QuizEngine->>QuizEngine: Validate against correctReagents
+                                QuizEngine->>QuizEngine: Update score if correct
+                                QuizEngine-->>App: boolean (correct/incorrect)
+                                
+                                App->>QuizEngine: nextQuestion()
+                                QuizEngine->>UI: Update DOM with next question
+                                QuizEngine-->>App: true (success)
+                        </div>
+                    </div>
+                    
+                    <h3>Question Loading Process</h3>
+                    
+                    <ol>
+                        <li>App initiates question loading via <code>loadQuestions()</code></li>
+                        <li>Quiz Engine fetches JSON data asynchronously</li>
+                        <li>Questions are parsed and randomized</li>
+                        <li>The first question is loaded into the UI</li>
+                    </ol>
+                    
+                    <h3>Answer Validation Process</h3>
+                    
+                    <ol>
+                        <li>User submits an answer with reagent IDs</li>
+                        <li>App passes the answer to <code>checkAnswer()</code></li>
+                        <li>Quiz Engine compares with correct reagents</li>
+                        <li>Score is updated if answer is correct</li>
+                        <li>Result is returned to App for feedback display</li>
+                    </ol>
+                </section>
+                
+                <section id="api-reference">
+                    <h2>API Reference</h2>
+                    
+                    <p>The Quiz Engine exposes the following methods to interact with other components:</p>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Quiz Engine API Reference
+
+/**
+ * Load questions from the JSON file
+ * @returns {Promise} A promise that resolves when questions are loaded
+ */
+QuizEngine.loadQuestions()
+
+/**
+ * Load a specific question into the UI
+ * @param {number} index - The index of the question to load
+ * @returns {boolean} Whether the question was loaded successfully
+ */
+QuizEngine.loadQuestion(index)
+
+/**
+ * Check if the provided answer is correct
+ * @param {Array} userAnswer - Array of reagent IDs
+ * @returns {boolean} Whether the answer is correct
+ */
+QuizEngine.checkAnswer(userAnswer)
+
+/**
+ * Move to the next question
+ * @returns {boolean} Whether there was a next question to load
+ */
+QuizEngine.nextQuestion()
+
+/**
+ * Get the current question data
+ * @returns {Object} The current question object
+ */
+QuizEngine.getCurrentQuestion()
+
+/**
+ * Get the current question number (0-indexed)
+ * @returns {number} The current question number
+ */
+QuizEngine.getCurrentQuestionNumber()
+
+/**
+ * Get the total number of questions
+ * @returns {number} The total number of questions
+ */
+QuizEngine.getTotalQuestions()
+
+/**
+ * Get the current score
+ * @returns {number} The current score
+ */
+QuizEngine.getScore()</code></pre>
+                    </div>
+                </section>
+                
+                <section id="implementation">
+                    <h2>Implementation Details</h2>
+                    
+                    <p>The Quiz Engine is implemented in <code>js/quiz-engine.js</code> using the Revealing Module Pattern. Here's a breakdown of key implementation details:</p>
+                    
+                    <h3>Question Processing</h3>
+                    
+                    <p>After questions are loaded from JSON, they go through several processing steps:</p>
+                    
+                    <ol>
+                        <li><strong>Shuffle algorithm</strong>: Questions are randomized using the Fisher-Yates shuffle algorithm to provide a different experience each time</li>
+                        <li><strong>DOM Updates</strong>: When a question is loaded, the engine updates various DOM elements with question content</li>
+                        <li><strong>Visual handling</strong>: The engine determines whether to show images or text representations for molecules based on available resources</li>
+                    </ol>
+                    
+                    <h3>Answer Validation</h3>
+                    
+                    <p>The answer validation process:</p>
+                    
+                    <ol>
+                        <li>Sorts both the user's answer and the correct answer to make order irrelevant</li>
+                        <li>Performs deep comparison using JSON stringification</li>
+                        <li>Increments the score if answer is correct</li>
+                        <li>Returns boolean result to caller</li>
+                    </ol>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Answer validation example
+const checkAnswer = (userAnswer) => {
+    const currentQuestion = questions[currentQuestionIndex];
+    const correctAnswer = currentQuestion.correctReagents;
+    
+    // Sort both arrays to ensure order doesn't matter
+    const sortedUserAnswer = [...userAnswer].sort();
+    const sortedCorrectAnswer = [...correctAnswer].sort();
+    
+    // Compare the sorted arrays
+    const isCorrect = JSON.stringify(sortedUserAnswer) === JSON.stringify(sortedCorrectAnswer);
+    
+    // Update score if correct
+    if (isCorrect) {
+        score++;
+    }
+    
+    return isCorrect;
+};</code></pre>
+                    </div>
+                </section>
+                
+                <section id="usage-examples">
+                    <h2>Usage Examples</h2>
+                    
+                    <p>Here are common usage patterns for the Quiz Engine:</p>
+                    
+                    <h3>Initializing the Quiz</h3>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Initialize quiz and load first question
+async function initializeQuiz() {
+    try {
+        // Load questions from JSON
+        await QuizEngine.loadQuestions();
+        
+        // Update total questions count in UI
+        document.getElementById('total-questions').textContent = QuizEngine.getTotalQuestions();
+        
+        // Load the first question
+        QuizEngine.loadQuestion(0);
+        
+        // Initialize other components
+        DragDrop.initialize();
+    } catch (error) {
+        console.error('Failed to initialize quiz:', error);
+    }
+}</code></pre>
+                    </div>
+                    
+                    <h3>Handling Answer Submission</h3>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Handle submission of an answer
+function handleSubmit() {
+    // Get the current drop zones' content
+    const dropZone1Content = DragDrop.getDropZoneContent(1);
+    const dropZone2Content = DragDrop.getDropZoneContent(2);
+    
+    // Check if both drop zones have reagents
+    if (!dropZone1Content || !dropZone2Content) {
+        showFeedback('Please place both reactants before submitting.', 'error');
+        return;
+    }
+    
+    // Check the answer using reagent IDs
+    const isCorrect = QuizEngine.checkAnswer([dropZone1Content.reagentId, dropZone2Content.reagentId]);
+    
+    if (isCorrect) {
+        showFeedback(QuizEngine.getCurrentQuestion().correctFeedback, 'success');
+        document.getElementById('score').textContent = QuizEngine.getScore();
+    } else {
+        showFeedback(QuizEngine.getCurrentQuestion().incorrectFeedback, 'error');
+    }
+}</code></pre>
+                    </div>
+                    
+                    <h3>Moving to Next Question</h3>
+                    
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Handle moving to the next question
+function handleNextQuestion() {
+    // Move to the next question
+    const nextQuestionLoaded = QuizEngine.nextQuestion();
+    
+    if (nextQuestionLoaded) {
+        // Reset the UI for the new question
+        resetQuestionUI();
+        
+        // Update progress indicator
+        updateProgress();
+        
+        // Re-enable dragging for the new question
+        DragDrop.setDraggingEnabled(true);
+        
+        // Re-initialize drag and drop
+        DragDrop.initialize();
+    } else {
+        // Quiz is complete, show completion screen
+        showQuizComplete();
+    }
+}</code></pre>
+                    </div>
+                </section>
+                
+                <section id="customization">
+                    <h2>Customization Options</h2>
+                    
+                    <p>The Quiz Engine can be customized in several ways:</p>
+                    
+                    <h3>Modifying Question Format</h3>
+                    
+                    <p>The Quiz Engine expects questions in a specific JSON format. To modify this format:</p>
+                    
+                    <ol>
+                        <li>Update the question parsing logic in <code>loadQuestions()</code></li>
+                        <li>Adjust the DOM manipulation in <code>loadQuestion()</code></li>
+                        <li>Update the answer validation in <code>checkAnswer()</code></li>
+                    </ol>
+                    
+                    <h3>Changing Randomization Behavior</h3>
+                    
+                    <p>To modify question randomization:</p>
+                    
+                    <ol>
+                        <li>Edit the <code>shuffleQuestions()</code> function</li>
+                        <li>For sequential (non-randomized) questions, comment out the call to <code>shuffleQuestions()</code></li>
+                    </ol>
+                    
+                    <h3>Adding Additional Features</h3>
+                    
+                    <p>Consider these extension points:</p>
+                    
+                    <ul>
+                        <li>Add a timer system by creating new private variables and public methods</li>
+                        <li>Implement difficulty levels with question filtering</li>
+                        <li>Create a hints system with partial feedback</li>
+                        <li>Add a question weighting system for adaptive difficulty</li>
+                    </ul>
+                    
+                    <div class="callout callout-tip">
+                        <h3>Development Tip</h3>
+                        <p>When extending the Quiz Engine, maintain the separation of concerns. The engine should remain focused on quiz logic, with UI concerns handled by the App controller.</p>
+                    </div>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 Organic Chemistry Quiz JS Project</p>
+            <p>
+                <a href="https://github.com/muzapro/Organic-Chemistry-Quiz-JS" target="_blank">GitHub Repository</a>
+            </p>
+        </div>
+    </footer>
+    
+    <script src="../assets/js/documentation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            mermaid.initialize({
+                startOnLoad: true,
+                theme: 'default',
+                securityLevel: 'loose',
+                fontFamily: 'Inter, sans-serif'
+            });
+        });
+    </script>
+</body>
+</html>

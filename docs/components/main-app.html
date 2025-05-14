@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Components | Organic Chemistry Quiz Documentation</title>
+    <link rel="stylesheet" href="../assets/css/documentation.css">
+    <link rel="icon" href="../../assets/images/favicon.svg">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../../assets/images/favicon.svg" alt="Organic Chemistry Quiz">
+                    <span>Organic Chemistry Quiz JS</span>
+                </a>
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../project/overview.html">Project</a></li>
+                    <li><a href="../developers/getting-started.html">Developers</a></li>
+                    <li><a href="main-app.html" class="active">Components</a></li>
+                    <li><a href="../features/question-nav.html">Features</a></li>
+                    <li><a href="../contributing/how-to-contribute.html">Contributing</a></li>
+                    <li><a href="../resources/faq.html">Resources</a></li>
+                </ul>
+            </nav>
+            <button id="menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <h3>Components</h3>
+            <ul>
+                <li><a href="main-app.html" class="active">Overview</a></li>
+                <li><a href="quiz-engine.html">Quiz Engine</a></li>
+                <li><a href="drag-drop.html">Drag and Drop</a></li>
+                <li><a href="audio-manager.html">Audio Manager</a></li>
+                <li><a href="theme-manager.html">Theme Manager</a></li>
+            </ul>
+        </aside>
+        
+        <main class="content">
+            <nav aria-label="Breadcrumb" class="breadcrumb">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li>Components</li>
+                </ul>
+            </nav>
+            
+            <article>
+                <h1>Application Components</h1>
+                
+                <div class="table-of-contents">
+                    <h3>Contents</h3>
+                    <ul>
+                        <li><a href="#architecture">Component Architecture</a></li>
+                        <li><a href="#quiz-engine">Quiz Engine</a></li>
+                        <li><a href="#drag-drop">Drag and Drop System</a></li>
+                        <li><a href="#audio-manager">Audio Manager</a></li>
+                        <li><a href="#theme-manager">Theme Manager</a></li>
+                        <li><a href="#component-interaction">Component Interaction</a></li>
+                    </ul>
+                </div>
+                
+                <section id="architecture">
+                    <h2>Component Architecture</h2>
+                    
+                    <p>The Organic Chemistry Quiz application follows a modular component-based architecture. Each component is implemented as a self-contained module using the Revealing Module Pattern, which provides encapsulation and controlled interfaces between components.</p>
+                    
+                    <div class="image-container">
+                        <img src="../assets/images/component-diagram.svg" alt="Component Architecture Diagram" class="diagram">
+                        <p class="caption">High-level component architecture</p>
+                    </div>
+                    
+                    <p>The application consists of four primary components:</p>
+                    
+                    <ul>
+                        <li><strong>App Controller</strong>: Central application logic that coordinates all other components</li>
+                        <li><strong>Quiz Engine</strong>: Manages question loading, answer validation, and quiz state</li>
+                        <li><strong>Drag and Drop System</strong>: Handles user interactions with dragable elements</li>
+                        <li><strong>Audio Manager</strong>: Controls sound effects and audio feedback</li>
+                        <li><strong>Theme Manager</strong>: Manages light/dark theme switching</li>
+                    </ul>
+                    
+                    <div class="callout">
+                        <p>All components communicate through well-defined public APIs, which promotes modularity and makes it easier to modify or replace individual components without affecting the rest of the application.</p>
+                    </div>
+                </section>
+                
+                <section id="quiz-engine">
+                    <h2>Quiz Engine</h2>
+                    
+                    <p>The Quiz Engine component manages the core quiz functionality, including loading questions from JSON, tracking user progress, and validating answers.</p>
+                    
+                    <h3>Key Responsibilities</h3>
+                    <ul>
+                        <li>Loading and parsing question data</li>
+                        <li>Randomizing question order</li>
+                        <li>Tracking current question and quiz progress</li>
+                        <li>Validating user answers</li>
+                        <li>Managing quiz score</li>
+                    </ul>
+                    
+                    <h3>Public API</h3>
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Quiz Engine API
+QuizEngine.loadQuestions()        // Loads questions from JSON file
+QuizEngine.loadQuestion(index)    // Loads a specific question into the UI
+QuizEngine.checkAnswer(userAnswer) // Checks if the answer is correct
+QuizEngine.nextQuestion()         // Moves to the next question
+QuizEngine.getCurrentQuestion()   // Returns the current question object
+QuizEngine.getCurrentQuestionNumber() // Returns the current question index
+QuizEngine.getTotalQuestions()    // Returns the total number of questions
+QuizEngine.getScore()             // Returns the current score</code></pre>
+                    </div>
+                    
+                    <p>For more details on the Quiz Engine, see the <a href="quiz-engine.html">Quiz Engine documentation</a>.</p>
+                </section>
+                
+                <section id="drag-drop">
+                    <h2>Drag and Drop System</h2>
+                    
+                    <p>The Drag and Drop System handles all user interactions related to dragging reagent cards into reaction drop zones, supporting both mouse and touch interactions.</p>
+                    
+                    <h3>Key Responsibilities</h3>
+                    <ul>
+                        <li>Managing drag and drop interactions for desktop and mobile</li>
+                        <li>Handling reagent card placement in drop zones</li>
+                        <li>Tracking the state of drop zones</li>
+                        <li>Providing visual feedback during drag operations</li>
+                        <li>Supporting touch events using Hammer.js</li>
+                    </ul>
+                    
+                    <h3>Public API</h3>
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Drag and Drop API
+DragDrop.initialize()             // Sets up drag and drop functionality
+DragDrop.setDraggingEnabled(bool) // Enables or disables dragging
+DragDrop.getDropZoneContent(zone) // Gets the content of a specific drop zone
+DragDrop.clearDropZones()         // Clears all drop zones
+DragDrop.removeFromDropZone(zone) // Removes content from a specific drop zone
+DragDrop.returnToBank(element)    // Returns an element to the reagent bank</code></pre>
+                    </div>
+                    
+                    <p>For more details on the Drag and Drop System, see the <a href="drag-drop.html">Drag and Drop documentation</a>.</p>
+                </section>
+                
+                <section id="audio-manager">
+                    <h2>Audio Manager</h2>
+                    
+                    <p>The Audio Manager handles sound effects and audio feedback throughout the application, providing auditory feedback for user interactions.</p>
+                    
+                    <h3>Key Responsibilities</h3>
+                    <ul>
+                        <li>Loading and preloading sound effects</li>
+                        <li>Playing appropriate sounds for different interactions</li>
+                        <li>Managing mute state with persistence</li>
+                        <li>Handling audio playback errors gracefully</li>
+                    </ul>
+                    
+                    <h3>Public API</h3>
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Audio Manager API
+AudioManager.initialize()    // Sets up audio system
+AudioManager.play(soundName) // Plays a specific sound effect
+AudioManager.toggleMute()    // Toggles mute state</code></pre>
+                    </div>
+                    
+                    <h3>Available Sound Effects</h3>
+                    <ul>
+                        <li><code>pickup</code> - Played when a reagent card is picked up</li>
+                        <li><code>drop</code> - Played when a reagent is dropped in a zone</li>
+                        <li><code>correct</code> - Played on correct answer submission</li>
+                        <li><code>wrong</code> - Played on incorrect answer submission</li>
+                    </ul>
+                    
+                    <p>For more details on the Audio Manager, see the <a href="audio-manager.html">Audio Manager documentation</a>.</p>
+                </section>
+                
+                <section id="theme-manager">
+                    <h2>Theme Manager</h2>
+                    
+                    <p>The Theme Manager handles theme switching between light and dark modes, respecting user preferences and system settings.</p>
+                    
+                    <h3>Key Responsibilities</h3>
+                    <ul>
+                        <li>Detecting system color scheme preference</li>
+                        <li>Applying theme styles to the application</li>
+                        <li>Persisting theme preference in local storage</li>
+                        <li>Updating UI to reflect the current theme</li>
+                    </ul>
+                    
+                    <h3>Public API</h3>
+                    <div class="code-container">
+                        <pre><code class="language-javascript">// Theme Manager API
+ThemeManager.initialize()    // Sets up theme manager
+ThemeManager.toggleTheme()   // Toggles between light and dark theme
+ThemeManager.getCurrentTheme() // Returns the current theme</code></pre>
+                    </div>
+                    
+                    <p>For more details on the Theme Manager, see the <a href="theme-manager.html">Theme Manager documentation</a>.</p>
+                </section>
+                
+                <section id="component-interaction">
+                    <h2>Component Interaction</h2>
+                    
+                    <p>The components in the Organic Chemistry Quiz interact with each other through their public APIs, orchestrated by the main application controller in <code>app.js</code>.</p>
+                    
+                    <h3>Interaction Flow</h3>
+                    
+                    <ol>
+                        <li>
+                            <strong>Initialization Phase</strong>
+                            <ul>
+                                <li>App initializes the Audio Manager first</li>
+                                <li>Theme Manager is initialized to apply the correct theme</li>
+                                <li>Once the Start Quiz button is clicked, Quiz Engine loads questions</li>
+                                <li>After questions are loaded, Drag and Drop system is initialized</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Interaction Phase</strong>
+                            <ul>
+                                <li>User interacts with reagent cards via the Drag and Drop system</li>
+                                <li>Audio Manager provides sound feedback during interactions</li>
+                                <li>Drag and Drop system updates drop zone state</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Submission Phase</strong>
+                            <ul>
+                                <li>App retrieves drop zone content from the Drag and Drop system</li>
+                                <li>App passes user answer to the Quiz Engine for validation</li>
+                                <li>Audio Manager plays success or failure sound based on result</li>
+                                <li>Drag and Drop system is enabled/disabled based on quiz state</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Progression Phase</strong>
+                            <ul>
+                                <li>App requests Quiz Engine to advance to next question</li>
+                                <li>Drag and Drop system clears drop zones</li>
+                                <li>Quiz Engine loads new question</li>
+                                <li>Drag and Drop system is reinitialized</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    
+                    <div class="callout callout-tip">
+                        <h3>Design Pattern</h3>
+                        <p>The application uses a loosely coupled architecture, where components don't directly depend on each other. This makes components more reusable and easier to test in isolation.</p>
+                    </div>
+                </section>
+            </article>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 Organic Chemistry Quiz JS Project</p>
+            <p>
+                <a href="https://github.com/muzapro/Organic-Chemistry-Quiz-JS" target="_blank">GitHub Repository</a>
+            </p>
+        </div>
+    </footer>
+    
+    <script src="../assets/js/documentation.js"></script>
+</body>
+</html>
