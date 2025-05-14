@@ -7,8 +7,9 @@
 
 An interactive educational web application designed to help students learn organic chemistry reactions through drag-and-drop quizzes.
 
-<!-- Inline player (GitHub auto-embeds a sandboxed HTML5 player) -->
-https://raw.githubusercontent.com/muzapro/Organic-Chemistry-Quiz-JS/main/docs/trailer/Organic_chem_quiz_TRAILER.mp4
+
+https://github.com/user-attachments/assets/3c32e596-fe78-42b6-866c-c2507ff08955
+
 
 ## Features
 
