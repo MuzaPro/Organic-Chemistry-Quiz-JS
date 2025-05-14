@@ -1,0 +1,297 @@
+[
+  {
+    "id": "q16",
+    "questionText": "Select reagents for this acid-base neutralization reaction:",
+    "product": {
+      "name": "Sodium Acetate",
+      "formula": "C2H3NaO2",
+      "imagePath": "assets/molecules/sodium-acetate.svg",
+      "textRepresentation": "CH3-COO-Na+"
+    },
+    "reagents": [
+      {
+        "id": "acetic-acid",
+        "name": "Acetic Acid",
+        "formula": "CH3COOH",
+        "imagePath": "assets/molecules/acetic-acid.svg",
+        "textRepresentation": "CH3-COOH"
+      },
+      {
+        "id": "sodium-hydroxide",
+        "name": "Sodium Hydroxide",
+        "formula": "NaOH",
+        "imagePath": "assets/molecules/sodium-hydroxide.svg",
+        "textRepresentation": "Na+-OH"
+      },
+      {
+        "id": "hydrochloric-acid",
+        "name": "Hydrochloric Acid",
+        "formula": "HCl",
+        "imagePath": "assets/molecules/hydrochloric-acid.svg",
+        "textRepresentation": "HCl"
+      },
+      {
+        "id": "sodium-bicarbonate",
+        "name": "Sodium Bicarbonate",
+        "formula": "NaHCO3",
+        "imagePath": "assets/molecules/sodium-bicarbonate.svg",
+        "textRepresentation": "NaHCO3"
+      },
+      {
+        "id": "ammonia",
+        "name": "Ammonia",
+        "formula": "NH3",
+        "imagePath": "assets/molecules/ammonia.svg",
+        "textRepresentation": "NH3"
+      },
+      {
+        "id": "potassium-hydroxide",
+        "name": "Potassium Hydroxide",
+        "formula": "KOH",
+        "imagePath": "assets/molecules/potassium-hydroxide.svg",
+        "textRepresentation": "K+-OH"
+      }
+    ],
+    "correctReagents": ["acetic-acid", "sodium-hydroxide"],
+    "reactionType": "Acid-Base Neutralization",
+    "correctFeedback": "Correct! This is a simple acid-base neutralization reaction where acetic acid (a weak acid) reacts with sodium hydroxide (a strong base) to form sodium acetate and water.",
+    "incorrectFeedback": "Incorrect. This is a basic acid-base neutralization. Try selecting a carboxylic acid and a suitable base.",
+    "chemistryNotes": "<p>The <strong>Acid-Base Neutralization</strong> is one of the most fundamental reactions in chemistry:</p><ul><li>An acid donates a proton (H+) to a base</li><li>This forms a salt and, typically, water</li><li>The general reaction is: HA + BOH → BA + H2O</li></ul><p>In this specific case:</p><ol><li>Acetic acid (CH3COOH) is a weak acid with a pKa of about 4.76</li><li>Sodium hydroxide (NaOH) is a strong base that fully dissociates in water</li><li>When mixed, the hydroxide ion (OH-) accepts a proton from acetic acid</li><li>This forms sodium acetate (CH3COONa) and water (H2O)</li></ol><p>This reaction is commonly used in acid-base titrations and is an essential concept in understanding buffer solutions.</p>"
+  },
+  {
+    "id": "q17",
+    "questionText": "Select reagents for this simple SN2 reaction:",
+    "product": {
+      "name": "1-Butanol",
+      "formula": "C4H10O",
+      "imagePath": "assets/molecules/1-butanol.svg",
+      "textRepresentation": "CH3-CH2-CH2-CH2-OH"
+    },
+    "reagents": [
+      {
+        "id": "1-bromobutane",
+        "name": "1-Bromobutane",
+        "formula": "C4H9Br",
+        "imagePath": "assets/molecules/1-bromobutane.svg",
+        "textRepresentation": "CH3-CH2-CH2-CH2-Br"
+      },
+      {
+        "id": "sodium-hydroxide",
+        "name": "Sodium Hydroxide",
+        "formula": "NaOH",
+        "imagePath": "assets/molecules/sodium-hydroxide.svg",
+        "textRepresentation": "Na+-OH"
+      },
+      {
+        "id": "water",
+        "name": "Water",
+        "formula": "H2O",
+        "imagePath": "assets/molecules/water.svg",
+        "textRepresentation": "H2O"
+      },
+      {
+        "id": "potassium-permanganate",
+        "name": "Potassium Permanganate",
+        "formula": "KMnO4",
+        "imagePath": "assets/molecules/potassium-permanganate.svg",
+        "textRepresentation": "KMnO4"
+      },
+      {
+        "id": "sodium-cyanide",
+        "name": "Sodium Cyanide",
+        "formula": "NaCN",
+        "imagePath": "assets/molecules/sodium-cyanide.svg",
+        "textRepresentation": "Na+-CN"
+      },
+      {
+        "id": "sodium-ethoxide",
+        "name": "Sodium Ethoxide",
+        "formula": "C2H5ONa",
+        "imagePath": "assets/molecules/sodium-ethoxide.svg",
+        "textRepresentation": "CH3CH2O-Na+"
+      }
+    ],
+    "correctReagents": ["1-bromobutane", "sodium-hydroxide"],
+    "reactionType": "SN2 Substitution",
+    "correctFeedback": "Correct! This SN2 reaction shows the nucleophilic substitution of the bromine in 1-bromobutane with a hydroxyl group from sodium hydroxide, forming 1-butanol.",
+    "incorrectFeedback": "Incorrect. An SN2 reaction needs a good nucleophile and a substrate with a good leaving group. Try again!",
+    "chemistryNotes": "<p>The <strong>SN2 (Substitution Nucleophilic Bimolecular)</strong> reaction is a fundamental type of nucleophilic substitution:</p><ul><li>A nucleophile attacks a carbon bearing a leaving group</li><li>The reaction occurs in a single step (concerted mechanism)</li><li>Inversion of stereochemistry occurs at the reaction center (if chiral)</li></ul><p>Key features of SN2 reactions:</p><ol><li>Rate depends on both nucleophile and substrate concentrations (bimolecular)</li><li>Works best with primary and methyl substrates (less steric hindrance)</li><li>Polar aprotic solvents typically accelerate the reaction</li><li>Good leaving groups (like bromide) facilitate the reaction</li></ol><p>In this example, hydroxide (OH-) acts as the nucleophile, attacking the carbon attached to bromine in 1-bromobutane. The bromine leaves as bromide (Br-), forming 1-butanol as the product.</p>"
+  },
+  {
+    "id": "q18",
+    "questionText": "Select reagents for this alcohol dehydration reaction:",
+    "product": {
+      "name": "Ethene",
+      "formula": "C2H4",
+      "imagePath": "assets/molecules/ethene.svg",
+      "textRepresentation": "CH2=CH2"
+    },
+    "reagents": [
+      {
+        "id": "ethanol",
+        "name": "Ethanol",
+        "formula": "C2H5OH",
+        "imagePath": "assets/molecules/ethanol.svg",
+        "textRepresentation": "CH3-CH2-OH"
+      },
+      {
+        "id": "sulfuric-acid",
+        "name": "Sulfuric Acid",
+        "formula": "H2SO4",
+        "imagePath": "assets/molecules/sulfuric-acid.svg",
+        "textRepresentation": "H2SO4"
+      },
+      {
+        "id": "sodium-hydroxide",
+        "name": "Sodium Hydroxide",
+        "formula": "NaOH",
+        "imagePath": "assets/molecules/sodium-hydroxide.svg",
+        "textRepresentation": "Na+-OH"
+      },
+      {
+        "id": "phosphoric-acid",
+        "name": "Phosphoric Acid",
+        "formula": "H3PO4",
+        "imagePath": "assets/molecules/phosphoric-acid.svg",
+        "textRepresentation": "H3PO4"
+      },
+      {
+        "id": "potassium-dichromate",
+        "name": "Potassium Dichromate",
+        "formula": "K2Cr2O7",
+        "imagePath": "assets/molecules/potassium-dichromate.svg",
+        "textRepresentation": "K2Cr2O7"
+      },
+      {
+        "id": "aluminum-oxide",
+        "name": "Aluminum Oxide",
+        "formula": "Al2O3",
+        "imagePath": "assets/molecules/aluminum-oxide.svg",
+        "textRepresentation": "Al2O3"
+      }
+    ],
+    "correctReagents": ["ethanol", "sulfuric-acid"],
+    "reactionType": "Dehydration",
+    "correctFeedback": "Correct! Concentrated sulfuric acid dehydrates ethanol to form ethene (ethylene) by removing a water molecule. This is a basic elimination reaction.",
+    "incorrectFeedback": "Incorrect. Alcohol dehydration requires an alcohol and a strong acid catalyst. Try again with the correct combination.",
+    "chemistryNotes": "<p>The <strong>Dehydration of Alcohols</strong> is an elimination reaction that forms alkenes:</p><ul><li>Involves the removal of a water molecule (H2O) from an alcohol</li><li>Typically requires a strong acid catalyst and heat</li><li>Follows an E1 mechanism with secondary and tertiary alcohols</li><li>May follow an E2 pathway with primary alcohols</li></ul><p>General conditions:</p><ol><li>Strong acid (H2SO4 or H3PO4) protonates the OH group</li><li>This converts the poor OH leaving group into a good H2O leaving group</li><li>Heat provides the energy needed for the elimination</li><li>Follows Zaitsev's rule (the more substituted alkene predominates)</li></ol><p>In this example, ethanol (a primary alcohol) is dehydrated to ethene using concentrated sulfuric acid at elevated temperatures. This is one of the simplest dehydration reactions and represents a fundamental method for alkene synthesis.</p>"
+  },
+  {
+    "id": "q19",
+    "questionText": "Select reagents for this primary alcohol oxidation:",
+    "product": {
+      "name": "Acetaldehyde",
+      "formula": "C2H4O",
+      "imagePath": "assets/molecules/acetaldehyde.svg",
+      "textRepresentation": "CH3-CHO"
+    },
+    "reagents": [
+      {
+        "id": "ethanol",
+        "name": "Ethanol",
+        "formula": "C2H5OH",
+        "imagePath": "assets/molecules/ethanol.svg",
+        "textRepresentation": "CH3-CH2-OH"
+      },
+      {
+        "id": "potassium-dichromate",
+        "name": "Potassium Dichromate",
+        "formula": "K2Cr2O7",
+        "imagePath": "assets/molecules/potassium-dichromate.svg",
+        "textRepresentation": "K2Cr2O7"
+      },
+      {
+        "id": "potassium-permanganate",
+        "name": "Potassium Permanganate",
+        "formula": "KMnO4",
+        "imagePath": "assets/molecules/potassium-permanganate.svg",
+        "textRepresentation": "KMnO4"
+      },
+      {
+        "id": "sodium-borohydride",
+        "name": "Sodium Borohydride",
+        "formula": "NaBH4",
+        "imagePath": "assets/molecules/sodium-borohydride.svg",
+        "textRepresentation": "NaBH4"
+      },
+      {
+        "id": "hydrogen-peroxide",
+        "name": "Hydrogen Peroxide",
+        "formula": "H2O2",
+        "imagePath": "assets/molecules/hydrogen-peroxide.svg",
+        "textRepresentation": "H2O2"
+      },
+      {
+        "id": "pyridinium-chlorochromate",
+        "name": "Pyridinium Chlorochromate",
+        "formula": "C5H5NHClCrO3",
+        "imagePath": "assets/molecules/pyridinium-chlorochromate.svg",
+        "textRepresentation": "PCC"
+      }
+    ],
+    "correctReagents": ["ethanol", "potassium-dichromate"],
+    "reactionType": "Oxidation",
+    "correctFeedback": "Correct! Potassium dichromate (K2Cr2O7) in acidic conditions oxidizes ethanol (a primary alcohol) to acetaldehyde. This is a controlled oxidation that stops at the aldehyde stage.",
+    "incorrectFeedback": "Incorrect. To oxidize a primary alcohol to an aldehyde, you need an appropriate oxidizing agent and controlled conditions. Try again!",
+    "chemistryNotes": "<p>The <strong>Oxidation of Primary Alcohols</strong> can produce either aldehydes or carboxylic acids, depending on the reagents and conditions:</p><ul><li>Primary alcohols can be oxidized to aldehydes under controlled conditions</li><li>Further oxidation can convert aldehydes to carboxylic acids</li><li>The choice of oxidizing agent and reaction conditions determines the final product</li></ul><p>For aldehyde formation:</p><ol><li>K2Cr2O7 in acidic conditions (H2SO4) can oxidize primary alcohols to aldehydes</li><li>The reaction must be controlled (typically by distilling off the aldehyde as it forms)</li><li>The orange Cr(VI) is reduced to green Cr(III) during the reaction</li><li>Other reagents like PCC provide more selective oxidation to aldehydes</li></ol><p>In this example, ethanol is oxidized to acetaldehyde using potassium dichromate in acidic conditions. Keeping the reaction conditions controlled prevents further oxidation to acetic acid.</p>"
+  },
+  {
+    "id": "q20",
+    "questionText": "Select reagents for this amide formation reaction:",
+    "product": {
+      "name": "Acetamide",
+      "formula": "C2H5NO",
+      "imagePath": "assets/molecules/acetamide.svg",
+      "textRepresentation": "CH3-CO-NH2"
+    },
+    "reagents": [
+      {
+        "id": "acetic-acid",
+        "name": "Acetic Acid",
+        "formula": "CH3COOH",
+        "imagePath": "assets/molecules/acetic-acid.svg",
+        "textRepresentation": "CH3-COOH"
+      },
+      {
+        "id": "ammonia",
+        "name": "Ammonia",
+        "formula": "NH3",
+        "imagePath": "assets/molecules/ammonia.svg",
+        "textRepresentation": "NH3"
+      },
+      {
+        "id": "acetyl-chloride",
+        "name": "Acetyl Chloride",
+        "formula": "C2H3OCl",
+        "imagePath": "assets/molecules/acetyl-chloride.svg",
+        "textRepresentation": "CH3-COCl"
+      },
+      {
+        "id": "methylamine",
+        "name": "Methylamine",
+        "formula": "CH3NH2",
+        "imagePath": "assets/molecules/methylamine.svg",
+        "textRepresentation": "CH3-NH2"
+      },
+      {
+        "id": "acetic-anhydride",
+        "name": "Acetic Anhydride",
+        "formula": "C4H6O3",
+        "imagePath": "assets/molecules/acetic-anhydride.svg",
+        "textRepresentation": "CH3-CO-O-CO-CH3"
+      },
+      {
+        "id": "dicyclohexylcarbodiimide",
+        "name": "Dicyclohexylcarbodiimide",
+        "formula": "C13H22N2",
+        "imagePath": "assets/molecules/dicyclohexylcarbodiimide.svg",
+        "textRepresentation": "DCC"
+      }
+    ],
+    "correctReagents": ["acetic-acid", "ammonia"],
+    "reactionType": "Amide Formation",
+    "correctFeedback": "Correct! Acetic acid reacts with ammonia to form acetamide. This direct amide formation requires heating to overcome the energy barrier.",
+    "incorrectFeedback": "Incorrect. Amide formation requires a carboxylic acid (or derivative) and an amine. Try again with the correct combination of reagents.",
+    "chemistryNotes": "<p>The <strong>Formation of Amides</strong> is a key reaction in organic and biological chemistry:</p><ul><li>Amides are formed from carboxylic acids and amines</li><li>Direct reaction between these groups is possible but typically requires heat</li><li>The reaction involves nucleophilic acyl substitution</li><li>Water is eliminated during the reaction</li></ul><p>Mechanism of direct amide formation:</p><ol><li>Nucleophilic attack by the amine nitrogen on the carbonyl carbon</li><li>Proton transfer steps</li><li>Elimination of water</li><li>Formation of the amide bond (C-N)</li></ol><p>While direct heating of carboxylic acids with amines can form amides, more efficient methods include:</p><ul><li>Converting the acid to an acid chloride first (more reactive)</li><li>Using coupling reagents like DCC</li><li>Using acid anhydrides as acylating agents</li></ul><p>In this example, acetic acid reacts with ammonia upon heating to form acetamide, a simple and fundamental amide. This type of bond is critical in proteins (peptide bonds) and many pharmaceuticals.</p>"
+  }
+]

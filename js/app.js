@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Initialize audio first
         AudioManager.initialize();
         
+        // Initialize theme manager
+        ThemeManager.initialize();
+        
         // Set up intro screen event listener
         const startButton = document.getElementById('start-quiz-btn');
         startButton.addEventListener('click', startQuiz);
@@ -26,19 +29,44 @@ document.addEventListener('DOMContentLoaded', async () => {
  * Start the quiz when the start button is clicked
  */
 async function startQuiz() {
-    // Hide intro screen with fade
+    // Hide main intro screen with fade
     const introScreen = document.getElementById('intro-screen');
+    introScreen.style.transition = 'opacity 0.7s ease';
     introScreen.style.opacity = '0';
     
-    // Show app container
-    const appContainer = document.querySelector('.app-container');
-    appContainer.classList.add('show');
-    
-    // Initialize quiz after transition
-    setTimeout(async () => {
+    // After intro screen fade completes, show instruction screen
+    setTimeout(() => {
         introScreen.style.display = 'none';
-        await initializeQuiz();
-    }, 500);
+        
+        // Show instruction screen
+        const instructionScreen = document.getElementById('instruction-screen');
+        instructionScreen.style.display = 'flex';
+        instructionScreen.style.opacity = '0';
+        
+        // Fade in instruction screen
+        setTimeout(() => {
+            instructionScreen.style.transition = 'opacity 0.5s ease';
+            instructionScreen.style.opacity = '1';
+            
+            // Keep instruction screen visible for 4 seconds before starting quiz
+            setTimeout(() => {
+                // Begin fading out instruction screen
+                instructionScreen.style.opacity = '0';
+                
+                // Once instruction screen fade out completes, begin quiz initialization
+                setTimeout(() => {
+                    instructionScreen.style.display = 'none';
+                    
+                    // Show app container
+                    const appContainer = document.querySelector('.app-container');
+                    appContainer.classList.add('show');
+                    
+                    // Begin quiz initialization with animations
+                    initializeQuiz();
+                }, 500); // Instruction fade-out time
+            }, 4000); // Instruction display time - 4 FULL SECONDS
+        }, 100); // Small delay before instruction fade-in
+    }, 700); // Intro screen fade-out time
 }
 
 /**
@@ -47,18 +75,55 @@ async function startQuiz() {
 async function initializeQuiz() {
     try {
         // Check if modules are available
-        if (typeof DragDrop === 'undefined' || typeof QuizEngine === 'undefined') {throw new Error('Required modules are not loaded');}
+        if (typeof DragDrop === 'undefined' || typeof QuizEngine === 'undefined') {
+            throw new Error('Required modules are not loaded');
+        }
+
         // Load questions from JSON file
         await QuizEngine.loadQuestions();
         
         // Update total questions count in UI
         document.getElementById('total-questions').textContent = QuizEngine.getTotalQuestions();
         
-        // Load the first question
+        // Get UI elements for animation
+        const questionText = document.getElementById('question-text');
+        const reactionArea = document.querySelector('.reaction-area');
+        const reagentBank = document.getElementById('reagent-bank');
+        
+        // Ensure all elements start invisible
+        questionText.style.opacity = '0';
+        questionText.style.transform = 'translateY(-20px)';
+        reactionArea.style.opacity = '0';
+        reagentBank.style.opacity = '0';
+        
+        // Load the first question (elements are still invisible)
         QuizEngine.loadQuestion(0);
         
-        // Initialize drag and drop functionality
-        DragDrop.initialize();
+        // SEQUENCE: Animate each element with deliberate pacing
+        
+        // 1. First animate in the question text
+        setTimeout(() => {
+            questionText.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            questionText.style.opacity = '1';
+            questionText.style.transform = 'translateY(0)';
+            
+            // 2. Then animate in the reaction area
+            setTimeout(() => {
+                reactionArea.style.transition = 'opacity 0.6s ease';
+                reactionArea.style.opacity = '1';
+                
+                // 3. Finally animate in the reagent bank
+                setTimeout(() => {
+                    reagentBank.style.transition = 'opacity 0.6s ease';
+                    reagentBank.style.opacity = '1';
+                    
+                    // 4. Initialize drag and drop only after all animations complete
+                    setTimeout(() => {
+                        DragDrop.initialize();
+                    }, 600);
+                }, 600);
+            }, 600);
+        }, 100);
         
     } catch (error) {
         console.error('Failed to initialize quiz:', error);
@@ -209,6 +274,28 @@ function resetQuestionUI() {
     // Hide feedback and next button
     document.getElementById('feedback-container').classList.add('hidden');
     document.getElementById('next-btn').classList.add('hidden');
+    
+    // CRITICAL: Ensure all elements have proper visibility for next question
+    const questionText = document.getElementById('question-text');
+    const reactionArea = document.querySelector('.reaction-area');
+    const reagentBank = document.getElementById('reagent-bank');
+    
+    // Remove any transitions that might have been added
+    questionText.style.transition = 'none';
+    reactionArea.style.transition = 'none';
+    reagentBank.style.transition = 'none';
+    
+    // Reset transformations and ensure full visibility
+    questionText.style.opacity = '1';
+    questionText.style.transform = 'translateY(0)';
+    reactionArea.style.opacity = '1';
+    reagentBank.style.opacity = '1';
+    
+    // Re-enable any disabled elements
+    reagentBank.querySelectorAll('.reagent-card').forEach(card => {
+        card.style.visibility = 'visible';
+        card.style.opacity = '1';
+    });
 }
 
 /**

@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="color-scheme" content="light dark">
     <title>Organic Chemistry Quiz Game</title>
     <link rel="stylesheet" href="css/styles.css">
     <!-- Add a modern CSS reset -->
@@ -12,6 +14,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Add a custom font for the app -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Add Material Symbols for icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <!-- Add favicons for the app -->
     <link rel="icon" href="assets/images/favicon.png" type="image/png">
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
@@ -28,6 +32,37 @@
             <button id="start-quiz-btn" class="btn btn-primary">Start Quiz</button>
         </div>
     </div>
+
+    <!-- Add instruction screen after intro screen but before app-container -->
+    <div id="instruction-screen" class="instruction-screen">
+        <div class="instruction-content">
+            <h2>How to Play</h2>
+            <div class="instruction-step">
+                <div class="instruction-icon">
+                    <span class="material-symbols-outlined" style="color: #4365D9; font-size: 32px;">swipe_up</span>
+                </div>
+                <p>Drag reagents from the bottom panel to the reaction slots</p>
+            </div>
+            <div class="instruction-step">
+                <div class="instruction-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                </div>
+                <p>Take your time - there's no time limit</p>
+            </div>
+            <div class="instruction-step">
+                <div class="instruction-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <p>Click Submit when you're ready to check your answer</p>
+            </div>
+        </div>
+    </div>
+
     <div class="app-container">
         <header>
             <h1>Organic Chemistry Quiz</h1>
@@ -117,16 +152,36 @@
                         <img src="assets/images/Muza_logo.png" alt="Muza Productions Logo" class="footer-logo">
                         Muza Productions
                     </a> 
-                    | Organic Chemistry Quiz Game | 04/2025
+                     | 04/2025
                 </p>
-                <button id="mute-btn" class="btn-icon-only" title="Mute sounds">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
-                        stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
-                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-                    </svg>
-                </button>
+                <div class="footer-controls">
+                    <button id="mute-btn" class="btn-icon-only" title="Mute sounds">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
+                            stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                        </svg>
+                    </button>
+                    <button id="theme-toggle" class="btn-icon-only" title="Switch to dark mode">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
+                            stroke-linecap="round" stroke-linejoin="round" width="16" height="16" class="theme-light-icon">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" 
+                            stroke-linecap="round" stroke-linejoin="round" width="16" height="16" class="theme-dark-icon">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </footer>
     </div>
@@ -144,6 +199,7 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+    <script src="js/theme-manager.js"></script>
     <script src="js/audio.js"></script>
     <script src="js/drag-drop.js"></script>
     <script src="js/quiz-engine.js"></script>

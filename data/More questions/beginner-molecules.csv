@@ -1,0 +1,29 @@
+name,smiles
+Sodium Acetate,CC(=O)[O-].[Na+]
+Acetic Acid,CC(=O)O
+Sodium Hydroxide,[Na+].[OH-]
+Hydrochloric Acid,Cl
+Sodium Bicarbonate,[Na+].OC(=O)[O-]
+Ammonia,N
+Potassium Hydroxide,[K+].[OH-]
+1-Butanol,CCCCO
+1-Bromobutane,CCCCBr
+Water,O
+Potassium Permanganate,[K+].[MnO4-]
+Sodium Cyanide,[Na+].[C-]#N
+Sodium Ethoxide,CCO[Na]
+Ethene,C=C
+Ethanol,CCO
+Sulfuric Acid,OS(=O)(=O)O
+Phosphoric Acid,OP(=O)(O)O
+Potassium Dichromate,[K+].[K+].[O-]Cr(=O)(=O)OCr(=O)(=O)[O-]
+Aluminum Oxide,O=[Al]O[Al]=O
+Acetaldehyde,CC=O
+Sodium Borohydride,[Na+].[BH4-]
+Hydrogen Peroxide,OO
+Pyridinium Chlorochromate,C1=CC=NC=C1.[Cl-].[Cr+3]
+Acetamide,CC(=O)N
+Acetyl Chloride,CC(=O)Cl
+Methylamine,CN
+Acetic Anhydride,CC(=O)OC(=O)C
+Dicyclohexylcarbodiimide,C1CCC(CC1)N=C=NC2CCCCC2

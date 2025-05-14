@@ -1,0 +1,594 @@
+{
+  "questions": [
+    {
+      "id": "q6",
+      "questionText": "Select the reagents for this Aldol Condensation reaction:",
+      "product": {
+        "name": "4-Phenyl-3-buten-2-one",
+        "formula": "C10H10O",
+        "imagePath": "assets/molecules/4-phenyl-3-buten-2-one.svg",
+        "textRepresentation": "C6H5-CH=CH-CO-CH3"
+      },
+      "reagents": [
+        {
+          "id": "acetone",
+          "name": "Acetone",
+          "formula": "C3H6O",
+          "imagePath": "assets/molecules/acetone.svg",
+          "textRepresentation": "CH3-CO-CH3"
+        },
+        {
+          "id": "benzaldehyde",
+          "name": "Benzaldehyde",
+          "formula": "C7H6O",
+          "imagePath": "assets/molecules/benzaldehyde.svg",
+          "textRepresentation": "C6H5-CHO"
+        },
+        {
+          "id": "sodium-hydroxide",
+          "name": "Sodium Hydroxide",
+          "formula": "NaOH",
+          "imagePath": "assets/molecules/sodium-hydroxide.svg",
+          "textRepresentation": "Na+-OH"
+        },
+        {
+          "id": "hydrochloric-acid",
+          "name": "Hydrochloric Acid",
+          "formula": "HCl",
+          "imagePath": "assets/molecules/hydrochloric-acid.svg",
+          "textRepresentation": "HCl"
+        },
+        {
+          "id": "sodium-cyanide",
+          "name": "Sodium Cyanide",
+          "formula": "NaCN",
+          "imagePath": "assets/molecules/sodium-cyanide.svg",
+          "textRepresentation": "Na+-CN"
+        },
+        {
+          "id": "lithium-aluminum-hydride",
+          "name": "Lithium Aluminum Hydride",
+          "formula": "LiAlH4",
+          "imagePath": "assets/molecules/lithium-aluminum-hydride.svg",
+          "textRepresentation": "LiAlH4"
+        }
+      ],
+      "correctReagents": ["benzaldehyde", "sodium-hydroxide"],
+      "reactionType": "Aldol Condensation",
+      "correctFeedback": "Correct! This is an aldol condensation where benzaldehyde reacts with acetone under basic conditions (NaOH) to form 4-phenyl-3-buten-2-one, also known as benzalacetone.",
+      "incorrectFeedback": "Incorrect. The aldol condensation requires an aldehyde and a base to deprotonate the alpha carbon of the ketone. Try again with the correct combination.",
+      "chemistryNotes": "<p>The <strong>Aldol Condensation</strong> is a powerful C-C bond-forming reaction:</p><ul><li>It occurs between two carbonyl compounds, at least one of which has an α-hydrogen</li><li>Base deprotonates the α-carbon to form an enolate</li><li>The enolate acts as a nucleophile and attacks the carbonyl carbon of the other molecule</li><li>Dehydration occurs to form an α,β-unsaturated carbonyl compound</li></ul><p>The reaction can be either:</p><ol><li>A crossed aldol (between two different carbonyl compounds)</li><li>A self-aldol (between identical carbonyl compounds)</li></ol><p>In this example, the base (NaOH) deprotonates acetone to form an enolate, which attacks benzaldehyde. After dehydration, 4-phenyl-3-buten-2-one is formed with a new C=C bond.</p>"
+    },
+    {
+      "id": "q7",
+      "questionText": "Select the reagents for this Diels-Alder reaction:",
+      "product": {
+        "name": "Norbornene",
+        "formula": "C7H10",
+        "imagePath": "assets/molecules/norbornene.svg",
+        "textRepresentation": "Bicyclo[2.2.1]hept-2-ene"
+      },
+      "reagents": [
+        {
+          "id": "cyclopentadiene",
+          "name": "Cyclopentadiene",
+          "formula": "C5H6",
+          "imagePath": "assets/molecules/cyclopentadiene.svg",
+          "textRepresentation": "Cyclopentadiene"
+        },
+        {
+          "id": "ethylene",
+          "name": "Ethylene",
+          "formula": "C2H4",
+          "imagePath": "assets/molecules/ethylene.svg",
+          "textRepresentation": "CH2=CH2"
+        },
+        {
+          "id": "maleic-anhydride",
+          "name": "Maleic Anhydride",
+          "formula": "C4H2O3",
+          "imagePath": "assets/molecules/maleic-anhydride.svg",
+          "textRepresentation": "Maleic anhydride"
+        },
+        {
+          "id": "aluminum-chloride",
+          "name": "Aluminum Chloride",
+          "formula": "AlCl3",
+          "imagePath": "assets/molecules/aluminum-chloride.svg",
+          "textRepresentation": "AlCl3"
+        },
+        {
+          "id": "benzoyl-peroxide",
+          "name": "Benzoyl Peroxide",
+          "formula": "C14H10O4",
+          "imagePath": "assets/molecules/benzoyl-peroxide.svg",
+          "textRepresentation": "Benzoyl peroxide"
+        },
+        {
+          "id": "palladium-catalyst",
+          "name": "Palladium Catalyst",
+          "formula": "Pd(PPh3)4",
+          "imagePath": "assets/molecules/palladium-catalyst.svg",
+          "textRepresentation": "Pd(PPh3)4"
+        }
+      ],
+      "correctReagents": ["cyclopentadiene", "ethylene"],
+      "reactionType": "Diels-Alder",
+      "correctFeedback": "Correct! The Diels-Alder reaction between cyclopentadiene (diene) and ethylene (dienophile) forms norbornene, a bicyclic compound. This is a [4+2] cycloaddition reaction.",
+      "incorrectFeedback": "Incorrect. The Diels-Alder reaction requires a diene and a dienophile. Try again with the right combination.",
+      "chemistryNotes": "<p>The <strong>Diels-Alder reaction</strong> is a [4+2] cycloaddition between a conjugated diene and an alkene (dienophile):</p><ul><li>Forms two new carbon-carbon σ bonds</li><li>Creates a six-membered ring</li><li>Occurs in a single concerted step</li><li>Does not require catalysts (though Lewis acids can accelerate it)</li></ul><p>Key features of this reaction:</p><ol><li>It is stereospecific - the stereochemistry of the dienophile is preserved in the product</li><li>It is governed by orbital symmetry (HOMO-LUMO interactions)</li><li>Electron-donating groups on the diene and electron-withdrawing groups on the dienophile increase the reaction rate</li></ol><p>In this example, cyclopentadiene acts as the diene (4π electrons) and ethylene as the dienophile (2π electrons), forming the bicyclic norbornene structure.</p>"
+    },
+    {
+      "id": "q8",
+      "questionText": "Select the reagents for this Friedel-Crafts alkylation reaction:",
+      "product": {
+        "name": "Ethylbenzene",
+        "formula": "C8H10",
+        "imagePath": "assets/molecules/ethylbenzene.svg",
+        "textRepresentation": "C6H5-CH2CH3"
+      },
+      "reagents": [
+        {
+          "id": "benzene",
+          "name": "Benzene",
+          "formula": "C6H6",
+          "imagePath": "assets/molecules/benzene.svg",
+          "textRepresentation": "C6H6"
+        },
+        {
+          "id": "chloroethane",
+          "name": "Chloroethane",
+          "formula": "C2H5Cl",
+          "imagePath": "assets/molecules/chloroethane.svg",
+          "textRepresentation": "CH3CH2-Cl"
+        },
+        {
+          "id": "aluminum-chloride",
+          "name": "Aluminum Chloride",
+          "formula": "AlCl3",
+          "imagePath": "assets/molecules/aluminum-chloride.svg",
+          "textRepresentation": "AlCl3"
+        },
+        {
+          "id": "acetyl-chloride",
+          "name": "Acetyl Chloride",
+          "formula": "C2H3OCl",
+          "imagePath": "assets/molecules/acetyl-chloride.svg",
+          "textRepresentation": "CH3COCl"
+        },
+        {
+          "id": "sulfuric-acid",
+          "name": "Sulfuric Acid",
+          "formula": "H2SO4",
+          "imagePath": "assets/molecules/sulfuric-acid.svg",
+          "textRepresentation": "H2SO4"
+        },
+        {
+          "id": "ferric-chloride",
+          "name": "Ferric Chloride",
+          "formula": "FeCl3",
+          "imagePath": "assets/molecules/ferric-chloride.svg",
+          "textRepresentation": "FeCl3"
+        }
+      ],
+      "correctReagents": ["benzene", "aluminum-chloride"],
+      "reactionType": "Friedel-Crafts Alkylation",
+      "correctFeedback": "Correct! The Friedel-Crafts alkylation of benzene with chloroethane, catalyzed by aluminum chloride (a Lewis acid), produces ethylbenzene.",
+      "incorrectFeedback": "Incorrect. Friedel-Crafts alkylation requires an aromatic compound, an alkyl halide, and a Lewis acid catalyst. Try again!",
+      "chemistryNotes": "<p>The <strong>Friedel-Crafts Alkylation</strong> is an electrophilic aromatic substitution reaction:</p><ul><li>Introduces an alkyl group onto an aromatic ring</li><li>Requires a Lewis acid catalyst (typically AlCl3)</li><li>Forms a carbocation intermediate that attacks the aromatic ring</li></ul><p>Key considerations:</p><ol><li>Carbocation rearrangements can occur, leading to unexpected products</li><li>The reaction works best with electron-rich arenes</li><li>Cannot be performed on aromatic rings with strongly deactivating groups</li><li>May lead to polyalkylation due to the activating effect of the first alkyl group</li></ol><p>In this example, AlCl3 interacts with chloroethane to form an ethyl carbocation (CH3CH2+), which then attacks the electron-rich benzene ring to form ethylbenzene.</p>"
+    },
+    {
+      "id": "q9",
+      "questionText": "Complete this Wittig reaction by selecting the correct reagents:",
+      "product": {
+        "name": "Styrene",
+        "formula": "C8H8",
+        "imagePath": "assets/molecules/styrene.svg",
+        "textRepresentation": "C6H5-CH=CH2"
+      },
+      "reagents": [
+        {
+          "id": "benzaldehyde",
+          "name": "Benzaldehyde",
+          "formula": "C7H6O",
+          "imagePath": "assets/molecules/benzaldehyde.svg",
+          "textRepresentation": "C6H5-CHO"
+        },
+        {
+          "id": "methyltriphenylphosphonium-ylide",
+          "name": "Methyltriphenylphosphonium Ylide",
+          "formula": "C19H15P",
+          "imagePath": "assets/molecules/methyltriphenylphosphonium-ylide.svg",
+          "textRepresentation": "Ph3P=CH2"
+        },
+        {
+          "id": "sodium-borohydride",
+          "name": "Sodium Borohydride",
+          "formula": "NaBH4",
+          "imagePath": "assets/molecules/sodium-borohydride.svg",
+          "textRepresentation": "NaBH4"
+        },
+        {
+          "id": "potassium-tert-butoxide",
+          "name": "Potassium tert-butoxide",
+          "formula": "C4H9OK",
+          "imagePath": "assets/molecules/potassium-tert-butoxide.svg",
+          "textRepresentation": "(CH3)3CO-K+"
+        },
+        {
+          "id": "vinyl-magnesium-bromide",
+          "name": "Vinyl Magnesium Bromide",
+          "formula": "C2H3MgBr",
+          "imagePath": "assets/molecules/vinyl-magnesium-bromide.svg",
+          "textRepresentation": "CH2=CH-MgBr"
+        },
+        {
+          "id": "palladium-catalyst",
+          "name": "Palladium Catalyst",
+          "formula": "Pd(PPh3)4",
+          "imagePath": "assets/molecules/palladium-catalyst.svg",
+          "textRepresentation": "Pd(PPh3)4"
+        }
+      ],
+      "correctReagents": ["benzaldehyde", "methyltriphenylphosphonium-ylide"],
+      "reactionType": "Wittig",
+      "correctFeedback": "Correct! The Wittig reaction between benzaldehyde and methyltriphenylphosphonium ylide forms styrene (an alkene) and triphenylphosphine oxide as a byproduct.",
+      "incorrectFeedback": "Incorrect. The Wittig reaction converts aldehydes or ketones to alkenes using phosphonium ylides. Try again with the right combination of reagents.",
+      "chemistryNotes": "<p>The <strong>Wittig Reaction</strong> is a valuable method for alkene synthesis:</p><ul><li>Converts aldehydes or ketones to alkenes</li><li>Uses phosphonium ylides (R3P=CR'2) as reagents</li><li>Forms a new C=C bond at the position of the original C=O</li><li>Produces triphenylphosphine oxide as a byproduct</li></ul><p>Mechanism steps:</p><ol><li>The ylide (a nucleophile) attacks the carbonyl carbon</li><li>Formation of an oxaphosphetane intermediate (four-membered ring)</li><li>Decomposition to the alkene and triphenylphosphine oxide</li></ol><p>Advantages of the Wittig reaction:</p><ul><li>Predictable regiochemistry - the new double bond forms at the exact position of the original carbonyl</li><li>Can be used with a wide variety of aldehydes and ketones</li><li>Mild conditions compared to some other alkene-forming reactions</li></ul><p>In this example, the methylene ylide (Ph3P=CH2) reacts with benzaldehyde to form styrene and triphenylphosphine oxide.</p>"
+    },
+    {
+      "id": "q10",
+      "questionText": "Select reagents for this hydroboration-oxidation reaction:",
+      "product": {
+        "name": "1-Butanol",
+        "formula": "C4H10O",
+        "imagePath": "assets/molecules/1-butanol.svg",
+        "textRepresentation": "CH3-CH2-CH2-CH2-OH"
+      },
+      "reagents": [
+        {
+          "id": "1-butene",
+          "name": "1-Butene",
+          "formula": "C4H8",
+          "imagePath": "assets/molecules/1-butene.svg",
+          "textRepresentation": "CH3-CH2-CH=CH2"
+        },
+        {
+          "id": "borane-thf",
+          "name": "Borane-THF Complex",
+          "formula": "BH3·THF",
+          "imagePath": "assets/molecules/borane-thf.svg",
+          "textRepresentation": "BH3·THF"
+        },
+        {
+          "id": "hydrogen-peroxide",
+          "name": "Hydrogen Peroxide",
+          "formula": "H2O2",
+          "imagePath": "assets/molecules/hydrogen-peroxide.svg",
+          "textRepresentation": "H2O2"
+        },
+        {
+          "id": "sodium-hydroxide",
+          "name": "Sodium Hydroxide",
+          "formula": "NaOH",
+          "imagePath": "assets/molecules/sodium-hydroxide.svg",
+          "textRepresentation": "Na+-OH"
+        },
+        {
+          "id": "ozone",
+          "name": "Ozone",
+          "formula": "O3",
+          "imagePath": "assets/molecules/ozone.svg",
+          "textRepresentation": "O3"
+        },
+        {
+          "id": "potassium-permanganate",
+          "name": "Potassium Permanganate",
+          "formula": "KMnO4",
+          "imagePath": "assets/molecules/potassium-permanganate.svg",
+          "textRepresentation": "KMnO4"
+        }
+      ],
+      "correctReagents": ["borane-thf", "hydrogen-peroxide"],
+      "reactionType": "Hydroboration-Oxidation",
+      "correctFeedback": "Correct! The hydroboration-oxidation of 1-butene using borane-THF followed by hydrogen peroxide/sodium hydroxide produces 1-butanol. This reaction shows anti-Markovnikov regioselectivity.",
+      "incorrectFeedback": "Incorrect. Hydroboration-oxidation requires a borane reagent followed by an oxidative workup. Try again with the correct reagents.",
+      "chemistryNotes": "<p>The <strong>Hydroboration-Oxidation</strong> is a two-step process for converting alkenes to alcohols:</p><ul><li>Step 1: Hydroboration - addition of B-H across the double bond</li><li>Step 2: Oxidation - the alkylborane is oxidized to an alcohol</li></ul><p>Key features:</p><ol><li>Anti-Markovnikov orientation - hydrogen adds to the more substituted carbon</li><li>Syn addition - B and H add to the same face of the double bond</li><li>The overall transformation is the equivalent of anti-Markovnikov addition of water across a double bond</li><li>High regioselectivity and stereoselectivity</li></ol><p>Mechanism:</p><ul><li>Borane adds to the less hindered end of the double bond (steric control)</li><li>The resulting trialkylborane is oxidized with H2O2/NaOH to give the alcohol with retention of configuration</li></ul><p>In this example, 1-butene undergoes hydroboration with BH3·THF to form a trialkylborane. Subsequent oxidation with H2O2/NaOH gives 1-butanol as the major product.</p>"
+    },
+    {
+      "id": "q11",
+      "questionText": "Select reagents for this Claisen condensation reaction:",
+      "product": {
+        "name": "Ethyl acetoacetate",
+        "formula": "C6H10O3",
+        "imagePath": "assets/molecules/ethyl-acetoacetate.svg",
+        "textRepresentation": "CH3-CO-CH2-COO-CH2CH3"
+      },
+      "reagents": [
+        {
+          "id": "ethyl-acetate",
+          "name": "Ethyl Acetate",
+          "formula": "C4H8O2",
+          "imagePath": "assets/molecules/ethyl-acetate.svg",
+          "textRepresentation": "CH3-COO-CH2CH3"
+        },
+        {
+          "id": "sodium-ethoxide",
+          "name": "Sodium Ethoxide",
+          "formula": "C2H5ONa",
+          "imagePath": "assets/molecules/sodium-ethoxide.svg",
+          "textRepresentation": "CH3CH2O-Na+"
+        },
+        {
+          "id": "acetyl-chloride",
+          "name": "Acetyl Chloride",
+          "formula": "C2H3OCl",
+          "imagePath": "assets/molecules/acetyl-chloride.svg",
+          "textRepresentation": "CH3COCl"
+        },
+        {
+          "id": "lithium-diisopropylamide",
+          "name": "Lithium Diisopropylamide",
+          "formula": "LiN(iPr)2",
+          "imagePath": "assets/molecules/lithium-diisopropylamide.svg",
+          "textRepresentation": "LDA"
+        },
+        {
+          "id": "acetone",
+          "name": "Acetone",
+          "formula": "C3H6O",
+          "imagePath": "assets/molecules/acetone.svg",
+          "textRepresentation": "CH3-CO-CH3"
+        },
+        {
+          "id": "diethyl-malonate",
+          "name": "Diethyl Malonate",
+          "formula": "C7H12O4",
+          "imagePath": "assets/molecules/diethyl-malonate.svg",
+          "textRepresentation": "CH2(COOEt)2"
+        }
+      ],
+      "correctReagents": ["ethyl-acetate", "sodium-ethoxide"],
+      "reactionType": "Claisen Condensation",
+      "correctFeedback": "Correct! The Claisen condensation between two molecules of ethyl acetate, catalyzed by sodium ethoxide, produces ethyl acetoacetate and ethanol.",
+      "incorrectFeedback": "Incorrect. The Claisen condensation requires an ester with α-hydrogens and a strong base. Try again with the right combination.",
+      "chemistryNotes": "<p>The <strong>Claisen Condensation</strong> is a carbon-carbon bond-forming reaction between two esters or an ester and a carbonyl compound:</p><ul><li>Requires a strong base (typically an alkoxide)</li><li>At least one ester must have α-hydrogens</li><li>Forms a β-keto ester product</li><li>Results in acyl transfer from one molecule to another</li></ul><p>Mechanism steps:</p><ol><li>Base removes an α-proton from the ester, forming an enolate</li><li>The enolate attacks the carbonyl carbon of a second ester molecule</li><li>Tetrahedral intermediate collapses, ejecting an alkoxide</li><li>Acid workup protonates the product</li></ol><p>Applications:</p><ul><li>Provides access to β-dicarbonyl compounds</li><li>These products are versatile synthetic intermediates due to their acidic α-hydrogens</li><li>Can be followed by decarboxylation to yield ketones</li></ul><p>In this example, two molecules of ethyl acetate undergo condensation with sodium ethoxide as the base, forming ethyl acetoacetate (a β-keto ester) and ethanol as a byproduct.</p>"
+    },
+    {
+      "id": "q12",
+      "questionText": "Select reagents for this Heck reaction:",
+      "product": {
+        "name": "trans-Stilbene",
+        "formula": "C14H12",
+        "imagePath": "assets/molecules/trans-stilbene.svg",
+        "textRepresentation": "C6H5-CH=CH-C6H5"
+      },
+      "reagents": [
+        {
+          "id": "styrene",
+          "name": "Styrene",
+          "formula": "C8H8",
+          "imagePath": "assets/molecules/styrene.svg",
+          "textRepresentation": "C6H5-CH=CH2"
+        },
+        {
+          "id": "iodobenzene",
+          "name": "Iodobenzene",
+          "formula": "C6H5I",
+          "imagePath": "assets/molecules/iodobenzene.svg",
+          "textRepresentation": "C6H5-I"
+        },
+        {
+          "id": "palladium-acetate",
+          "name": "Palladium Acetate",
+          "formula": "Pd(OAc)2",
+          "imagePath": "assets/molecules/palladium-acetate.svg",
+          "textRepresentation": "Pd(OAc)2"
+        },
+        {
+          "id": "triphenylphosphine",
+          "name": "Triphenylphosphine",
+          "formula": "P(C6H5)3",
+          "imagePath": "assets/molecules/triphenylphosphine.svg",
+          "textRepresentation": "PPh3"
+        },
+        {
+          "id": "triethylamine",
+          "name": "Triethylamine",
+          "formula": "N(CH2CH3)3",
+          "imagePath": "assets/molecules/triethylamine.svg",
+          "textRepresentation": "Et3N"
+        },
+        {
+          "id": "grubbs-catalyst",
+          "name": "Grubbs Catalyst",
+          "formula": "C43H72Cl2P2Ru",
+          "imagePath": "assets/molecules/grubbs-catalyst.svg",
+          "textRepresentation": "Grubbs Cat."
+        }
+      ],
+      "correctReagents": ["palladium-acetate", "triethylamine"],
+      "reactionType": "Heck Reaction",
+      "correctFeedback": "Correct! The Heck reaction between iodobenzene and styrene, catalyzed by palladium acetate with triethylamine as a base, produces trans-stilbene.",
+      "incorrectFeedback": "Incorrect. The Heck reaction requires a palladium catalyst and a base to couple an aryl halide with an alkene. Try again with the right combination of reagents.",
+      "chemistryNotes": "<p>The <strong>Heck Reaction</strong> is a palladium-catalyzed cross-coupling reaction:</p><ul><li>Couples aryl or vinyl halides with alkenes</li><li>Forms a new C-C bond</li><li>Requires a palladium catalyst</li><li>Proceeds with retention of alkene configuration</li><li>Requires a base to neutralize the HX byproduct</li></ul><p>Catalytic cycle:</p><ol><li>Oxidative addition of the aryl/vinyl halide to Pd(0)</li><li>Alkene coordination and insertion</li><li>β-hydride elimination to form the product</li><li>Reductive elimination of HX and regeneration of the Pd(0) catalyst</li></ol><p>Key features:</p><ul><li>Tolerates many functional groups</li><li>Generally gives trans products</li><li>Often uses phosphine ligands to stabilize Pd intermediates</li><li>Can be performed under relatively mild conditions</li></ul><p>In this example, iodobenzene couples with styrene in the presence of Pd(OAc)2 and triethylamine to yield trans-stilbene. The reaction typically proceeds with high stereoselectivity, favoring the trans isomer.</p>"
+    },
+    {
+      "id": "q13",
+      "questionText": "Complete this Michael addition reaction by selecting the correct reagents:",
+      "product": {
+        "name": "Ethyl 4-oxo-6-phenylhexanoate",
+        "formula": "C14H18O3",
+        "imagePath": "assets/molecules/ethyl-4-oxo-6-phenylhexanoate.svg",
+        "textRepresentation": "C6H5-CH2-CH2-CO-CH2-CH2-COOEt"
+      },
+      "reagents": [
+        {
+          "id": "benzylacetone",
+          "name": "Benzylacetone",
+          "formula": "C10H12O",
+          "imagePath": "assets/molecules/benzylacetone.svg",
+          "textRepresentation": "C6H5-CH2-CH2-CO-CH3"
+        },
+        {
+          "id": "ethyl-acrylate",
+          "name": "Ethyl Acrylate",
+          "formula": "C5H8O2",
+          "imagePath": "assets/molecules/ethyl-acrylate.svg",
+          "textRepresentation": "CH2=CH-COOEt"
+        },
+        {
+          "id": "sodium-methoxide",
+          "name": "Sodium Methoxide",
+          "formula": "CH3ONa",
+          "imagePath": "assets/molecules/sodium-methoxide.svg",
+          "textRepresentation": "CH3O-Na+"
+        },
+        {
+          "id": "lithium-aluminum-hydride",
+          "name": "Lithium Aluminum Hydride",
+          "formula": "LiAlH4",
+          "imagePath": "assets/molecules/lithium-aluminum-hydride.svg",
+          "textRepresentation": "LiAlH4"
+        },
+        {
+          "id": "benzaldehyde",
+          "name": "Benzaldehyde",
+          "formula": "C7H6O",
+          "imagePath": "assets/molecules/benzaldehyde.svg",
+          "textRepresentation": "C6H5-CHO"
+        },
+        {
+          "id": "diethyl-malonate",
+          "name": "Diethyl Malonate",
+          "formula": "C7H12O4",
+          "imagePath": "assets/molecules/diethyl-malonate.svg",
+          "textRepresentation": "CH2(COOEt)2"
+        }
+      ],
+      "correctReagents": ["benzylacetone", "sodium-methoxide"],
+      "reactionType": "Michael Addition",
+      "correctFeedback": "Correct! This Michael addition involves benzylacetone (as the nucleophile) adding to ethyl acrylate (the Michael acceptor) catalyzed by sodium methoxide, forming ethyl 4-oxo-6-phenylhexanoate.",
+      "incorrectFeedback": "Incorrect. Michael addition requires a nucleophile (typically an enolate), an α,β-unsaturated carbonyl compound, and a base catalyst. Try again with the correct combination.",
+      "chemistryNotes": "<p>The <strong>Michael Addition</strong> is a conjugate addition reaction:</p><ul><li>Involves the addition of a nucleophile to the β position of an α,β-unsaturated carbonyl compound</li><li>The nucleophile (Michael donor) is typically an enolate or other stabilized carbanion</li><li>The electrophile (Michael acceptor) is an α,β-unsaturated carbonyl or related system</li><li>Results in 1,4-addition rather than 1,2-addition</li></ul><p>Mechanism:</p><ol><li>Base deprotonates the Michael donor to form an enolate</li><li>The enolate attacks the β-carbon of the Michael acceptor</li><li>Protonation of the resulting enolate generates the final product</li></ol><p>Key features:</p><ul><li>Forms new carbon-carbon bonds</li><li>Creates 1,5-dicarbonyl compounds which are versatile synthetic intermediates</li><li>Can be performed under mild conditions</li><li>Works with a variety of nucleophiles including enolates, amines, thiols, and others</li></ul><p>In this example, sodium methoxide deprotonates benzylacetone to form an enolate, which then attacks the β-carbon of ethyl acrylate. Protonation of the resulting enolate gives ethyl 4-oxo-6-phenylhexanoate.</p>"
+    },
+    {
+      "id": "q14",
+      "questionText": "Select reagents for this alcohol oxidation reaction:",
+      "product": {
+        "name": "Cyclohexanone",
+        "formula": "C6H10O",
+        "imagePath": "assets/molecules/cyclohexanone.svg",
+        "textRepresentation": "Cyclohexanone"
+      },
+      "reagents": [
+        {
+          "id": "cyclohexanol",
+          "name": "Cyclohexanol",
+          "formula": "C6H12O",
+          "imagePath": "assets/molecules/cyclohexanol.svg",
+          "textRepresentation": "Cyclohexanol"
+        },
+        {
+          "id": "pyridinium-chlorochromate",
+          "name": "Pyridinium Chlorochromate",
+          "formula": "C5H5NHClCrO3",
+          "imagePath": "assets/molecules/pyridinium-chlorochromate.svg",
+          "textRepresentation": "PCC"
+        },
+        {
+          "id": "potassium-permanganate",
+          "name": "Potassium Permanganate",
+          "formula": "KMnO4",
+          "imagePath": "assets/molecules/potassium-permanganate.svg",
+          "textRepresentation": "KMnO4"
+        },
+        {
+          "id": "sodium-borohydride",
+          "name": "Sodium Borohydride",
+          "formula": "NaBH4",
+          "imagePath": "assets/molecules/sodium-borohydride.svg",
+          "textRepresentation": "NaBH4"
+        },
+        {
+          "id": "lithium-aluminum-hydride",
+          "name": "Lithium Aluminum Hydride",
+          "formula": "LiAlH4",
+          "imagePath": "assets/molecules/lithium-aluminum-hydride.svg",
+          "textRepresentation": "LiAlH4"
+        },
+        {
+          "id": "jones-reagent",
+          "name": "Jones Reagent",
+          "formula": "H2CrO4",
+          "imagePath": "assets/molecules/jones-reagent.svg",
+          "textRepresentation": "CrO3, H2SO4, H2O"
+        }
+      ],
+      "correctReagents": ["cyclohexanol", "pyridinium-chlorochromate"],
+      "reactionType": "Alcohol Oxidation",
+      "correctFeedback": "Correct! Pyridinium chlorochromate (PCC) oxidizes cyclohexanol (a secondary alcohol) to cyclohexanone (a ketone). PCC is a mild and selective oxidizing agent.",
+      "incorrectFeedback": "Incorrect. Oxidation of secondary alcohols to ketones requires an appropriate oxidizing agent. Try again with the correct combination.",
+      "chemistryNotes": "<p>The <strong>Oxidation of Secondary Alcohols</strong> converts them to ketones:</p><ul><li>Various oxidizing agents can be used with different selectivity and reactivity profiles</li><li>PCC (Pyridinium Chlorochromate) is a mild oxidant that selectively oxidizes alcohols</li><li>Primary alcohols → aldehydes</li><li>Secondary alcohols → ketones</li><li>PCC typically doesn't oxidize aldehydes further to carboxylic acids</li></ul><p>Key features of PCC oxidation:</p><ol><li>Mild reaction conditions (typically in dichloromethane at room temperature)</li><li>Good selectivity for alcohol oxidation</li><li>Minimal overoxidation or side reactions</li><li>Particularly useful for molecules with sensitive functional groups</li></ol><p>Mechanism:</p><ul><li>The alcohol reacts with the Cr(VI) species</li><li>Chromate ester intermediate forms</li><li>Hydride transfer from the α-carbon to chromium</li><li>Reduction of Cr(VI) to Cr(IV)</li><li>Formation of the carbonyl compound</li></ul><p>In this example, cyclohexanol is oxidized to cyclohexanone using PCC, with the oxidation state of chromium being reduced in the process.</p>"
+    },
+    {
+      "id": "q15",
+      "questionText": "Select reagents for this ketone reduction reaction:",
+      "product": {
+        "name": "4-tert-Butylcyclohexanol",
+        "formula": "C10H20O",
+        "imagePath": "assets/molecules/4-tert-butylcyclohexanol.svg",
+        "textRepresentation": "4-tert-Butylcyclohexanol"
+      },
+      "reagents": [
+        {
+          "id": "4-tert-butylcyclohexanone",
+          "name": "4-tert-Butylcyclohexanone",
+          "formula": "C10H18O",
+          "imagePath": "assets/molecules/4-tert-butylcyclohexanone.svg",
+          "textRepresentation": "4-tert-Butylcyclohexanone"
+        },
+        {
+          "id": "sodium-borohydride",
+          "name": "Sodium Borohydride",
+          "formula": "NaBH4",
+          "imagePath": "assets/molecules/sodium-borohydride.svg",
+          "textRepresentation": "NaBH4"
+        },
+        {
+          "id": "lithium-aluminum-hydride",
+          "name": "Lithium Aluminum Hydride",
+          "formula": "LiAlH4",
+          "imagePath": "assets/molecules/lithium-aluminum-hydride.svg",
+          "textRepresentation": "LiAlH4"
+        },
+        {
+          "id": "hydrogen-palladium",
+          "name": "Hydrogen/Palladium",
+          "formula": "H2/Pd",
+          "imagePath": "assets/molecules/hydrogen-palladium.svg",
+          "textRepresentation": "H2/Pd"
+        },
+        {
+          "id": "lithium-tri-tert-butoxyaluminum-hydride",
+          "name": "Lithium tri-tert-butoxyaluminum hydride",
+          "formula": "LiAlH[OC(CH3)3]3",
+          "imagePath": "assets/molecules/lithium-tri-tert-butoxyaluminum-hydride.svg",
+          "textRepresentation": "L-Selectride"
+        },
+        {
+          "id": "pyridinium-chlorochromate",
+          "name": "Pyridinium Chlorochromate",
+          "formula": "C5H5NHClCrO3",
+          "imagePath": "assets/molecules/pyridinium-chlorochromate.svg",
+          "textRepresentation": "PCC"
+        }
+      ],
+      "correctReagents": ["4-tert-butylcyclohexanone", "sodium-borohydride"],
+      "reactionType": "Ketone Reduction",
+      "correctFeedback": "Correct! Sodium borohydride (NaBH4) reduces 4-tert-butylcyclohexanone to 4-tert-butylcyclohexanol. This reaction primarily gives the more stable equatorial alcohol.",
+      "incorrectFeedback": "Incorrect. Reduction of ketones to alcohols requires a suitable reducing agent. Try again with the correct combination.",
+      "chemistryNotes": "<p>The <strong>Reduction of Ketones</strong> converts them to secondary alcohols:</p><ul><li>Sodium borohydride (NaBH4) is a common, mild reducing agent</li><li>It selectively reduces aldehydes and ketones to alcohols</li><li>Does not usually reduce esters, carboxylic acids, or amides</li><li>Works under mild conditions (typically in methanol or ethanol at room temperature)</li></ul><p>Stereochemical considerations:</p><ol><li>In cyclic systems, the hydride typically approaches from the less hindered face</li><li>For 4-tert-butylcyclohexanone, the tert-butyl group blocks one face of the molecule</li><li>This results in preferential formation of the isomer with the OH group equatorial</li><li>The product distribution is influenced by steric and stereoelectronic effects</li></ol><p>Mechanism:</p><ul><li>Hydride transfer from borohydride to the carbonyl carbon</li><li>Formation of an alkoxide intermediate</li><li>Protonation during workup to give the alcohol product</li></ul><p>In this reaction, sodium borohydride reduces 4-tert-butylcyclohexanone to give 4-tert-butylcyclohexanol, predominantly as the equatorial alcohol isomer due to the directing effect of the bulky tert-butyl group.</p>"
+    }
+  ]
+}
