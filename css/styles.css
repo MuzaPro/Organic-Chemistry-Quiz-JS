@@ -63,9 +63,9 @@
 }
 
 .intro-content {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: var(--background-primary);
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 20px var(--shadow-color);
     padding: 40px;
     text-align: center;
     max-width: 600px;
@@ -823,6 +823,30 @@ footer {
     margin: 0;
 }
 
+/* Style for SVG icons in instruction screen */
+.instruction-icon .svg-icon {
+    filter: invert(var(--icon-inversion, 0.5));
+    opacity: 0.8;
+}
+
+/* Style for external SVG in instruction screen to match inline SVGs */
+.instruction-svg {
+    stroke: currentColor;
+    fill: none;
+    color: inherit;
+}
+
+/* Style for the hand-move SVG icon in instruction screen */
+.instruction-svg {
+    stroke: #4365D9;
+    fill: none;
+}
+
+/* For dark mode, adjust the inversion if needed */
+[data-theme="dark"] .instruction-icon .svg-icon {
+    --icon-inversion: 0.8;
+}
+
 /* Accessibility - reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
     .intro-screen,
@@ -851,4 +875,13 @@ footer {
     .instruction-step p {
         font-size: 1rem;
     }
+}
+
+/* Material Symbols configuration */
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
 }

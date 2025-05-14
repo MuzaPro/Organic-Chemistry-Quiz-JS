@@ -7,7 +7,9 @@
 
 An interactive educational web application designed to help students learn organic chemistry reactions through drag-and-drop quizzes.
 
-![Organic Chemistry Quiz Game Screenshot](assets/images/ScreenShot.jpg)
+<div align="center">
+  <iframe src="https://player.vimeo.com/video/1083900933" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 ## Features
 
