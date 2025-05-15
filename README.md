@@ -171,3 +171,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ---
 
 Developed with ❤️ for chemistry students
+
+## Development
+
+### Quiz Behavior
+
+The quiz displays 5 random questions per session, chosen from the full question bank. This provides a varied learning experience and encourages repeat plays. If fewer than 5 questions are available in the question bank, all questions will be displayed.

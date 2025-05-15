@@ -10,6 +10,12 @@ const QuizEngine = (() => {
     let score = 0;
     
     /**
+     * Number of questions to display per quiz session
+     * @constant {number}
+     */
+    const QUESTIONS_PER_SESSION = 5;
+    
+    /**
      * Load questions from the JSON file
      * @returns {Promise} A promise that resolves when questions are loaded
      */
@@ -21,11 +27,18 @@ const QuizEngine = (() => {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
             
-            const data = await response.json();
-            questions = data.questions;
+            let data = await response.json();
+            let allQuestions = data.questions;
             
-            // Shuffle questions for variety
-            shuffleQuestions();
+            // Shuffle all questions first
+            shuffleQuestions(allQuestions);
+            
+            // Limit to QUESTIONS_PER_SESSION (or use all if fewer are available)
+            if (allQuestions.length > QUESTIONS_PER_SESSION) {
+                allQuestions = allQuestions.slice(0, QUESTIONS_PER_SESSION);
+            }
+            
+            questions = allQuestions; // Update the questions array
             
             return true;
         } catch (error) {
@@ -37,11 +50,11 @@ const QuizEngine = (() => {
     /**
      * Shuffle the questions array
      */
-    const shuffleQuestions = () => {
+    const shuffleQuestions = (questionsArray) => {
         // Fisher-Yates shuffle algorithm
-        for (let i = questions.length - 1; i > 0; i--) {
+        for (let i = questionsArray.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [questions[i], questions[j]] = [questions[j], questions[i]];
+            [questionsArray[i], questionsArray[j]] = [questionsArray[j], questionsArray[i]];
         }
     };
     
